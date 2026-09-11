@@ -224,7 +224,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-esophagus'], box: [170, 134, 20, 165], label: [180, 203] },
+    model: { shapeIds: ['dig-esophagus'], box: [174, 116, 12, 152], label: [178, 190] },
   },
   {
     id: 'stomach',
@@ -275,7 +275,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     source: SRC,
     refs: ['Gray\'s Anatomy, Ch. 36'],
     reviewedAt: REV,
-    model: { shapeIds: ['dig-stomach'], box: [137, 270, 70, 79], label: [172, 303] },
+    model: { shapeIds: ['dig-stomach'], box: [158, 262, 50, 64], label: [186, 296] },
   },
   {
     id: 'liver',
@@ -329,7 +329,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     source: SRC,
     refs: ['Gray\'s Anatomy, Ch. 39'],
     reviewedAt: REV,
-    model: { shapeIds: ['dig-liver'], box: [135, 271, 83, 59], label: [177, 296] },
+    model: { shapeIds: ['dig-liver'], box: [136, 262, 72, 54], label: [168, 292] },
   },
   {
     id: 'gallbladder',
@@ -374,7 +374,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-gallbladder'], box: [179, 302, 28, 36], label: [193, 317] },
+    model: { shapeIds: ['dig-gallbladder'], box: [166, 306, 18, 26], label: [175, 319] },
   },
   {
     id: 'pancreas',
@@ -426,7 +426,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-pancreas'], box: [146, 322, 68, 34], label: [180, 336] },
+    model: { shapeIds: ['dig-pancreas'], box: [162, 286, 57, 22], label: [190, 297] },
   },
   {
     id: 'smallintestine',
@@ -474,7 +474,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-smallintestine'], box: [150, 344, 60, 53], label: [180, 366] },
+    model: { shapeIds: ['dig-smallintestine'], box: [147, 320, 64, 86], label: [179, 362] },
   },
   {
     id: 'largeintestine',
@@ -522,7 +522,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-largeintestine'], box: [145, 340, 70, 68], label: [180, 369] },
+    model: { shapeIds: ['dig-largeintestine'], box: [139, 294, 78, 106], label: [148, 352] },
   },
   {
     id: 'appendix',
@@ -564,7 +564,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-appendix'], box: [140, 384, 20, 32], label: [150, 397] },
+    model: { shapeIds: ['dig-appendix'], box: [140, 388, 10, 24], label: [145, 400] },
   },
   {
     id: 'rectum',
@@ -605,6 +605,6 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-rectum'], box: [172, 392, 18, 29], label: [181, 404] },
+    model: { shapeIds: ['dig-rectum'], box: [174, 394, 12, 22], label: [178, 406] },
   },
 ]

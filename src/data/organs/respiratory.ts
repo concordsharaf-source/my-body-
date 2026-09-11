@@ -46,7 +46,7 @@ export const RESPIRATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['res-nasal'], box: [169, 68, 23, 27], label: [181, 79] },
+    model: { shapeIds: ['res-nasal'], box: [168, 58, 24, 30], label: [180, 74] },
   },
   {
     id: 'pharynx',
@@ -91,7 +91,7 @@ export const RESPIRATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['res-pharynx'], box: [168, 114, 24, 34], label: [180, 128] },
+    model: { shapeIds: ['res-pharynx'], box: [173, 90, 14, 30], label: [180, 106] },
   },
   {
     id: 'larynx',
@@ -134,7 +134,7 @@ export const RESPIRATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['res-larynx'], box: [165, 133, 30, 29], label: [180, 145] },
+    model: { shapeIds: ['res-larynx'], box: [170, 105, 20, 20], label: [180, 114] },
   },
   {
     id: 'trachea',
@@ -176,7 +176,7 @@ export const RESPIRATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['res-trachea'], box: [168, 146, 24, 62], label: [180, 172] },
+    model: { shapeIds: ['res-trachea'], box: [174, 118, 12, 46], label: [180, 140] },
   },
   {
     id: 'bronchi',
@@ -218,7 +218,7 @@ export const RESPIRATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['res-bronchi-l'], box: [140, 191, 80, 46], label: [180, 210] },
+    model: { shapeIds: ['res-bronchi-l'], box: [154, 158, 52, 32], label: [180, 170] },
   },
   {
     id: 'lungs',
@@ -273,7 +273,7 @@ export const RESPIRATORY_ORGANS: Organ[] = [
     source: SRC,
     refs: ['Gray\'s Anatomy, Ch. 26', 'Netter Plate 330'],
     reviewedAt: REV,
-    model: { shapeIds: ['res-lung-l', 'res-lung-r'], box: [129, 165, 102, 141], label: [180, 224] },
+    model: { shapeIds: ['res-lung-l', 'res-lung-r'], box: [127, 152, 106, 126], label: [152, 212] },
   },
   {
     id: 'alveoli',
@@ -315,7 +315,7 @@ export const RESPIRATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['res-alveoli'], box: [138, 191, 84, 37], label: [180, 207] },
+    model: { shapeIds: ['res-alveoli'], box: [144, 212, 26, 22], label: [157, 222] },
   },
   {
     id: 'diaphragm',
@@ -358,6 +358,6 @@ export const RESPIRATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['res-diaphragm'], box: [118, 269, 124, 32], label: [180, 282] },
+    model: { shapeIds: ['res-diaphragm'], box: [130, 268, 100, 26], label: [180, 282] },
   },
 ]

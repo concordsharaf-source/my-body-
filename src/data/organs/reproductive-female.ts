@@ -92,7 +92,7 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-f-tube-l'], box: [144, 364, 72, 22], label: [180, 373] },
+    model: { shapeIds: ['rep-f-tube-l'], box: [143, 380, 30, 20], label: [155, 388] },
   },
   {
     id: 'uterus',
@@ -140,7 +140,7 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-f-uterus'], box: [158, 354, 44, 47], label: [180, 374] },
+    model: { shapeIds: ['rep-f-uterus'], box: [162, 382, 36, 38], label: [180, 400] },
   },
   {
     id: 'cervix',
@@ -182,7 +182,7 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-f-cervix'], box: [169, 385, 22, 24], label: [180, 395] },
+    model: { shapeIds: ['rep-f-cervix'], box: [173, 416, 14, 18], label: [180, 425] },
   },
   {
     id: 'vagina',
@@ -225,7 +225,7 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-f-vagina'], box: [170, 393, 20, 27], label: [180, 404] },
+    model: { shapeIds: ['rep-f-vagina'], box: [177, 431, 6, 24], label: [180, 443] },
   },
   {
     id: 'breasts',
@@ -269,6 +269,6 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-f-breast-l'], box: [129, 191, 102, 47], label: [180, 211] },
+    model: { shapeIds: ['rep-f-breast-l'], box: [150, 198, 36, 50], label: [166, 222] },
   },
 ]

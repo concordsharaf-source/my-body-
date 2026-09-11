@@ -140,7 +140,7 @@ export const LYMPHATIC_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-spleen'], box: [204, 296, 28, 42], label: [218, 314] },
+    model: { shapeIds: ['lym-spleen'], box: [198, 282, 34, 44], label: [214, 302] },
   },
   {
     id: 'thymus',
@@ -185,7 +185,7 @@ export const LYMPHATIC_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-thymus'], box: [163, 183, 34, 23], label: [180, 193] },
+    model: { shapeIds: ['lym-thymus'], box: [160, 154, 40, 32], label: [180, 170] },
   },
   {
     id: 'tonsils',

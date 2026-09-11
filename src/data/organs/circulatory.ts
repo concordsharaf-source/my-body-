@@ -57,7 +57,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     source: SRC,
     refs: ['Gray\'s Anatomy, Ch. 13', 'Netter Plate 299'],
     reviewedAt: REV,
-    model: { shapeIds: ['cir-heart'], box: [147, 223, 71, 86], label: [183, 259] },
+    model: { shapeIds: ['cir-heart'], box: [152, 180, 56, 72], label: [177, 216] },
   },
   {
     id: 'aorta',
@@ -100,7 +100,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['vas-aorta'], box: [172, 194, 45, 175], label: [195, 268] },
+    model: { shapeIds: ['vas-aorta'], box: [156, 156, 46, 308], label: [184, 168] },
   },
   {
     id: 'arteries',
@@ -317,7 +317,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['vas-pulm-l'], box: [129, 216, 102, 32], label: [180, 229] },
+    model: { shapeIds: ['vas-pulm-l'], box: [145, 158, 82, 30], label: [180, 172] },
   },
   {
     id: 'venacava',
@@ -356,6 +356,6 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['vas-svc', 'vas-ivc'], box: [182, 195, 32, 176], label: [198, 269] },
+    model: { shapeIds: ['vas-svc', 'vas-ivc'], box: [155, 148, 26, 206], label: [164, 168] },
   },
 ]

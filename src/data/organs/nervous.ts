@@ -56,7 +56,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     source: SRC,
     refs: ["Gray's Anatomy 41st ed., Ch. 1", 'Netter Plate 299'],
     reviewedAt: REV,
-    model: { shapeIds: ['ner-brain'], box: [143, 30, 74, 68], label: [180, 49] },
+    model: { shapeIds: ['ner-brain'], box: [148, 36, 64, 60], label: [180, 62] },
   },
   {
     id: 'cerebellum',
@@ -99,7 +99,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-cerebellum'], box: [159, 74, 42, 28], label: [170, 91] },
+    model: { shapeIds: ['ner-cerebellum'], box: [168, 82, 24, 18], label: [180, 92] },
   },
   {
     id: 'brainstem',
@@ -143,7 +143,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-brainstem'], box: [168, 84, 24, 37], label: [180, 111] },
+    model: { shapeIds: ['ner-brainstem'], box: [172, 88, 16, 26], label: [180, 101] },
   },
   {
     id: 'spinalcord',
@@ -187,7 +187,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-spinal'], box: [161, 90, 38, 210], label: [180, 178] },
+    model: { shapeIds: ['ner-spinal', 'ner-cuda'], box: [174, 108, 12, 150], label: [180, 185] },
   },
   {
     id: 'opticnerve',

@@ -47,7 +47,7 @@ export const ENDOCRINE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['end-pituitary'], box: [167, 84, 26, 26], label: [180, 95] },
+    model: { shapeIds: ['end-pituitary'], box: [172, 88, 16, 16], label: [180, 97] },
   },
   {
     id: 'thyroid',
@@ -184,6 +184,6 @@ export const ENDOCRINE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['end-adrenal-l'], box: [128, 289, 104, 24], label: [180, 299] },
+    model: { shapeIds: ['end-adrenal-l'], box: [134, 250, 24, 16], label: [146, 258] },
   },
 ]

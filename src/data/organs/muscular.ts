@@ -177,7 +177,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['mus-trap-l'], box: [128, 140, 104, 26], label: [180, 150] },
+    model: { shapeIds: ['mus-trap-l'], box: [126, 138, 108, 36], label: [180, 154] },
   },
   {
     id: 'biceps',
