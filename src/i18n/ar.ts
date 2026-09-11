@@ -59,12 +59,8 @@ export const ar = {
   systemsTitle: 'أجهزة الجسم',
   legendTitle: 'دليل الأرقام',
   careTitle: 'كيف تحافظ عليه',
-  systemsPanelTitle: 'أجهزة الجسم',
-  systemsPanelSub: 'اضغط جهازًا لعزله على النموذج واستكشاف أجزائه',
-  otherSystems: 'الأجهزة الأخرى',
   systemsSub: 'اختر جهازًا لعزله على النموذج واستكشاف أجزائه وعلاقاته',
   systemCount: 'جزء',
-  backToSystems: 'كل الأجهزة',
   isolate: 'عزل الجهاز على النموذج',
 
   // بطاقة العضو

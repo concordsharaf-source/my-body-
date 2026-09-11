@@ -367,54 +367,6 @@ input { font-family: inherit; }
 }
 .care-list li::marker { color: var(--primary); }
 
-/* لوحة الأجهزة (عند نقر الجسم في وضع العزل) */
-.systems-mini-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 4px;
-}
-.system-mini {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 10px;
-  background: var(--surface-2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  cursor: pointer;
-  font: inherit;
-  text-align: start;
-  transition: border-color 0.15s, transform 0.15s;
-}
-.system-mini:hover { transform: translateY(-1px); }
-.system-mini.current { background: var(--surface); }
-.system-mini-icon {
-  flex: 0 0 30px;
-  width: 30px;
-  height: 30px;
-  border-radius: 9px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-}
-.system-mini-name {
-  flex: 1;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text);
-}
-.system-mini-count {
-  font-size: 0.72rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
-@media (max-width: 700px) {
-  .systems-mini-grid { grid-template-columns: 1fr 1fr; }
-  .system-mini { padding: 7px 8px; }
-}
-
 /* ============ التنقل السفلي ============ */
 .bottom-nav {
   position: fixed;
