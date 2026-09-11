@@ -38,6 +38,15 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
     keywords: [
       'مبيض', 'مبيضان', 'ovary', 'ovaries', 'بويضة', 'egg', 'إستروجين', 'estrogen', 'بروجسترون', 'progesterone', 'دورة', 'cycle', 'أنثى',
     ],
+    care: [
+      'نمط حياة عام (نوم، حركة، وزن صحي).',
+      'حديد ومغذيات كافية.',
+      'فحوصات دورية (إجراء طبي).',
+    ],
+    faqs: [
+      { q: 'كم بويضة مع الولادة؟', a: '~1–2 مليون عند الولادة، تنضج ~400–500 في العمر الإنجابي.' },
+      { q: 'ما هرموناتها؟', a: 'استروجين وبروجسترون — تنظم الدورة وتغيرات البلوغ.' },
+    ],
     source: SRC,
     reviewedAt: REV,
     model: { shapeIds: ['rep-f-ovary-l'], box: [139, 356, 82, 30], label: [180, 369] },
@@ -72,6 +81,15 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
       { ar: 'إخصاب', en: 'Fertilization' },
     ],
     keywords: ['قناة بويضية', 'fallopian tube', 'بويضة', 'egg', 'إخصاب', 'fertilization', 'رحم', 'uterus', 'حمل', 'pregnancy'],
+    faqs: [
+      { q: 'ما وظيفتها؟', a: 'ممر التقاء البويضة بالنطاف — وتنتهي بتنانير تلتقط البويضة.' },
+      { q: 'كم طولها؟', a: '~10 سم، بحركة انقباضية تدفع محتوياتها.' },
+    ],
+    care: [
+      'نظام صحي عام.',
+      'احذر العدوى الحوضية (إجراء طبي).',
+      'نوم كافٍ.',
+    ],
     source: SRC,
     reviewedAt: REV,
     model: { shapeIds: ['rep-f-tube-l'], box: [144, 364, 72, 22], label: [180, 373] },
@@ -111,6 +129,15 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
     keywords: [
       'رحم', 'uterus', 'womb', 'حمل', 'pregnancy', 'جنين', 'fetus', 'دورة شهرية', 'period', 'طمث', 'menstruation', 'ولادة',
     ],
+    care: [
+      'حفظ وزن صحي (الهرمونات ترتبط بالأنسجة الشحمية).',
+      'حركة منتظمة.',
+      'حديد مع الدورة (نظام).',
+    ],
+    faqs: [
+      { q: 'كم تتسع؟', a: 'في الحمل ~5 لترات (من 8 سم مكعب فارغة) — أقوى عضلة نسبيًا.' },
+      { q: 'ما جدارها؟', a: 'طبقة عضلية سميكة (myometrium) + بطانة تتجدد دوريًا (endometrium).' },
+    ],
     source: SRC,
     reviewedAt: REV,
     model: { shapeIds: ['rep-f-uterus'], box: [158, 354, 44, 47], label: [180, 374] },
@@ -144,6 +171,15 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
       { ar: 'فتح خارجي', en: 'External Os' },
     ],
     keywords: ['عنق رحم', 'cervix', 'رحم', 'uterus', 'مخاط', 'mucus', 'ولادة', 'labor', 'فحص', 'pap smear'],
+    care: [
+      'فحوصات دورية (Pap — إجراء طبي).',
+      'نظام عام.',
+      'تدخين (العدو الأول للصحة).',
+    ],
+    faqs: [
+      { q: 'ما وظيفتها؟', a: 'باب المهبل للمخاط، وإفراز مخاط يحمي وييسر النطاف عند الإباضة.' },
+      { q: 'لماذا "عنق"؟', a: 'أقصر جزء (2–3 سم) يربط المهبل بجسم المخ.' },
+    ],
     source: SRC,
     reviewedAt: REV,
     model: { shapeIds: ['rep-f-cervix'], box: [169, 385, 22, 24], label: [180, 395] },
@@ -178,6 +214,15 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
       { ar: 'لاكتوباسيلس', en: 'Lactobacillus' },
     ],
     keywords: ['مهبل', 'vagina', 'أنثى', 'female', 'فرج', 'vulva', 'حمض', 'acid', 'pH', 'بكتيريا', 'نقاء'],
+    care: [
+      'نظافة عامة بالماء فقط (الحموضة الطبيعية حماية).',
+      'ملابس قطنية.',
+      'لا تهمل الجفاف (ماء كافٍ).',
+    ],
+    faqs: [
+      { q: 'لماذا حمضية؟', a: 'pH ~3.8–4.5 (حمض اللاكتيك من البكتيريا النافعة) — حماية طبيعية.' },
+      { q: 'هل تتغير؟', a: 'نسيجها المرن يمتد عند الولادة ثم يعود.' },
+    ],
     source: SRC,
     reviewedAt: REV,
     model: { shapeIds: ['rep-f-vagina'], box: [170, 393, 20, 27], label: [180, 404] },
@@ -213,6 +258,15 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
       { ar: 'فصيص', en: 'Lobule' },
     ],
     keywords: ['ثدي', 'breast', 'mamma', 'حليب', 'milk', 'رضاعة', 'breastfeeding', 'حلمة', 'nipple', 'أنثى', 'female'],
+    care: [
+      'فحص ذاتي دوري + فحص طبي.',
+      'وزن صحي (الأنسجة الشحمية).',
+      'حركة (دورة دموية جيدة).',
+    ],
+    faqs: [
+      { q: 'كم فصيلة؟', a: '15–20 فصيلة حلبية، تنفتح كل منها على حافة الحلمة.' },
+      { q: 'متى تعمل؟', a: 'تفرز الحليب بعد الولادة (برولاكتين) — ويمكن إرضاع دون حمل.' },
+    ],
     source: SRC,
     reviewedAt: REV,
     model: { shapeIds: ['rep-f-breast-l'], box: [129, 191, 102, 47], label: [180, 211] },

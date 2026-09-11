@@ -19,6 +19,8 @@ for (const organ of ALL_ORGANS) {
   check(Array.isArray(organ.relations) && organ.relations.length > 0, `${organ.id}: بلا علاقات`)
   for (const r of organ.relations) check(organIds.has(r.id), `${organ.id}: علاقة مفقودة ${r.id}`)
   check(Array.isArray(organ.facts), `${organ.id}: حقائق`)
+  check(Array.isArray(organ.faqs) && organ.faqs.length >= 2, `${organ.id}: أسئلة أقل من 2`)
+  check(Array.isArray(organ.care) && organ.care.length >= 3, `${organ.id}: عناية أقل من 3`)
   if (organ.model) {
     for (const sid of organ.model.shapeIds) check(shapeIds.has(sid), `${organ.id}: شكل مفقود ${sid}`)
     const [x, y, w, h] = organ.model.box

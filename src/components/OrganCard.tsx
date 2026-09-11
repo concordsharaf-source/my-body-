@@ -54,9 +54,14 @@ export default function OrganCard({ organ, onClose, onShowLocation, onNavigateOr
           </p>
         </div>
         {system && (
-          <span className="system-chip" style={{ background: `${system.color}1a`, color: system.color }}>
+          <Link
+            to={`/system/${system.id}`}
+            className="system-chip system-chip-link"
+            style={{ background: `${system.color}1a`, color: system.color }}
+            aria-label={`عرض ${system.ar} على النموذج`}
+          >
             {system.icon} {system.ar}
-          </span>
+          </Link>
         )}
         {onClose && (
           <button type="button" className="icon-btn" onClick={onClose} aria-label={t.close}>
@@ -131,6 +136,16 @@ export default function OrganCard({ organ, onClose, onShowLocation, onNavigateOr
                 ))}
               </ul>
             </Section>
+          )}
+          {organ.care && organ.care.length > 0 && (
+            <div className="care-box">
+              <h3>🛡️ {t.careTitle}</h3>
+              <ul className="care-list">
+                {organ.care.map((c) => (
+                  <li key={c}>{c}</li>
+                ))}
+              </ul>
+            </div>
           )}
           {organ.didYouKnow && (
             <div className="did-you-know">

@@ -8,6 +8,7 @@ import OrganLegend from '../components/OrganLegend'
 import OrganCard from '../components/OrganCard'
 import { DISSECTION_STEPS, INTERNAL_LAYERS, defaultLayerState } from '../data/layers'
 import { SYSTEMS, getSystem } from '../data/systems'
+import { systemPartsCount } from '../lib/quiz'
 import { getOrgan, organsOfSystem } from '../data'
 import type { LayerId, SystemId } from '../data/types'
 import { useAppStore } from '../store/appStore'
@@ -33,6 +34,7 @@ export default function BodyPage() {
   const [focusStep, setFocusStep] = useState(0)
   const [selected, setSelected] = useState<string | null>(null)
   const [hoverId, setHoverId] = useState<string | null>(null)
+  const [systemsPanel, setSystemsPanel] = useState(false)
   const [focusBox, setFocusBox] = useState<FocusBox | null>(null)
   const boxKey = useRef(0)
 
@@ -43,8 +45,10 @@ export default function BodyPage() {
       markSystemExplored(activeSystem)
       const step = DISSECTION_STEPS.findIndex((s) => s.id === 'systems')
       setFocusStep(step === -1 ? 7 : step)
+      setSystemsPanel(false)
       prevActive.current = activeSystem
     } else if (prevActive.current) {
+      setSystemsPanel(false)
       setFocusStep(0)
       prevActive.current = null
     }
@@ -123,6 +127,11 @@ export default function BodyPage() {
   }, [activeSystem, activeSystemDef, focusLayer, selectedOrgan, sex])
 
   const selectOrgan = (id: string) => {
+    // في وضع العزل (جهاز/طبقة): النقر على جسم الجسم يعرض بقية الأجهزة بدل بطاقة الجلد
+    if (id === 'skin' && (activeSystem || focusLayer)) {
+      setSystemsPanel(true)
+      return
+    }
     setSelected(id)
     markViewed(id)
     const organ = getOrgan(id)
@@ -198,9 +207,51 @@ export default function BodyPage() {
                 <strong>{activeSystemDef.ar}</strong>
                 <p>{activeSystemDef.description}</p>
               </div>
-              <button type="button" className="mini-btn" onClick={() => navigate('/body')}>
-                {t.backToSystems}
-              </button>
+              <div style={{ display: 'flex', gap: 6, flexShrink: 0 }}>
+                <button type="button" className="mini-btn" onClick={() => navigate('/body')}>
+                  {t.backToSystems}
+                </button>
+                <button type="button" className="mini-btn" onClick={() => setSystemsPanel(true)}>
+                  🧩 {t.otherSystems}
+                </button>
+              </div>
+            </div>
+          )}
+          {systemsPanel && (
+            <div className="organ-card-host">
+              <div className="organ-card systems-panel">
+                <div className="organ-card-head">
+                  <div className="organ-card-title">
+                    <h2>🧩 {t.systemsPanelTitle}</h2>
+                    <p className="organ-en">{t.systemsPanelSub}</p>
+                  </div>
+                  <button type="button" className="icon-btn" onClick={() => setSystemsPanel(false)} aria-label={t.close}>
+                    ✕
+                  </button>
+                </div>
+                <div className="systems-mini-grid">
+                  {SYSTEMS.map((s) => (
+                    <button
+                      key={s.id}
+                      type="button"
+                      className={`system-mini ${s.id === activeSystem ? 'current' : ''}`}
+                      style={{ borderColor: `${s.color}66` }}
+                      onClick={() => {
+                        setSystemsPanel(false)
+                        goSystem(s.id)
+                      }}
+                    >
+                      <span className="system-mini-icon" style={{ background: `${s.color}1a` }} aria-hidden>
+                        {s.icon}
+                      </span>
+                      <span className="system-mini-name">{s.ar}</span>
+                      <span className="system-mini-count" style={{ color: s.color }}>
+                        {systemPartsCount(s.id)} {t.systemCount}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
           )}
           {selectedOrgan && (

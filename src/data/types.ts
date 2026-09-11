@@ -97,6 +97,8 @@ export interface Organ {
   didYouKnow?: string
   /** أسئلة شائعة. */
   faqs?: OrganFaq[]
+  /** عادات واقية للحفاظ على العضو (تعليمية). */
+  care?: string[]
   /** ماذا يحدث عند توقف وظيفته؟ (تعليمي عام). */
   ifStopped?: string
   /** كلمات مفتاحية للبحث (عربي + إنجليزي + مرادفات). */

@@ -39,6 +39,15 @@ export const REPRO_MALE_ORGANS: Organ[] = [
     keywords: [
       'خصية', 'خصيتان', 'testis', 'testes', 'نطف', 'sperm', 'تستوستيرون', 'testosterone', 'ذكر', 'male', 'صفن', 'scrotum', 'هرمون',
     ],
+    care: [
+      'تجنب الحرارة العالية المديدة (ساونا، حاسوب على الفخذ).',
+      'ملابس داخلية مريحة.',
+      'نمط حياة عام (نوم، حركة) — الهرمونات ترتبط بالنظام.',
+    ],
+    faqs: [
+      { q: 'لماذا خارج الجسم؟', a: 'الإخصاب يحتاج ~2° أقل من حرارة الجسم — الحزام يحفظها.' },
+      { q: 'كم خلية يفرز يوميًا؟', a: '~100 مليون خلية نطاف، ونضجها 74 يومًا.' },
+    ],
     source: SRC,
     reviewedAt: REV,
     model: { shapeIds: ['rep-m-testis-l'], box: [153, 383, 55, 31], label: [181, 396] },
@@ -72,6 +81,15 @@ export const REPRO_MALE_ORGANS: Organ[] = [
       { ar: 'ذيل المذيبة', en: 'Cauda Epididymis' },
     ],
     keywords: ['مذيبة', 'epididymis', 'نطف', 'sperm', 'نضج', 'مخزن', 'خصية', 'testis'],
+    care: [
+      'نمط حياة عام (حركة، نوم).',
+      'تجنب الحرارة المديدة.',
+      'فحص دوري (إحساس ذاتي).',
+    ],
+    faqs: [
+      { q: 'ما وظيفته؟', a: 'ممر تخزين ونضج النطاف (2–3 أسابيع) قبل القذف.' },
+      { q: 'أين يقع؟', a: 'خلف كل خصية — ~6 أمتار من أنبوب مغلوط.' },
+    ],
     source: SRC,
     reviewedAt: REV,
     model: { shapeIds: ['rep-m-epididymis-l'], box: [150, 383, 60, 30], label: [180, 396] },
@@ -106,6 +124,15 @@ export const REPRO_MALE_ORGANS: Organ[] = [
       { ar: 'قذف', en: 'Ejaculation' },
     ],
     keywords: ['قصلية', 'vas deferens', 'نطف', 'sperm', 'قذف', 'ejaculation', 'خصية', 'testis', 'قناة'],
+    care: [
+      'نمط حياة عام.',
+      'تجنب الضغط المديد على الحوض (دراجة ساعات طويلة).',
+      'معلومات: التعقيم (vasectomy) إجراء طبي — اسأل الطبيب.',
+    ],
+    faqs: [
+      { q: 'ما وظيفته؟', a: 'ينقل النطاف من الحزام للقذف (~2–3 م م).' },
+      { q: 'لماذا "أخدود"؟', a: 'مغلف بعمود عضلي ينقبض دفعًا عند القذف.' },
+    ],
     source: SRC,
     reviewedAt: REV,
     model: { shapeIds: ['rep-m-vas-l'], box: [153, 349, 54, 49], label: [180, 370] },
@@ -140,6 +167,15 @@ export const REPRO_MALE_ORGANS: Organ[] = [
       { ar: 'PSA', en: 'PSA' },
     ],
     keywords: ['بروستاتا', 'prostate', 'منوي', 'semen', 'بول', 'urine', 'ذكر', 'male', 'غدة', 'gland', 'PSA'],
+    care: [
+      'حركة يومية (الجلوس الطويل يضغط الحوض).',
+      'نظام غني بالخضار (طماطم مطبوخة — lycopene).',
+      'فحص دوري عند الطبيب بعد 50 (إجراء طبي).',
+    ],
+    faqs: [
+      { q: 'ما وظيفتها؟', a: 'تفرز 20% من سائل القذف (غني بالكالسيوم والزنك).' },
+      { q: 'لماذا تكبر مع العمر؟', a: 'تضخم حميد شائع بعد 50 — يُتابع طبيًا.' },
+    ],
     source: SRC,
     reviewedAt: REV,
     model: { shapeIds: ['rep-m-prostate'], box: [166, 381, 28, 24], label: [180, 391] },
@@ -174,6 +210,15 @@ export const REPRO_MALE_ORGANS: Organ[] = [
       { ar: 'قناة قذفية', en: 'Ejaculatory Duct' },
     ],
     keywords: ['حويختان منويتان', 'seminal vesicles', 'منوي', 'semen', 'فركتوز', 'fructose', 'غدة', 'gland'],
+    care: [
+      'نمط حياة عام (نوم، حركة).',
+      'نظام غني بالزنك (لحم، بقوليات).',
+      'شرب ماء كافٍ.',
+    ],
+    faqs: [
+      { q: 'ما وظيفتها؟', a: 'تفرز 60–70% من حجم السائل (فركتوز — طاقة للنطاف).' },
+      { q: 'أين تقع؟', a: 'خلف المثانة، أسفل كل منها.' },
+    ],
     source: SRC,
     reviewedAt: REV,
     model: { shapeIds: ['rep-m-vesicle-l'], box: [159, 367, 42, 24], label: [180, 377] },
@@ -210,6 +255,15 @@ export const REPRO_MALE_ORGANS: Organ[] = [
       { ar: 'انتصاب', en: 'Erection' },
     ],
     keywords: ['عضو ذكري', 'penis', 'ذكر', 'male', 'بول', 'urine', 'منوي', 'semen', 'انتصاب', 'erection'],
+    care: [
+      'دورة دموية جيدة (حركة، لا تدخين).',
+      'نظافة عامة.',
+      'فحص ذاتي دوري.',
+    ],
+    faqs: [
+      { q: 'ما نسيج "الإسفنج"؟', a: 'نسيج إسفنجي (erectile) يمتلئ بالدم عند الاستثارة — ميكانيكا هيدروليكية.' },
+      { q: 'كم طولًا؟', a: 'تفاوت طبيعي واسع — الحجم لا يحدد الوظيفة.' },
+    ],
     source: SRC,
     reviewedAt: REV,
     model: { shapeIds: ['rep-m-penis'], box: [168, 391, 24, 40], label: [180, 408] },
