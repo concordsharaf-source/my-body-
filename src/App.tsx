@@ -8,11 +8,9 @@ import { t } from './i18n/ar'
 // تقسيم الكود: كل صفحة تُحمَّل عند الحاجة (أداء + PWA)
 const Home = lazy(() => import('./pages/Home'))
 const BodyPage = lazy(() => import('./pages/BodyPage'))
-const SystemsPage = lazy(() => import('./pages/SystemsPage'))
 const SearchPage = lazy(() => import('./pages/SearchPage'))
 const FavoritesPage = lazy(() => import('./pages/FavoritesPage'))
 const OrganPage = lazy(() => import('./pages/OrganPage'))
-const JourneyPage = lazy(() => import('./pages/JourneyPage'))
 const ToursPage = lazy(() => import('./pages/ToursPage'))
 const QuizPage = lazy(() => import('./pages/QuizPage'))
 const CardsPage = lazy(() => import('./pages/CardsPage'))
@@ -86,14 +84,6 @@ export default function App() {
               }
             />
             <Route
-              path="/systems"
-              element={
-                <NeedsSex>
-                  <SystemsPage />
-                </NeedsSex>
-              }
-            />
-            <Route
               path="/system/:systemId"
               element={
                 <NeedsSex>
@@ -122,14 +112,6 @@ export default function App() {
               element={
                 <NeedsSex>
                   <OrganPage />
-                </NeedsSex>
-              }
-            />
-            <Route
-              path="/journey"
-              element={
-                <NeedsSex>
-                  <JourneyPage />
                 </NeedsSex>
               }
             />

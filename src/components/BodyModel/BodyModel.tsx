@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import type { LayerId, Sex, SystemId } from '../../data/types'
-import { getOrgan, getSystem, organsOfSystem } from '../../data'
+import { getOrgan, getSystem, organsOfSystemForSex } from '../../data'
 import { defaultLayerState } from '../../data/layers'
 import { LAYER_SHAPES } from './shapes'
 import type { ShapeDef } from './shapes'
@@ -188,8 +188,8 @@ export default function BodyModel({
 
   const selected = selectedOrganId ? getOrgan(selectedOrganId) : undefined
   const isolatedOrgans = useMemo(
-    () => (isolatedSystem ? new Set(organsOfSystem(isolatedSystem).map((o) => o.id)) : null),
-    [isolatedSystem],
+    () => (isolatedSystem ? new Set(organsOfSystemForSex(isolatedSystem, sex).map((o) => o.id)) : null),
+    [isolatedSystem, sex],
   )
 
   /** تحويل focusBox إلى transform. */

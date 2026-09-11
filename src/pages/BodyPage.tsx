@@ -5,7 +5,7 @@ import type { FocusBox, ModelMarker } from '../components/BodyModel/BodyModel'
 import OrganCard from '../components/OrganCard'
 import { SYSTEMS, getSystem } from '../data/systems'
 import { systemPartsCount } from '../lib/quiz'
-import { getOrgan, organsOfSystem } from '../data'
+import { getOrgan, organsOfSystemForSex } from '../data'
 
 import type { SystemId } from '../data/types'
 import { useAppStore } from '../store/appStore'
@@ -37,7 +37,7 @@ export default function BodyPage() {
     if (activeSystem) {
       markSystemExplored(activeSystem)
       setSystemsPanel(false)
-      const boxes = organsOfSystem(activeSystem)
+      const boxes = organsOfSystemForSex(activeSystem, sex)
         .map((o) => o.model?.box)
         .filter((b): b is [number, number, number, number] => Boolean(b))
       if (boxes.length) {
@@ -87,7 +87,7 @@ export default function BodyPage() {
       items.push({ id, color, x, y })
     }
     if (activeSystem) {
-      for (const o of organsOfSystem(activeSystem)) if (o.model) add(o.id, activeSystemDef?.color ?? 'var(--primary)')
+      for (const o of organsOfSystemForSex(activeSystem, sex)) if (o.model) add(o.id, activeSystemDef?.color ?? 'var(--primary)')
     } else {
       for (const dm of defaultMarkers(sex)) add(dm.id, dm.color, dm.x, dm.y)
     }
@@ -160,6 +160,7 @@ export default function BodyPage() {
         <div className="body-stage">
           <BodyModel
             sex={sex}
+            interactive={!selected}
             selectedOrganId={selected}
             onSelectOrgan={selectOrgan}
             isolatedSystem={activeSystem}
@@ -172,14 +173,16 @@ export default function BodyPage() {
           />
           {activeSystemDef && (
             <div className="system-banner" style={{ borderColor: activeSystemDef.color }}>
-              <span className="system-banner-icon" aria-hidden>
-                {activeSystemDef.icon}
-              </span>
-              <div>
-                <strong>{activeSystemDef.ar}</strong>
-                <p>{activeSystemDef.description}</p>
+              <div className="system-banner-top">
+                <span className="system-banner-icon" aria-hidden>
+                  {activeSystemDef.icon}
+                </span>
+                <div className="system-banner-text">
+                  <strong>{activeSystemDef.ar}</strong>
+                  <p>{activeSystemDef.description}</p>
+                </div>
               </div>
-              <div style={{ display: 'flex', gap: 6, flexShrink: 0 }}>
+              <div className="system-banner-actions">
                 <button type="button" className="mini-btn" onClick={() => navigate('/body')}>
                   {t.backToSystems}
                 </button>
@@ -218,7 +221,7 @@ export default function BodyPage() {
                       </span>
                       <span className="system-mini-name">{s.ar}</span>
                       <span className="system-mini-count" style={{ color: s.color }}>
-                        {systemPartsCount(s.id)} {t.systemCount}
+                        {systemPartsCount(s.id, sex)} {t.systemCount}
                       </span>
                     </button>
                   ))}

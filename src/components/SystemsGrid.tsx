@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import { SYSTEMS } from '../data/systems'
 import { systemPartsCount } from '../lib/quiz'
+import { useAppStore } from '../store/appStore'
 import { t } from '../i18n/ar'
 
 export default function SystemsGrid({ compact = false }: { compact?: boolean }) {
+  const sex = useAppStore((s) => s.sex)
   return (
     <div className={`systems-grid ${compact ? 'compact' : ''}`}>
       {SYSTEMS.map((s) => (
@@ -15,7 +17,7 @@ export default function SystemsGrid({ compact = false }: { compact?: boolean }) 
             <h3>{s.ar}</h3>
             {!compact && <p>{s.description}</p>}
             <span className="system-count" style={{ color: s.color }}>
-              {systemPartsCount(s.id)} {t.systemCount}
+              {systemPartsCount(s.id, sex ?? undefined)} {t.systemCount}
             </span>
           </div>
         </Link>

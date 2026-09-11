@@ -103,6 +103,7 @@ export function systemsWithShapes(): SystemId[] {
 }
 
 /** عدد أعضاء الجهاز (للشارات). */
-export function systemPartsCount(systemId: SystemId): number {
-  return organsOfSystem(systemId).length
+export function systemPartsCount(systemId: SystemId, sex?: 'male' | 'female'): number {
+  if (!sex) return organsOfSystem(systemId).length
+  return organsOfSystem(systemId).filter((o) => !o.sex || o.sex === 'both' || o.sex === sex).length
 }

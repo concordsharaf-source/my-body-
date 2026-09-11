@@ -38,6 +38,12 @@ export function organsOfSystem(systemId: SystemId): Organ[] {
   return ALL_ORGANS.filter((o) => o.system === systemId || o.systems?.includes(systemId))
 }
 
+/** أعضاء جهاز معيّن حسب الجنس (يخفي أعضاء الجنس الآخر). */
+export function organsOfSystemForSex(systemId: SystemId, sex: 'male' | 'female' | null | undefined): Organ[] {
+  if (!sex) return organsOfSystem(systemId)
+  return organsOfSystem(systemId).filter((o) => !o.sex || o.sex === 'both' || o.sex === sex)
+}
+
 /** الأعضاء الظاهرة على النموذج (لها أشكال رسومية). */
 export const MODEL_ORGANS = ALL_ORGANS.filter((o) => o.model && o.model.shapeIds.length > 0)
 

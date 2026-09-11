@@ -99,12 +99,10 @@ await page.locator('.tour-nav .btn-primary').first().click()
 await page.waitForTimeout(600)
 check('جولة الدم: المرحلة التالية', (await page.locator('.tour-card').innerText()).length > 10)
 
-// 12) رحلة داخل الجسم
-await page.goto(BASE + '/journey')
-await page.waitForTimeout(400)
-await page.locator('button', { hasText: 'ابدأ' }).first().click()
+// 12) صفحة جهاز (عزل + تسميات)
+await page.goto(BASE + '/system/digestive')
 await page.waitForTimeout(500)
-check('رحلة الجسم: أول خطوة', await page.locator('.journey-card').count() === 1)
+check('صفحة الجهاز: شريط الجهاز ظاهر', await page.locator('.system-banner').count() === 1)
 
 // 13) البطاقات التعليمية
 await page.goto(BASE + '/cards')

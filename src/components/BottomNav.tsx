@@ -5,13 +5,11 @@ import { t } from '../i18n/ar'
 const ITEMS = [
   { to: '/', icon: '🏠', label: t.navHome, end: true },
   { to: '/body', icon: '🧍', label: t.navBody },
-  { to: '/systems', icon: '🧠', label: t.navSystems },
   { to: '/search', icon: '🔍', label: t.navSearch },
   { to: '/favorites', icon: '⭐', label: t.navFavorites },
 ]
 
 const MORE_ITEMS = [
-  { to: '/journey', icon: '🚀', label: t.moreJourney },
   { to: '/quiz', icon: '📝', label: t.moreQuiz },
   { to: '/cards', icon: '🎴', label: t.moreCards },
   { to: '/learning', icon: '📈', label: t.moreLearning },

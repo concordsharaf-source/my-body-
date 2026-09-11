@@ -15,13 +15,11 @@ interface UserState {
   bestScore: number // نسبة أفضل نتيجة (0-100)
   lastOrganId: string | null
   cardsSeen: string[]
-  journeyStep: number
   toggleFavorite: (id: string) => void
   markViewed: (organId: string) => void
   markSystemExplored: (systemId: string) => void
   addQuizResult: (score: number, total: number) => void
   markCardSeen: (id: string) => void
-  setJourneyStep: (n: number) => void
   resetAll: () => void
 }
 
@@ -35,7 +33,6 @@ export const useUserStore = create<UserState>()(
       bestScore: 0,
       lastOrganId: null,
       cardsSeen: [],
-      journeyStep: 0,
       toggleFavorite: (id) =>
         set((s) => ({
           favorites: s.favorites.includes(id) ? s.favorites.filter((f) => f !== id) : [id, ...s.favorites],
@@ -61,7 +58,6 @@ export const useUserStore = create<UserState>()(
           }
         }),
       markCardSeen: (id) => set((s) => (s.cardsSeen.includes(id) ? s : { cardsSeen: [...s.cardsSeen, id] })),
-      setJourneyStep: (n) => set({ journeyStep: n }),
       resetAll: () =>
         set({
           favorites: [],
@@ -71,7 +67,6 @@ export const useUserStore = create<UserState>()(
           bestScore: 0,
           lastOrganId: null,
           cardsSeen: [],
-          journeyStep: 0,
         }),
     }),
     { name: 'jismi-user' },

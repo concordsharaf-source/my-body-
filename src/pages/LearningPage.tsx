@@ -1,11 +1,13 @@
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { ALL_ORGANS, getOrgan, organsOfSystem } from '../data'
+import { ALL_ORGANS, getOrgan, organsOfSystemForSex } from '../data'
 import { SYSTEMS } from '../data/systems'
+import { useAppStore } from '../store/appStore'
 import { useUserStore } from '../store/userStore'
 import { t } from '../i18n/ar'
 
 export default function LearningPage() {
+  const sex = useAppStore((s) => s.sex)
   const viewedOrgans = useUserStore((s) => s.viewedOrgans)
   const exploredSystems = useUserStore((s) => s.exploredSystems)
   const quizHistory = useUserStore((s) => s.quizHistory)
@@ -18,7 +20,7 @@ export default function LearningPage() {
   const systemProgress = useMemo(
     () =>
       SYSTEMS.map((s) => {
-        const organs = organsOfSystem(s.id)
+        const organs = organsOfSystemForSex(s.id, sex)
         const done = organs.filter((o) => viewedIds.includes(o.id)).length
         return { system: s, done, total: organs.length, pct: organs.length ? Math.round((done / organs.length) * 100) : 0 }
       }),
