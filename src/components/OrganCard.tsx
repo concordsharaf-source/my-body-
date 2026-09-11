@@ -147,6 +147,36 @@ export default function OrganCard({ organ, onClose, onShowLocation, onNavigateOr
               </ul>
             </div>
           )}
+          {organ.diseases && organ.diseases.length > 0 && (
+            <div className="diseases-box">
+              <h3>⚠️ {t.diseasesTitle}</h3>
+              <ul className="diseases-list">
+                {organ.diseases.map((d) => (
+                  <li key={d.en}>
+                    <span className="disease-name">
+                      <strong>{d.ar}</strong>
+                      <span className="disease-en" dir="ltr">{d.en}</span>
+                    </span>
+                    {d.note && <p>{d.note}</p>}
+                  </li>
+                ))}
+              </ul>
+              <p className="disclaimer">معلومات توعوية عامة فقط — التشخيص والعلاج أمران للطبيب.</p>
+            </div>
+          )}
+          {organ.foods && organ.foods.length > 0 && (
+            <div className="foods-box">
+              <h3>🥗 {t.foodsTitle}</h3>
+              <ul className="foods-list">
+                {organ.foods.map((f) => (
+                  <li key={f.ar}>
+                    <strong>{f.ar}</strong>
+                    {f.note && <span className="food-note">{f.note}</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {organ.didYouKnow && (
             <div className="did-you-know">
               <strong>💡 {t.didYouKnow}:</strong> {organ.didYouKnow}

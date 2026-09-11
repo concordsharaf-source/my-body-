@@ -47,6 +47,24 @@ export interface OrganTerm {
   en: string
 }
 
+/** مرض يمكن أن يصيب العضو (ملخص تعليمي عام). */
+export interface OrganDisease {
+  /** الاسم العربي. */
+  ar: string
+  /** الاسم الإنجليزي. */
+  en: string
+  /** وصف تعليمي موجز. */
+  note?: string
+}
+
+/** طعام/مادة غذائية صديقة للعضو (تعليمي). */
+export interface OrganFood {
+  /** اسم الطعام بالعربية. */
+  ar: string
+  /** لماذا ينفع العضو. */
+  note?: string
+}
+
 export interface OrganFaq {
   q: string
   a: string
@@ -99,6 +117,10 @@ export interface Organ {
   faqs?: OrganFaq[]
   /** عادات واقية للحفاظ على العضو (تعليمية). */
   care?: string[]
+  /** أمراض يمكن أن تصيب العضو (تعليمي عام — ليس تشخيصًا). */
+  diseases?: OrganDisease[]
+  /** أطعمة ومواد غذائية صديقة للعضو (تعليمي). */
+  foods?: OrganFood[]
   /** ماذا يحدث عند توقف وظيفته؟ (تعليمي عام). */
   ifStopped?: string
   /** كلمات مفتاحية للبحث (عربي + إنجليزي + مرادفات). */

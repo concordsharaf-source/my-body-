@@ -6,6 +6,18 @@ const REV = '2026-09-01'
 export const MUSCULAR_ORGANS: Organ[] = [
   {
     id: 'muscles',
+    diseases: [
+      { ar: 'تقلص عضلي (شد عضلي)', en: 'Muscle Cramp', note: 'انقباض مفاجئ مؤلم — غالبًا نقص شوارد أو إجهاد.' },
+      { ar: 'تمزق ألياف العضل', en: 'Rhabdomyolysis', note: 'تلف عضلي شديد يحرر محتوياته للدم — خطر على الكلى.' },
+      { ar: 'ضمور العضل الوراثي', en: 'Muscular Dystrophy', note: 'مجموعة أمراض وراثية تضعف العضلات تدريجيًا.' },
+      { ar: 'التهاب العضل', en: 'Myositis', note: 'التهاب عضلي مناعي أو بعد عدوى.' },
+    ],
+    foods: [
+      { ar: 'لحوم، أسماك، بقول (بروتين)', note: 'لبناء العضلات وترميمها.' },
+      { ar: 'موز', note: 'بوتاسيوم يمنع التقلصات.' },
+      { ar: 'مكسرات', note: 'مغنيسيوم لاسترخاء العضلات.' },
+      { ar: 'الماء', note: 'التملح أساس أداء العضلات.' },
+    ],
     ar: 'العضلات الهيكلية',
     en: 'Skeletal Muscles',
     medical: 'Musculi Somatici',
@@ -55,6 +67,16 @@ export const MUSCULAR_ORGANS: Organ[] = [
   },
   {
     id: 'pectoralis',
+    diseases: [
+      { ar: 'شد عضلات الصدر', en: 'Pectoralis Strain', note: 'تمزق ألياف من دفع ثقيل أو تمرين مفاجئ.' },
+      { ar: 'تمزق وتر الصدرية', en: 'Pectoralis Tendon Rupture', note: 'قطع كامل للوتر بعد مجهود مفاجئ.' },
+    ],
+    foods: [
+      { ar: 'بيض ودجاج (بروتين)', note: 'لترميم الألياف العضلية.' },
+      { ar: 'موز', note: 'بوتاسيوم.' },
+      { ar: 'الماء', note: 'ترطيب العضلات.' },
+      { ar: 'فواكه حمضية', note: 'فيتامين ج للأوتار.' },
+    ],
     ar: 'العضلة الصدرية الكبرى',
     en: 'Pectoralis Major',
     medical: 'M. Pectoralis Major',
@@ -97,6 +119,15 @@ export const MUSCULAR_ORGANS: Organ[] = [
   },
   {
     id: 'deltoid',
+    diseases: [
+      { ar: 'شد عضلة الدلتا (الكبش)', en: 'Deltoid Strain', note: 'إصابة عند رفع الذراع فوق الرأس بقوة.' },
+      { ar: 'إصابة كفة الأوتار', en: 'Rotator Cuff Injury', note: 'إصابة الأوتار المحيطة بالكتف — ألم عند رفع الذراع (كثير ما تتداخل مع ألم الكتف).' },
+    ],
+    foods: [
+      { ar: 'بروتين (بيض، أسماك، بقول)', note: 'لترميم العضلات.' },
+      { ar: 'مكسرات', note: 'مغنيسيوم.' },
+      { ar: 'الماء', note: 'ترطيب.' },
+    ],
     ar: 'العضلة الدلتويدة',
     en: 'Deltoid',
     medical: 'M. Deltoideus',
@@ -139,6 +170,16 @@ export const MUSCULAR_ORGANS: Organ[] = [
   },
   {
     id: 'trapezius',
+    diseases: [
+      { ar: 'تشنج عضلي (شد)', en: 'Muscle Spasm', note: 'توتر مزمن في العضلة الرقبية الكتفانية — أشهر أسباب آلام الرقبة والكتف من الجلوس الطويل.' },
+      { ar: 'متلازمة الألم العضلي الليفي', en: 'Myofascial Pain Syndrome', note: 'نقاط زناد مؤلمة في العضلات والأغشية.' },
+    ],
+    foods: [
+      { ar: 'مكسرات (لوز، كاشو)', note: 'مغنيسيوم يساعد استرخاء العضلات.' },
+      { ar: 'شاي الأعشاب (بابونج)', note: 'مهدئ عام للتوتر العضلي.' },
+      { ar: 'الماء', note: 'الترطيب يقلل الشد.' },
+      { ar: 'موز', note: 'بوتاسيوم.' },
+    ],
     ar: 'العضلة المنكبية',
     en: 'Trapezius',
     medical: 'M. Trapezius',
@@ -181,6 +222,15 @@ export const MUSCULAR_ORGANS: Organ[] = [
   },
   {
     id: 'biceps',
+    diseases: [
+      { ar: 'التهاب وتر العضلة ذات الرأسين', en: 'Biceps Tendinitis', note: 'التهاب الوتر عند الإجهاد المتكرر فوق الرأس.' },
+      { ar: 'تمزق وريذ العضلة ذات الرأسين', en: 'Biceps Tendon Rupture', note: 'قطع مفاجئ للوتر العلوي — صوت «باف» وانتفاخ في الذراع.' },
+    ],
+    foods: [
+      { ar: 'بروتين كافٍ', note: 'لترميم الألياف.' },
+      { ar: 'فواكه حمضية', note: 'فيتامين ج لصحة الأوتار.' },
+      { ar: 'الماء', note: 'ترطيب.' },
+    ],
     ar: 'العضلة الثنائية الباطنة',
     en: 'Biceps Brachii',
     medical: 'M. Biceps Brachii',
@@ -224,6 +274,15 @@ export const MUSCULAR_ORGANS: Organ[] = [
   },
   {
     id: 'triceps',
+    diseases: [
+      { ar: 'شد عضلة الباسط (ذات الرأسين)', en: 'Triceps Strain', note: 'تمزق ألياف من دفع قوي مفاجئ.' },
+      { ar: 'التهاب وتر المرفق (مرفق التنس)', en: 'Tennis Elbow', note: 'التهاب أوتار الباسط الجانبية من الإجهاد المتكرر.' },
+    ],
+    foods: [
+      { ar: 'بروتين كافٍ', note: 'لترميم.' },
+      { ar: 'مكسرات', note: 'مغنيسيوم.' },
+      { ar: 'الماء', note: 'ترطيب.' },
+    ],
     ar: 'العضلة الثلاثية الخلفية',
     en: 'Triceps Brachii',
     medical: 'M. Triceps Brachii',
@@ -266,6 +325,16 @@ export const MUSCULAR_ORGANS: Organ[] = [
   },
   {
     id: 'forearm',
+    diseases: [
+      { ar: 'مرفق التنس (التهاب العظم الحديدي الجانبي)', en: 'Lateral Epicondylitis', note: 'التهاب أوتار الباسط الجانبية من الإجهاد.' },
+      { ar: 'مرفق اللاعب (التهاب العظم الحديدي الداخلي)', en: 'Medial Epicondylitis', note: 'نفسه في الأوتار الداخلية.' },
+      { ar: 'متلازمة النفق الرسغي', en: 'Carpal Tunnel Syndrome', note: 'ضغط على العصب الأوسط داخل الرسغ.' },
+    ],
+    foods: [
+      { ar: 'بروتين كافٍ', note: 'لترميم الأوتار.' },
+      { ar: 'فواكه حمضية', note: 'فيتامين ج للكولاجين.' },
+      { ar: 'الماء', note: 'ترطيب.' },
+    ],
     ar: 'عضلات الساعد',
     en: 'Forearm Muscles',
     medical: 'Flexor & Extensor Compartments',
@@ -308,6 +377,15 @@ export const MUSCULAR_ORGANS: Organ[] = [
   },
   {
     id: 'rectusabdominis',
+    diseases: [
+      { ar: 'انفصال العضلتين المستقيمتين (فصل)', en: 'Diastasis Recti', note: 'انفصال في خط الأربطة الأبيض — شائع بعد الحمل ويضعف جذع الجسم.' },
+      { ar: 'تمزق العضلة المستقيمة', en: 'Rectus Abdominis Tear', note: 'قطع مفاجئ من مجهود شاق — ألم حاد محلي.' },
+    ],
+    foods: [
+      { ar: 'بروتين كافٍ', note: 'لترميم الأنسجة.' },
+      { ar: 'الماء', note: 'ترطيب.' },
+      { ar: 'حبوب كاملة', note: 'منع الإمساك والضغط على البطن.' },
+    ],
     ar: 'العضلة المستقيمة البطنية',
     en: 'Rectus Abdominis',
     medical: 'M. Rectus Abdominis',
@@ -350,6 +428,14 @@ export const MUSCULAR_ORGANS: Organ[] = [
   },
   {
     id: 'obliques',
+    diseases: [
+      { ar: 'شد العضلات المائلة', en: 'Oblique Strain', note: 'تمزق من حركات الدوران المفاجئة (رمي، ضرب كرة).' },
+    ],
+    foods: [
+      { ar: 'بروتين كافٍ', note: 'لترميم.' },
+      { ar: 'مكسرات', note: 'مغنيسيوم.' },
+      { ar: 'الماء', note: 'ترطيب.' },
+    ],
     ar: 'العضلات المائلة',
     en: 'Oblique Muscles',
     medical: 'Mm. Obliqui',
@@ -392,6 +478,16 @@ export const MUSCULAR_ORGANS: Organ[] = [
   },
   {
     id: 'gluteus',
+    diseases: [
+      { ar: 'ضعف عضلات الأرداف (نسيان الأرداف)', en: 'Gluteal Amnesia', note: 'خمول عضلات الأرداف من الجلوس الطويل — ألم ينتقل أسفل الظهر.' },
+      { ar: 'متلازمة العضلة الكمثرية', en: 'Piriformis Syndrome', note: 'تشنج العضلة الكمثرية يضغط على العصب الوركي — ألم في الأرداف ينزل للساق.' },
+    ],
+    foods: [
+      { ar: 'بروتين كافٍ', note: 'لبناء القوة.' },
+      { ar: 'الكمأة', note: 'مضاد التهاب طبيعي.' },
+      { ar: 'الماء', note: 'ترطيب.' },
+      { ar: 'موز', note: 'بوتاسيوم.' },
+    ],
     ar: 'العضلات الألوية',
     en: 'Gluteal Muscles',
     medical: 'Mm. Glutei',
@@ -434,6 +530,15 @@ export const MUSCULAR_ORGANS: Organ[] = [
   },
   {
     id: 'quadriceps',
+    diseases: [
+      { ar: 'شد عضلات الفخذ الرباعية', en: 'Quad Strain', note: 'تمزق ألياف من الجري أو الركل المفاجئ.' },
+      { ar: 'ألم الركبة الأمامي (رضفي)', en: 'Patellofemoral Pain', note: 'ألم خلف الرضفة يرتبط بضعف العضلة الرباعية.' },
+    ],
+    foods: [
+      { ar: 'بروتين كافٍ', note: 'لترميم الألياف.' },
+      { ar: 'موز', note: 'بوتاسيوم يمنع التقلصات.' },
+      { ar: 'الماء', note: 'ترطيب.' },
+    ],
     ar: 'العضلة الرباعية الفخذية',
     en: 'Quadriceps Femoris',
     medical: 'Mm. Quadriceps',
@@ -476,6 +581,16 @@ export const MUSCULAR_ORGANS: Organ[] = [
   },
   {
     id: 'calves',
+    diseases: [
+      { ar: 'تقلص عضلات الساق (شد)', en: 'Calf Cramps', note: 'تقلص مفاجئ — نقص شوارد أو مجهود شديد.' },
+      { ar: 'جلطة وريدية عميقة', en: 'DVT', note: 'جلطة في وريد عميق — ألم وتورم في الساق، حالة طارئة.' },
+    ],
+    foods: [
+      { ar: 'موز', note: 'بوتاسيوم.' },
+      { ar: 'مكسرات', note: 'مغنيسيوم.' },
+      { ar: 'الماء', note: 'الترطيب أساسي لمنع التقلصات.' },
+      { ar: 'فواكه حمضية', note: 'فيتامين ج + شوارد.' },
+    ],
     ar: 'عضلات السمانة',
     en: 'Calf Muscles',
     medical: 'M. Gastrocnemius / Ssoleus',
@@ -518,6 +633,17 @@ export const MUSCULAR_ORGANS: Organ[] = [
   },
   {
     id: 'tendons',
+    diseases: [
+      { ar: 'التهاب الأوتار (إجهاد)', en: 'Tendinitis', note: 'التهاب من الإجهاد المتكرر — الكعب والأكتف أشهر المواقع.' },
+      { ar: 'تمزق وتر أخيل', en: 'Achilles Tendon Rupture', note: 'قطع كامل لوتر الكعب — صوت «باف» وعجز عن الدفع.' },
+      { ar: 'اعتلال وتر أخيل', en: 'Achilles Tendinopathy', note: 'تدهور تدريجي في نسيج الوتر من الإفراط.' },
+    ],
+    foods: [
+      { ar: 'فواكه حمضية', note: 'فيتامين ج أساسي لتخليق الكولاجين في الأوتار.' },
+      { ar: 'بروتين كافٍ', note: 'لبناء الألياف.' },
+      { ar: 'توت', note: 'مضادات أكسدة.' },
+      { ar: 'الماء', note: 'ترطيب الأنسجة.' },
+    ],
     ar: 'الأوتار',
     en: 'Tendons',
     medical: 'Tendines',

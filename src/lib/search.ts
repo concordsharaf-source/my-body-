@@ -23,7 +23,7 @@ export interface SearchHit {
   organ: Organ
   score: number
   /** أين وقع التطابق (للعرض). */
-  matchedOn: 'name' | 'en' | 'medical' | 'keyword' | 'function' | 'alias'
+  matchedOn: 'name' | 'en' | 'medical' | 'keyword' | 'function' | 'alias' | 'disease' | 'food'
 }
 
 /**
@@ -88,6 +88,24 @@ export function searchOrgans(query: string): SearchHit[] {
       if (50 > best) {
         best = 50
         matchedOn = 'function'
+      }
+    }
+    // أمراض العضو
+    const diseaseHay = (organ.diseases ?? [])
+      .map((d) => `${normAny(d.ar)} ${normAny(d.en)}`)
+      .join(' ')
+    if (diseaseHay && (diseaseHay.includes(q) || terms.every((t) => diseaseHay.includes(t)))) {
+      if (45 > best) {
+        best = 45
+        matchedOn = 'disease'
+      }
+    }
+    // أطعمة العضو
+    const foodHay = (organ.foods ?? []).map((f) => normAny(f.ar)).join(' ')
+    if (foodHay && (foodHay.includes(q) || terms.every((t) => foodHay.includes(t)))) {
+      if (40 > best) {
+        best = 40
+        matchedOn = 'food'
       }
     }
     // تطابق متعدد الكلمات: كل كلمة يجب أن تظهر في مكان ما

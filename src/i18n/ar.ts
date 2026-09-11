@@ -59,6 +59,8 @@ export const ar = {
   systemsTitle: 'أجهزة الجسم',
   legendTitle: 'دليل الأرقام',
   careTitle: 'كيف تحافظ عليه',
+  diseasesTitle: 'أمراض قد تصيبه',
+  foodsTitle: 'أطعمة صديقة له',
   systemsSub: 'اختر جهازًا لعزله على النموذج واستكشاف أجزائه وعلاقاته',
   systemCount: 'جزء',
   isolate: 'عزل الجهاز على النموذج',

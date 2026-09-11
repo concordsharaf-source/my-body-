@@ -6,6 +6,18 @@ const REV = '2026-09-01'
 export const REPRO_MALE_ORGANS: Organ[] = [
   {
     id: 'testes',
+    diseases: [
+      { ar: 'احتقان الخصية', en: 'Testicular Torsion', note: 'الخصية تلف حول الحبل التناسلي فيقطع الدم — طوارئ جراحية خلال ساعات.' },
+      { ar: 'التهاب البربخ', en: 'Epididymitis', note: 'عدوى تصيب البربخ — انتفاخ وألم خلف الخصية.' },
+      { ar: 'سرطان الخصية', en: 'Testicular Cancer', note: 'أكثر سرطانات الشباب (15-35) شيوعًا — كتلة غير مؤلمة تكتشف مبكرًا.' },
+      { ar: 'دوالي الخصية', en: 'Varicocele', note: 'تمدد أوردة الحبل التناسلي — يشبه «كيس دودة»، قد يؤثر على الخصوبة.' },
+    ],
+    foods: [
+      { ar: 'بذور عنب (قرع)', note: 'زنك أساسي لإنتاج التستوستيرون والحيوانات المنوية.' },
+      { ar: 'أسماك دهنية', note: 'أوميغا-3.' },
+      { ar: 'أفوكادو', note: 'دهون صحية للهرمونات.' },
+      { ar: 'توت', note: 'مضادات أكسدة تحمي الخلايا.' },
+    ],
     ar: 'الخصيتان',
     en: 'Testes',
     medical: 'Testes / Testicles',
@@ -54,6 +66,15 @@ export const REPRO_MALE_ORGANS: Organ[] = [
   },
   {
     id: 'epididymis',
+    diseases: [
+      { ar: 'التهاب البربخ', en: 'Epididymitis', note: 'عدوى بكتيرية تسبب انتفاخًا وألمًا خلف الخصية.' },
+      { ar: 'كيس البربخ (أبيدديمال كست)', en: 'Epididymal Cyst', note: 'كيس سائل حميد غير مؤلم فوق الخصية.' },
+    ],
+    foods: [
+      { ar: 'بذور عنب (قرع)', note: 'زنك.' },
+      { ar: 'أسماك دهنية', note: 'أوميغا-3.' },
+      { ar: 'تقليل الكحول', note: 'الكحول يضغط على صحة البربخ.' },
+    ],
     ar: 'القناة المذيبة',
     en: 'Epididymis',
     medical: 'Epididymis',
@@ -96,6 +117,15 @@ export const REPRO_MALE_ORGANS: Organ[] = [
   },
   {
     id: 'vasdeferens',
+    diseases: [
+      { ar: 'انسداد قذف (القدحة المنوية)', en: 'Vas Deferens Obstruction', note: 'انسداد بعد جراحة أو عدوى — يمنع مرور الحيوانات المنوية.' },
+      { ar: 'غياب خلق في القذف', en: 'Congenital Absence', note: 'غياب وراثي نادر للقذف.' },
+    ],
+    foods: [
+      { ar: 'بذور عنب (قرع)', note: 'زنك يدعم صحة السائل المنوي.' },
+      { ar: 'أسماك دهنية', note: 'أوميغا-3.' },
+      { ar: 'فواكه حمضية', note: 'فيتامين C مضاد أكسدة للحيوانات المنوية.' },
+    ],
     ar: 'القناة القصلية',
     en: 'Vas Deferens',
     medical: 'Ductus Deferens',
@@ -139,6 +169,18 @@ export const REPRO_MALE_ORGANS: Organ[] = [
   },
   {
     id: 'prostate',
+    diseases: [
+      { ar: 'تضخم البروستاتا الحميد', en: 'BPH (Benign Prostatic Hyperplasia)', note: 'تضخم غير سرطاني مع التقدم في العمر — تردد وتقطع في التبول.' },
+      { ar: 'التهاب البروستاتا', en: 'Prostatitis', note: 'عدوى أو التهاب — حرقة وألم في الحوض.' },
+      { ar: 'سرطان البروستاتا', en: 'Prostate Cancer', note: 'أكثر سرطانات الرجال شيوعًا — الكشف المبكر (PSA) ينقذ.' },
+    ],
+    foods: [
+      { ar: 'طماطم (مطبوخة)', note: 'ليكوبين يرتبط بانخفاض خطر سرطان البروستاتا.' },
+      { ar: 'أسماك دهنية', note: 'أوميغا-3.' },
+      { ar: 'بذور عنب (قرع)', note: 'زنك.' },
+      { ar: 'خضار صليبية', note: 'مركبات كبريتية واقية.' },
+      { ar: 'تقليل اللحوم الحمراء والألبان الدسمة', note: 'ترتبط بزيادة الخطر.' },
+    ],
     ar: 'البروستاتا',
     en: 'Prostate',
     medical: 'Glandula Prostatica',
@@ -182,6 +224,15 @@ export const REPRO_MALE_ORGANS: Organ[] = [
   },
   {
     id: 'seminalvesicles',
+    diseases: [
+      { ar: 'التهاب الحويضة المنوية', en: 'Seminal Vesiculitis', note: 'التهاب بسبب عدوى — ألم في الحوض.' },
+      { ar: 'كيس الحويضة المنوية', en: 'Seminal Vesicle Cyst', note: 'كيس حميد في الحويضة.' },
+    ],
+    foods: [
+      { ar: 'بذور عنب (قرع)', note: 'زنك.' },
+      { ar: 'أسماك دهنية', note: 'أوميغا-3.' },
+      { ar: 'توت', note: 'مضادات أكسدة.' },
+    ],
     ar: 'الحويختان المنويتان',
     en: 'Seminal Vesicles',
     medical: 'Vesiculae Seminales',
@@ -228,6 +279,17 @@ export const REPRO_MALE_ORGANS: Organ[] = [
     en: 'Penis',
     medical: 'Penis',
     id: 'penis',
+    diseases: [
+      { ar: 'ضعف الانتصاب (عجز قذف)', en: 'Erectile Dysfunction', note: 'صعوبة الوصول أو الحفاظ على الانتصاب — غالبًا وعائي، مؤشر مبكر لصحة القلب.' },
+      { ar: 'التهاب راس القضيب (بالانيتيس)', en: 'Balanitis', note: 'التهاب راس القضيب — احمرار وحكة، كثير ما مع ضعف النظافة أو السكري.' },
+      { ar: 'مرض بايروني', en: 'Peyronie’s Disease', note: 'أنسجة ندبية تجعل القضيب منحنيًا مؤلمًا.' },
+    ],
+    foods: [
+      { ar: 'أسماك دهنية', note: 'أوميغا-3 يحافظ على صحة الأوعية الدقيقة.' },
+      { ar: 'خضار داكنة', note: 'نترات تدعم أكسيد النيتريكي (الانتصاب).' },
+      { ar: 'توت', note: 'مضادات أكسدة.' },
+      { ar: 'الماء', note: 'التملح العام للأوعية.' },
+    ],
     system: 'reproductive',
     layer: 'reproductive',
     sex: 'male',

@@ -6,6 +6,19 @@ const REV = '2026-09-01'
 export const NERVOUS_ORGANS: Organ[] = [
   {
     id: 'brain',
+    diseases: [
+      { ar: 'سكتة دماغية (جلطة/نزف)', en: 'Stroke', note: 'انقطاع تدفق الدم لجزء من المخ — كل دقيقة تعني خسارة خلايا.' },
+      { ar: 'زهايمر', en: 'Alzheimer’s Disease', note: 'تدهور تدريجي للذاكرة والمعرفات — أكثر أمراض الخرف شيوعًا.' },
+      { ar: 'الصرع (عصبي)', en: 'Epilepsy', note: 'نوبات من تفريغ كهربائي غير منضبط في المخ.' },
+      { ar: 'صداع نصفي (شقيقة)', en: 'Migraine', note: 'نوبات صداع شديد نابض مع غثيان وحساسية للضوء.' },
+    ],
+    foods: [
+      { ar: 'أسماك دهنية', note: 'أوميغا-3 (DHA) مكوّن رئيسي في أغشية الخلايا العصبية.' },
+      { ar: 'توت (توت بري، فراولة)', note: 'مضادات أكسدة تحمي الخلايا العصبية.' },
+      { ar: 'جوز', note: 'أوميغا-3 وفيتامينات تدعم الذاكرة.' },
+      { ar: 'خضار داكنة', note: 'حمض الفوليك وفيتامينات B.' },
+      { ar: 'شوكولاتة داكنة (باعتدال)', note: 'يحسن تدفق الدم للمخ.' },
+    ],
     ar: 'الدماغ',
     en: 'Brain',
     medical: 'Cerebrum / Encephalon',
@@ -60,6 +73,16 @@ export const NERVOUS_ORGANS: Organ[] = [
   },
   {
     id: 'cerebellum',
+    diseases: [
+      { ar: 'ترنح مخيخي', en: 'Cerebellar Ataxia', note: 'فقدان التوازن والتنسيق الحركي بسبب تلف المخيخ.' },
+      { ar: 'سكتة مخيخية', en: 'Cerebellar Stroke', note: 'جلطة في إمداد المخيخ — فقدان توازن حاد.' },
+    ],
+    foods: [
+      { ar: 'أسماك دهنية', note: 'أوميغا-3.' },
+      { ar: 'توت', note: 'مضادات أكسدة.' },
+      { ar: 'مكسرات', note: 'مغنيسيوم وفيتامين E.' },
+      { ar: 'خضار داكنة', note: 'فيتامينات.' },
+    ],
     ar: 'المخيخ',
     en: 'Cerebellum',
     medical: 'Cerebellum',
@@ -103,6 +126,15 @@ export const NERVOUS_ORGANS: Organ[] = [
   },
   {
     id: 'brainstem',
+    diseases: [
+      { ar: 'سكتة جذع دماغية', en: 'Brainstem Stroke', note: 'جلطة في جذع الدماغ — تهدد مراكز التنفس والنظم القلبي.' },
+      { ar: 'تصلب متعدد', en: 'Multiple Sclerosis', note: 'مناعة تهاجم الغلاف العازل للأعصاب — كثير ما يبدأ في جذع الدماغ.' },
+    ],
+    foods: [
+      { ar: 'أسماك دهنية', note: 'أوميغا-3 يحمي الغلاف العازل.' },
+      { ar: 'توت', note: 'مضادات أكسدة.' },
+      { ar: 'خضار داكنة', note: 'فيتامينات B وحمض الفوليك.' },
+    ],
     ar: 'جذع الدماغ',
     en: 'Brainstem',
     medical: 'Brainstem (Midbrain, Pons, Medulla)',
@@ -147,6 +179,18 @@ export const NERVOUS_ORGANS: Organ[] = [
   },
   {
     id: 'spinalcord',
+    diseases: [
+      { ar: 'إصابة الحبل الشوكي', en: 'Spinal Cord Injury', note: 'كسر العمود أو إصابة تضغط الحبل — تعطل إشارات الدماغ للجسم.' },
+      { ar: 'انزلاق قرص ضاغط', en: 'Herniated Disc', note: 'قرص منزلق يضغط على جذور الأعصاب أو الحبل.' },
+      { ar: 'تضيّق القناة الشوكية', en: 'Spinal Stenosis', note: 'تضيّق القناة مع التقدم في العمر فيضغط الحبل.' },
+      { ar: 'تصلب متعدد', en: 'Multiple Sclerosis', note: 'تلف الغلاف العازل في الحبل.' },
+    ],
+    foods: [
+      { ar: 'أسماك دهنية', note: 'أوميغا-3 لدعم الغلاف العازل (المايلين).' },
+      { ar: 'توت', note: 'مضادات أكسدة.' },
+      { ar: 'خضار داكنة', note: 'فيتامينات B ضرورية للأعصاب.' },
+      { ar: 'بيض', note: 'فيتامين B12 للأعصاب.' },
+    ],
     ar: 'الحبل الشوكي',
     en: 'Spinal Cord',
     medical: 'Spinalis',
@@ -191,6 +235,17 @@ export const NERVOUS_ORGANS: Organ[] = [
   },
   {
     id: 'opticnerve',
+    diseases: [
+      { ar: 'التهاب العصب البصري', en: 'Optic Neuritis', note: 'التهاب العصب البصري — فقدان رؤية مؤقت، كثير ما يرتبط بالتصلب المتعدد.' },
+      { ar: 'زرق (غلاوكوما)', en: 'Glaucoma', note: 'ضغط مرتفع داخل العين يدمر العصب البصري تدريجيًا — أبيض في رؤية المحيط.' },
+      { ar: 'اعتلال العصب البصري', en: 'Optic Atrophy', note: 'اتّهاد ألياف العصب البصري لفقدان وظيفتها.' },
+    ],
+    foods: [
+      { ar: 'جزر وقرع', note: 'فيتامين A (بيتا كاروتين) أساس الرؤية.' },
+      { ar: 'توت', note: 'مضادات أكسدة.' },
+      { ar: 'أسماك دهنية', note: 'أوميغا-3.' },
+      { ar: 'خضار داكنة', note: 'لوتين.' },
+    ],
     ar: 'العصب البصري',
     en: 'Optic Nerve',
     medical: 'Cranial Nerve II',
@@ -229,6 +284,16 @@ export const NERVOUS_ORGANS: Organ[] = [
   },
   {
     id: 'acousticnerve',
+    diseases: [
+      { ar: 'ورم العصب السمعي (شوانوما)', en: 'Acoustic Neuroma', note: 'ورم حميد ينمو على العصب السمعي — طنين وفقدان سمع تدريجي.' },
+      { ar: 'فقدان سمع عصبي مفاجئ', en: 'Sudden Sensorineural Hearing Loss', note: 'فقدان سمع مفاجئ (خلال 72 ساعة) — يحتاج تدخلًا سريعًا.' },
+      { ar: 'مرض مينيير', en: 'Meniere\'s Disease', note: 'تراكم سوائل في الأذن الداخلية — دوخة وطنين وامتلاء.' },
+    ],
+    foods: [
+      { ar: 'أسماك دهنية', note: 'أوميغا-3 يحمي الأعصاب السمعية.' },
+      { ar: 'توت', note: 'مضادات أكسدة.' },
+      { ar: 'تقليل الملح', note: 'مهم خاصة مع مرض مينيير (سوائل الأذن).' },
+    ],
     ar: 'العصب السمعي',
     en: 'Vestibulocochlear Nerve',
     medical: 'Cranial Nerve VIII',
@@ -267,6 +332,17 @@ export const NERVOUS_ORGANS: Organ[] = [
   },
   {
     id: 'peripheralnerves',
+    diseases: [
+      { ar: 'اعتلال أعصاب محيطي (اعتلال عصبي)', en: 'Peripheral Neuropathy', note: 'تلف الأعصاب الطرفية — تنميل ووخز في اليدين والقدمين. أخطر أسبابه السكري.' },
+      { ar: 'متلازمة النفق الرسغي', en: 'Carpal Tunnel Syndrome', note: 'ضغط على العصب الأوسط في الرسغ.' },
+      { ar: 'عصب الوركي (إشعاع عظمي)', en: 'Sciatica', note: 'ألم ينزل في الساق من ضغط على العصب الوركي.' },
+    ],
+    foods: [
+      { ar: 'خضار داكنة', note: 'فيتامينات B (B12، فولات) ضرورية للأعصاب.' },
+      { ar: 'أسماك دهنية', note: 'أوميغا-3.' },
+      { ar: 'توت', note: 'مضادات أكسدة.' },
+      { ar: 'بيض', note: 'B12.' },
+    ],
     ar: 'الأعصاب الطرفية',
     en: 'Peripheral Nerves',
     medical: 'Peripheral Nervous System Nerves',
@@ -310,6 +386,17 @@ export const NERVOUS_ORGANS: Organ[] = [
   },
   {
     id: 'cns',
+    diseases: [
+      { ar: 'تصلب متعدد', en: 'Multiple Sclerosis', note: 'مناعة تهاجم غلاف المايلين في المخ والحبل — أعراض متقلبة.' },
+      { ar: 'سكتة دماغية', en: 'Stroke', note: 'جلطة أو نزف في المخ.' },
+      { ar: 'باركنسون (شلل راجع)', en: 'Parkinson’s Disease', note: 'موت تدريجي لخلايا دووبامين — رعشة وبطء حركة.' },
+    ],
+    foods: [
+      { ar: 'أسماك دهنية', note: 'أوميغا-3.' },
+      { ar: 'توت', note: 'مضادات أكسدة.' },
+      { ar: 'مكسرات', note: 'فيتامين E.' },
+      { ar: 'خضار داكنة', note: 'فيتامينات B.' },
+    ],
     ar: 'الجهاز العصبي المركزي',
     en: 'Central Nervous System',
     medical: 'Central Nervous System (CNS)',
@@ -352,6 +439,15 @@ export const NERVOUS_ORGANS: Organ[] = [
   },
   {
     id: 'pns',
+    diseases: [
+      { ar: 'اعتلال أعصاب محيطي', en: 'Peripheral Neuropathy', note: 'تلف الأعصاب الطرفية — تنميل وخدر.' },
+      { ar: 'متلازمة جيلان-باريه', en: 'Guillain-Barré Syndrome', note: 'مناعة تهاجم الأعصاب بعد عدوى — ضعف سريع يصعد للأطراف.' },
+    ],
+    foods: [
+      { ar: 'فيتامينات B (بيض، خضار داكنة)', note: 'ضرورية لصحة الأعصاب.' },
+      { ar: 'أسماك دهنية', note: 'أوميغا-3.' },
+      { ar: 'توت', note: 'مضادات أكسدة.' },
+    ],
     ar: 'الجهاز العصبي الطرفي',
     en: 'Peripheral Nervous System',
     medical: 'Peripheral Nervous System (PNS)',
