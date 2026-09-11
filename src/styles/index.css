@@ -29,15 +29,17 @@
   --bones-a: #e7dfcc;
   --bones-b: #d2c5aa;
   --bones-c: #b8a884;
-  --respiratory-a: #7cc4ee;
-  --respiratory-b: #3f9bd8;
-  --respiratory-c: #2a7ab8;
-  --digestive-a: #f0b26b;
-  --digestive-b: #dd9440;
-  --digestive-c: #c07c2a;
-  --circulatory-a: #e46a6a;
-  --circulatory-b: #d04444;
-  --circulatory-c: #b22f2f;
+  --respiratory-a: #f2b7b0;
+  --respiratory-b: #e0968f;
+  --respiratory-c: #bf716c;
+  --digestive-a: #e58f7d;
+  --digestive-b: #e2848b;
+  --digestive-c: #c2685f;
+  --circulatory-a: #e75f52;
+  --circulatory-b: #d1413a;
+  --circulatory-c: #a52a25;
+  --liver: #a34d3e;
+  --detail: rgba(90, 40, 30, 0.35);
   --urinary-a: #a78bfa;
   --urinary-b: #8b6cf0;
   --urinary-c: #7050d8;
@@ -83,8 +85,8 @@
   /* ألوان chips/نصوص الأنظمة (ثابتة) */
   --nervous: #db2777;
   --circulatory: #dc2626;
-  --respiratory: #0284c7;
-  --digestive: #d97706;
+  --respiratory: #c25e52;
+  --digestive: #c05f45;
   --urinary: #7c3aed;
   --reproductive: #0d9488;
   --lymphatic: #16a34a;
@@ -1628,4 +1630,71 @@ html, body { overflow-x: clip; }
 .reduce-motion *::after {
   animation-duration: 0.001s !important;
   transition-duration: 0.001s !important;
+}
+
+/* ===== التسميات الجانبية + الخطوط الرفيعة ===== */
+.leader-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+.leader-line {
+  stroke-width: 1;
+  stroke-linecap: round;
+  opacity: 0.55;
+  vector-effect: non-scaling-stroke;
+}
+.side-label {
+  position: absolute;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  left: 2px;
+  max-width: 90px;
+  padding: 2px 5px;
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
+  border-radius: 7px;
+  font: inherit;
+  font-size: 0.64rem;
+  line-height: 1.25;
+  color: var(--text);
+  cursor: pointer;
+  text-align: start;
+}
+.side-label.right {
+  left: auto;
+  right: 2px;
+  flex-direction: row-reverse;
+  text-align: end;
+}
+.side-label.on,
+.side-label:focus-visible {
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  border-color: var(--primary);
+}
+.side-num {
+  flex: 0 0 15px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1.4px solid var(--primary);
+  background: var(--surface);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.56rem;
+  font-weight: 700;
+}
+.side-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }

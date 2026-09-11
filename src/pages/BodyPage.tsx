@@ -1,15 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import BodyModel from '../components/BodyModel/BodyModel'
+import BodyModel, { defaultMarkers } from '../components/BodyModel/BodyModel'
 import type { FocusBox, ModelMarker } from '../components/BodyModel/BodyModel'
 import { LAYER_SHAPES } from '../components/BodyModel/shapes'
 import LayerPanel from '../components/LayerPanel'
-import OrganLegend from '../components/OrganLegend'
 import OrganCard from '../components/OrganCard'
 import { DISSECTION_STEPS, INTERNAL_LAYERS, defaultLayerState } from '../data/layers'
 import { SYSTEMS, getSystem } from '../data/systems'
 import { systemPartsCount } from '../lib/quiz'
 import { getOrgan, organsOfSystem } from '../data'
+
 import type { LayerId, SystemId } from '../data/types'
 import { useAppStore } from '../store/appStore'
 import { useUserStore } from '../store/userStore'
@@ -101,15 +101,15 @@ export default function BodyPage() {
 
   const selectedOrgan = selected ? getOrgan(selected) : undefined
 
-  /** الشارات الرقمية على النموذج (الأسماء في القائمة الجانبية). */
+  /** الشارات الرقمية على النموذج (والأسماء تظهر على جانبي الرسم). */
   const markers = useMemo<ModelMarker[]>(() => {
-    const items: { id: string; color: string }[] = []
+    const items: { id: string; color: string; x?: number; y?: number }[] = []
     const seen = new Set<string>()
-    const add = (id: string, color: string) => {
+    const add = (id: string, color: string, x?: number, y?: number) => {
       const o = getOrgan(id)
       if (!o?.model || seen.has(id)) return
       seen.add(id)
-      items.push({ id, color })
+      items.push({ id, color, x, y })
     }
     if (activeSystem) {
       for (const o of organsOfSystem(activeSystem)) if (o.model) add(o.id, activeSystemDef?.color ?? 'var(--primary)')
@@ -118,11 +118,15 @@ export default function BodyPage() {
         if (def.sex && def.sex !== 'both' && def.sex !== sex) continue
         if (def.organId) add(def.organId, 'var(--primary)')
       }
+    } else {
+      for (const dm of defaultMarkers(sex)) add(dm.id, dm.color, dm.x, dm.y)
     }
-    if (selectedOrgan?.model) add(selectedOrgan.id, getSystem(selectedOrgan.system)?.color ?? 'var(--primary)')
+    if (selectedOrgan?.model && !seen.has(selectedOrgan.id)) {
+      add(selectedOrgan.id, getSystem(selectedOrgan.system)?.color ?? 'var(--primary)')
+    }
     return items.map((x, i) => {
       const o = getOrgan(x.id)!
-      return { id: x.id, num: i + 1, x: o.model!.label[0], y: o.model!.label[1], color: x.color }
+      return { id: x.id, num: i + 1, x: x.x ?? o.model!.label[0], y: x.y ?? o.model!.label[1], color: x.color }
     })
   }, [activeSystem, activeSystemDef, focusLayer, selectedOrgan, sex])
 
@@ -273,7 +277,6 @@ export default function BodyPage() {
         </div>
 
         <aside className="body-side">
-          <OrganLegend markers={markers} hoveredId={hoverId} onHover={setHoverId} onSelect={selectOrgan} />
           <div className="system-chips" role="listbox" aria-label={t.allSystems}>
             <button
               type="button"

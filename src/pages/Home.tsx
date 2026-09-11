@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import BodyModel from '../components/BodyModel/BodyModel'
+import BodyModel, { defaultMarkers } from '../components/BodyModel/BodyModel'
 import SystemsGrid from '../components/SystemsGrid'
 import { defaultLayerState } from '../data/layers'
 import { getOrgan } from '../data'
@@ -35,6 +35,7 @@ export default function Home() {
           <BodyModel
             sex={sex}
             layers={layers}
+            markers={defaultMarkers(sex)}
             selectedOrganId={selected}
             onSelectOrgan={setSelected}
             reduceMotion={reduceMotion}

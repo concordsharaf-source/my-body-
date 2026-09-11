@@ -63,6 +63,7 @@ export default function OrganPage() {
             layers={layers}
             selectedOrganId={selected}
             onSelectOrgan={(oid) => setSelected(oid)}
+            interactive={false}
             reduceMotion={reduceMotion}
             focusBox={organ.model ? { x: organ.model.box[0], y: organ.model.box[1], w: organ.model.box[2], h: organ.model.box[3], key: 1 } : null}
           />

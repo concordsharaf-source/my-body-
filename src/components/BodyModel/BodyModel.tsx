@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import type { LayerId, Sex, SystemId } from '../../data/types'
-import { getOrgan, organsOfSystem } from '../../data'
+import { getOrgan, getSystem, organsOfSystem } from '../../data'
 import { LAYER_SHAPES } from './shapes'
 import type { ShapeDef } from './shapes'
 
@@ -122,12 +122,33 @@ export default function BodyModel({
   ariaLabel = 'النموذج التشريحي لجسم الإنسان',
 }: Props) {
   const svgRef = useRef<SVGSVGElement>(null)
+  const wrapRef = useRef<HTMLDivElement>(null)
   const gradPrefix = 'gm' + useId().replace(/[^a-zA-Z0-9]/g, '')
   const [transform, setTransform] = useState({ x: 0, y: 0, k: 1 })
+  const [wrapSize, setWrapSize] = useState({ w: 360, h: 780 })
+
+  useEffect(() => {
+    const el = wrapRef.current
+    if (!el) return
+    const ro = new ResizeObserver(() => setWrapSize({ w: el.clientWidth, h: el.clientHeight }))
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  /** تثبيت الحركة: لا يهرب النموذج خارج الإطار أبدًا. */
+  const clampT = useCallback((t: { x: number; y: number; k: number }) => {
+    const minX = VIEW_W - VIEW_W * t.k
+    const maxX = 0
+    const minY = VIEW_H - VIEW_H * t.k
+    const maxY = 0
+    const x = minX > maxX ? (minX + maxX) / 2 : Math.min(maxX, Math.max(minX, t.x))
+    const y = minY > maxY ? (minY + maxY) / 2 : Math.min(maxY, Math.max(minY, t.y))
+    return { ...t, x, y }
+  }, [])
   const [smooth, setSmooth] = useState(true)
   const [hovered, setHovered] = useState<string | null>(null)
   const pointers = useRef<Map<number, { x: number; y: number }>>(new Map())
-  const dragState = useRef<{ startX: number; startY: number; tx: number; ty: number; pinch?: { d: number; k: number } } | null>(null)
+  const dragState = useRef<{ startX: number; startY: number; tx: number; ty: number; k0: number; pm?: { x: number; y: number }; pinch?: { d: number } } | null>(null)
 
   const selected = selectedOrganId ? getOrgan(selectedOrganId) : undefined
   const isolatedOrgans = useMemo(
@@ -138,12 +159,12 @@ export default function BodyModel({
   /** تحويل focusBox إلى transform. */
   useEffect(() => {
     if (!focusBox) return
-    const pad = 1.7
-    const k = Math.min(VIEW_W / (focusBox.w * pad), VIEW_H / (focusBox.h * pad), 3)
+    const pad = 1.9
+    const k = Math.min(VIEW_W / (focusBox.w * pad), VIEW_H / (focusBox.h * pad), 2.6)
     const cx = focusBox.x + focusBox.w / 2
     const cy = focusBox.y + focusBox.h / 2
     setSmooth(true)
-    setTransform({ x: VIEW_W / 2 - k * cx, y: VIEW_H / 2 - k * cy, k })
+    setTransform(clampT({ x: VIEW_W / 2 - k * cx, y: VIEW_H / 2 - k * cy, k }))
   }, [focusBox?.key]) // eslint-disable-line react-hooks/exhaustive-deps
 
   /** حساب شفافية طبقة ما حسب الوضع الحالي. */
@@ -229,12 +250,13 @@ export default function BodyModel({
     pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY })
     if (pointers.current.size === 1) {
       const p = toView(e.clientX, e.clientY)
-      dragState.current = { startX: p.x, startY: p.y, tx: transform.x, ty: transform.y }
+      dragState.current = { startX: p.x, startY: p.y, tx: transform.x, ty: transform.y, k0: transform.k }
       setSmooth(false)
     } else if (pointers.current.size === 2) {
       const pts = [...pointers.current.values()]
       const d = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y)
-      dragState.current = { ...dragState.current!, pinch: { d, k: transform.k } }
+      const mid = toView((pts[0].x + pts[1].x) / 2, (pts[0].y + pts[1].y) / 2)
+      dragState.current = { tx: transform.x, ty: transform.y, k0: transform.k, pm: mid, pinch: { d }, startX: 0, startY: 0 }
       setSmooth(false)
     }
   }
@@ -246,13 +268,21 @@ export default function BodyModel({
     if (!ds) return
     if (pointers.current.size === 1) {
       const p = toView(e.clientX, e.clientY)
-      setTransform((t) => ({ ...t, x: ds.tx + (p.x - ds.startX), y: ds.ty + (p.y - ds.startY) }))
+      setTransform((t) => clampT({ ...t, x: ds.tx + (p.x - ds.startX), y: ds.ty + (p.y - ds.startY) }))
       onUserNavigate?.()
-    } else if (pointers.current.size === 2 && ds.pinch) {
+    } else if (pointers.current.size === 2 && ds.pinch && ds.pm) {
       const pts = [...pointers.current.values()]
       const d = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y)
-      const k = Math.min(4, Math.max(0.6, (ds.pinch.k * d) / ds.pinch.d))
-      setTransform((t) => ({ ...t, k }))
+      const mid = toView((pts[0].x + pts[1].x) / 2, (pts[0].y + pts[1].y) / 2)
+      const k = Math.min(4, Math.max(0.6, (ds.k0 * d) / ds.pinch.d))
+      const scale = k / ds.k0
+      setTransform((t) =>
+        clampT({
+          k,
+          x: mid.x - scale * (ds.pm!.x - ds.tx) + (mid.x - ds.pm!.x),
+          y: mid.y - scale * (ds.pm!.y - ds.ty) + (mid.y - ds.pm!.y),
+        }),
+      )
       onUserNavigate?.()
     }
   }
@@ -272,7 +302,7 @@ export default function BodyModel({
       const factor = e.deltaY < 0 ? 1.12 : 1 / 1.12
       const k = Math.min(4, Math.max(0.6, t.k * factor))
       const scale = k / t.k
-      return { k, x: p.x - scale * (p.x - t.x), y: p.y - scale * (p.y - t.y) }
+      return clampT({ k, x: p.x - scale * (p.x - t.x), y: p.y - scale * (p.y - t.y) })
     })
     onUserNavigate?.()
   }
@@ -297,8 +327,45 @@ export default function BodyModel({
   const hoveredOrgan = effectiveHovered ? getOrgan(effectiveHovered) : undefined
 
   /* ---------- الرسم ---------- */
+  /* ---------- التسميات الجانبية (رقم + اسم + خط رفيع) ---------- */
+  const sideLabels = useMemo(() => {
+    if (!markers || markers.length === 0) return []
+    const { w, h } = wrapSize
+    const k = transform.k
+    const items = markers.map((m) => ({
+      ...m,
+      bx: ((m.x * k + transform.x) / VIEW_W) * w,
+      by: ((m.y * k + transform.y) / VIEW_H) * h,
+    }))
+    const LABEL_H = 30
+    const out: { id: string; num: number; name: string; color: string; side: 'left' | 'right'; top: number; bx: number; by: number }[] = []
+    for (const side of ['left', 'right'] as const) {
+      const list = items.filter((it) => (side === 'left' ? it.bx < w / 2 : it.bx >= w / 2)).sort((a, b) => a.by - b.by)
+      let cursor = 6
+      for (const it of list) {
+        let top = it.by - LABEL_H / 2
+        top = Math.max(top, cursor)
+        top = Math.min(top, h - LABEL_H - 6)
+        out.push({ id: it.id, num: it.num, name: nameOf(it.id), color: it.color, side, top, bx: it.bx, by: it.by })
+        cursor = top + LABEL_H + 3
+      }
+    }
+    return out
+  }, [markers, transform, wrapSize])
+
+  const zoomAt = (clientX: number, clientY: number, targetK: number) => {
+    const p = toView(clientX, clientY)
+    setSmooth(true)
+    setTransform((t) => {
+      const k = Math.min(4, Math.max(0.6, targetK))
+      const scale = k / t.k
+      return clampT({ k, x: p.x - scale * (p.x - t.x), y: p.y - scale * (p.y - t.y) })
+    })
+    onUserNavigate?.()
+  }
+
   return (
-    <div className={`body-model-wrap ${className ?? ''}`}>
+    <div className={`body-model-wrap ${className ?? ''}`} ref={wrapRef}>
       <svg
         ref={svgRef}
         viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
@@ -309,8 +376,12 @@ export default function BodyModel({
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
-        onDoubleClick={reset}
-        style={{ touchAction: 'none' }}
+        onDoubleClick={(e) => {
+          if (!interactive) return
+          if (transform.k > 1.35) reset()
+          else zoomAt(e.clientX, e.clientY, Math.min(4, transform.k * 2))
+        }}
+        style={{ touchAction: interactive ? 'none' : 'pan-y' }}
       >
         <ModelDefs prefix={gradPrefix} />
         <g
@@ -381,6 +452,42 @@ export default function BodyModel({
         </g>
       </svg>
 
+      {/* الخطوط الرفيعة + التسميات الجانبية */}
+      {sideLabels.length > 0 && (
+        <>
+          <svg className="leader-svg" viewBox={`0 0 ${wrapSize.w} ${wrapSize.h}`} aria-hidden>
+            {sideLabels.map((l) => (
+              <line
+                key={l.id}
+                x1={l.side === 'left' ? 92 : wrapSize.w - 92}
+                y1={l.top + 15}
+                x2={l.bx}
+                y2={l.by}
+                className="leader-line"
+                stroke={l.color}
+              />
+            ))}
+          </svg>
+          {sideLabels.map((l) => (
+            <button
+              key={l.id}
+              type="button"
+              className={`side-label ${l.side} ${hovered === l.id || hoveredOrganId === l.id ? 'on' : ''}`}
+              style={{ top: l.top }}
+              onMouseEnter={() => { setHovered(l.id); onHoverOrgan?.(l.id) }}
+              onMouseLeave={() => { setHovered(null); onHoverOrgan?.(null) }}
+              onFocus={() => { setHovered(l.id); onHoverOrgan?.(l.id) }}
+              onBlur={() => { setHovered(null); onHoverOrgan?.(null) }}
+              onClick={() => interactive && onSelectOrgan?.(l.id)}
+            >
+              <span className="side-num" style={{ borderColor: l.color, color: l.color }} aria-hidden>
+                {l.num}
+              </span>
+              <span className="side-name">{l.name}</span>
+            </button>
+          ))}
+        </>
+      )}
       {/* تلميح العضو عند المرور */}
       {hoveredOrgan && (
         <div className="hover-tip" aria-hidden>
@@ -397,7 +504,7 @@ export default function BodyModel({
               setTransform((t) => {
                 const k = Math.min(4, t.k * 1.3)
                 const s = k / t.k
-                return { k, x: VIEW_W / 2 - s * (VIEW_W / 2 - t.x), y: VIEW_H / 2 - s * (VIEW_H / 2 - t.y) }
+                return clampT({ k, x: VIEW_W / 2 - s * (VIEW_W / 2 - t.x), y: VIEW_H / 2 - s * (VIEW_H / 2 - t.y) })
               })
             }}
           >
@@ -411,7 +518,7 @@ export default function BodyModel({
               setTransform((t) => {
                 const k = Math.max(0.6, t.k / 1.3)
                 const s = k / t.k
-                return { k, x: VIEW_W / 2 - s * (VIEW_W / 2 - t.x), y: VIEW_H / 2 - s * (VIEW_H / 2 - t.y) }
+                return clampT({ k, x: VIEW_W / 2 - s * (VIEW_W / 2 - t.x), y: VIEW_H / 2 - s * (VIEW_H / 2 - t.y) })
               })
             }}
           >
@@ -424,6 +531,39 @@ export default function BodyModel({
       )}
     </div>
   )
+}
+
+function nameOf(id: string): string {
+  return getOrgan(id)?.ar ?? id
+}
+
+/** مواضع شارات الأعضاء الرئيسية (تظهر في العرض الافتراضي). */
+const DEFAULT_MARKER_POS: { id: string; x: number; y: number }[] = [
+  { id: 'brain', x: 184, y: 49 },
+  { id: 'thyroid', x: 168, y: 123 },
+  { id: 'spine', x: 184, y: 185 },
+  { id: 'lungs', x: 166, y: 224 },
+  { id: 'heart', x: 186, y: 259 },
+  { id: 'liver', x: 176, y: 296 },
+  { id: 'stomach', x: 168, y: 310 },
+  { id: 'kidneys', x: 184, y: 318 },
+  { id: 'largeintestine', x: 156, y: 366 },
+  { id: 'smallintestine', x: 186, y: 372 },
+  { id: 'bladder', x: 184, y: 391 },
+  { id: 'uterus', x: 176, y: 374 },
+  { id: 'prostate', x: 184, y: 402 },
+]
+
+/** شارات افتراضية متوازنة على جانبي الجسم (تُستخدم في الصفحة الرئيسية و/body). */
+export function defaultMarkers(sex: 'male' | 'female' | null | undefined): ModelMarker[] {
+  return DEFAULT_MARKER_POS.filter((dm) => {
+    if (dm.id === 'uterus') return sex === 'female'
+    if (dm.id === 'prostate') return sex === 'male'
+    return true
+  }).map((dm, i) => {
+    const o = getOrgan(dm.id)
+    return { id: dm.id, num: i + 1, x: dm.x, y: dm.y, color: getSystem(o?.system ?? 'circulatory')?.color ?? 'var(--primary)' }
+  })
 }
 
 function shapeLayerOf(def: ShapeDef): LayerId {
