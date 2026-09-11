@@ -1,0 +1,153 @@
+import type { Organ } from '../types'
+
+const SRC = 'المصادر: Gray\'s Anatomy (الإصدار المختصر), Netter\'s Atlas — محتوى مُبَسَّط تعليميًا.'
+const REV = '2026-09-01'
+
+export const ENDOCRINE_ORGANS: Organ[] = [
+  {
+    id: 'pituitary',
+    ar: 'الغدة النخامية',
+    en: 'Pituitary Gland',
+    medical: 'Hypophysis Cerebri',
+    system: 'endocrine',
+    layer: 'endocrine',
+    levels: [
+      '«أم الغدد»: غدة بحجم حبة الحمّص تحت الدماغ تفرز هرمونات تتحكم ببقية الغدد بالجسم.',
+      'الغدة النخامية (Hypophysis) بحجم حبة الحمّص، في حفرة السرج (Sella Turcica) تحت الدماغ. نصفان: النخامية الأمامية (Adenohypophysis) تفرز 7 هرمونات (نمو، درق، كظر، حمل، حليب)، والخلفية (Neurohypophysis) تفرز الأوكسيتوسين والهرمون المانع لإدرار البول (ADH).',
+      'النخامية (Hypophysis Cerebri) 1 سم: الأمامية (Adenohypophysis) 5 أنواع خلايا: القاعدية (GH) 50%، الدرقية (TSH)، الكظرية (ACTH)، الموجهة (FSH/LH)، والبرولاكتينية (PRL). الخلفية (Neurohypophysis): محاور العصبونات من تحت المهاد (Oxytocin, ADH). المحور: تحت المهاد (Hypothalamus) → النخامية → الغدد الطرفية (HPT Axis).',
+    ],
+    function: 'التحكم في الغدد الأخرى: النمو، الغدة الدرقية، الكظرية، التناسلية، والحليب، وتنظيم الماء.',
+    location: 'في قاعدة الدماغ، في حفرة السرج (Sella Turcica) خلف الأنف.',
+    how: 'تستقبل أوامر من تحت المهاد (Hypothalamus)، وتفرز هرمونات توجه الغدد: TSH للغدة الدرقية، ACTH للكظرية، FSH/LH للمبيضان/الخصيتان. وتفرز ADH لاحتفاظ الجسم بالماء.',
+    relations: [
+      { id: 'brain', note: 'فوقها' },
+      { id: 'thyroid', note: 'توجهها (TSH)' },
+      { id: 'adrenals', note: 'توجهها (ACTH)' },
+      { id: 'testes', note: 'توجهها (FSH/LH) — ذكر' },
+      { id: 'ovaries', note: 'توجهها (FSH/LH) — أنثى' },
+    ],
+    facts: [
+      'نقص هرمون النمو في الطفولة = القزامة، وفرطه في البالغ = ضخامة الأطراف (Acromegaly).',
+      'النخامية تُلقب بـ«الغدة الرئيسة» لأنها تتحكم بالبقية.',
+    ],
+    terms: [
+      { ar: 'حفرة سرجية', en: 'Sella Turcica' },
+      { ar: 'هرمون النمو', en: 'Growth Hormone' },
+      { ar: 'TSH', en: 'TSH' },
+    ],
+    keywords: ['نخامية', 'pituitary', 'hypophysis', 'أم غدد', 'master gland', 'هرمون', 'hormone', 'نمو', 'growth', 'دماغ', 'brain'],
+    source: SRC,
+    reviewedAt: REV,
+    model: { shapeIds: ['end-pituitary'], box: [164, 52, 32, 26], label: [180, 66] },
+  },
+  {
+    id: 'thyroid',
+    ar: 'الغدة الدرقية',
+    en: 'Thyroid Gland',
+    medical: 'Glandula Thyroidea',
+    system: 'endocrine',
+    layer: 'endocrine',
+    levels: [
+      'غدة على شكل فراشة في مقدمة الرقبة: تضبط «سرعة» جسمك — الطاقة، حرارة الجسم، والنبض.',
+      'الغدة الدرقية (Glandula Thyroidea) على شكل فراشة حول القصبة الهوائية (C5-C7). تفرز T3 و T4 (تتحكم بالأيض Metabolism: سرعة حرق الطاقة)، و الكالسيتونين (Calcitonin) لتنظيم الكالسيوم. تحتاج اليود (Iodine).',
+      'الدرقية (Thyroid Gland) 25 غرام، فصان يمين/يسار + جسر (Isthmus) خلف القصبة (C5-C7). الخلايا الحويصلة (Follicular Cells) تفرز T3/T4 (بحاجة يود)، والخلايا C (Parafollicular) تفرز الكالسيتونين. التنظيم: تحت المهاد (TRH) → النخامية (TSH) → الدرقية (T3/T4) → تغذية راجعة (Negative Feedback).',
+    ],
+    function: 'تنظيم الأيض (حرق الطاقة)، حرارة الجسم، النبض، ونمو الأطفال، وتنظيم الكالسيوم (كالسيتونين).',
+    location: 'في مقدمة الرقبة، حول القصبة الهوائية، تحت التفاحة.',
+    how: 'تفرز T3 و T4 استجابة لـ TSH من النخامية. هذه الهرمونات تدخل كل خلية وتزيد من «حرق» الطاقة (الأيض). عند زيادة T3/T4 تتوقف النخامية (تغذية راجعة).',
+    relations: [
+      { id: 'pituitary', note: 'توجهها (TSH)' },
+      { id: 'brain', note: 'تنشطها (TRH)' },
+      { id: 'heart', note: 'تنظم نبضه' },
+    ],
+    facts: [
+      'جسمك يحتاج 150 ميكروغرام من اليود يوميًا لعمل الغدة الدرقية.',
+      'خمول الدرقية (Hypothyroidism) = كسل وإرهاق، وفرطها (Hyperthyroidism) = تسارع وقلق.',
+      'قصور الدرقية (Hashimoto) أكثر شيوعًا عند النساء (9 أضعاف الرجال).',
+    ],
+    terms: [
+      { ar: 'T3/T4', en: 'T3/T4' },
+      { ar: 'TSH', en: 'TSH' },
+      { ar: 'كالسيتونين', en: 'Calcitonin' },
+      { ar: 'أيض', en: 'Metabolism' },
+    ],
+    didYouKnow: 'الغدة الدرقية هي الغدة الوحيدة التي تحتاج عنصرًا من الطعام (اليود) لتعمل — لهذا ملح الطعام مضاف اليود!',
+    keywords: [
+      'درقية', 'thyroid', 'فراشة', 'butterfly', 'طاقة', 'energy', 'أيض', 'metabolism', 'يود', 'iodine', 'رقبة', 'neck', 'TSH', 'T3', 'T4',
+    ],
+    source: SRC,
+    reviewedAt: REV,
+    model: { shapeIds: ['end-thyroid'], box: [156, 130, 48, 32], label: [180, 146] },
+  },
+  {
+    id: 'parathyroid',
+    ar: 'الغدد جارات الدرقية',
+    en: 'Parathyroid Glands',
+    medical: 'Glandulae Parathyroideae',
+    system: 'endocrine',
+    layer: 'endocrine',
+    levels: [
+      '4 غدد صغيرة خلف الغدة الدرقية: تحافظ على مستوى الكالسيوم في دمك — ضروري للعظام والعضلات.',
+      'جارات الدرقية (Parathyroids) 4 غدد صغيرة (2-4 مم) خلف الغدة الدرقية. تفرز هرمون جارات الدرقية (PTH) الذي يرفع الكالسيوم: يسحب الكالسيوم من العظام، يزيد امتصاصه من الأمعاء، ويقلل إفرازه في البول.',
+      'جارات الدرقية (Parathyroid Glands) 4: علويتان وسفليتان خلف الدرقية. الخلايا الرئيسية (Chief Cells) تفرز PTH استجابة لانخفاض الكالسيوم (Ion-Sensing Receptor). PTH: يزيد امتصاص الكالسيوم (عبر فيتامين D)، يحرر الكالسيوم من العظم (Osteoclasts)، ويقلل إفرازه الكلوي. التنظيم بالتغذية الراجعة.',
+    ],
+    function: 'تنظيم مستوى الكالسيوم والفوسفات في الدم (بالنسبة الغدة الدرقية: الكالسيتونين يخفضه).',
+    location: 'خلف الغدة الدرقية، 4 غدد صغيرة في الرقبة.',
+    how: 'تراقب مستوى الكالسيوم في الدم: إذا انخفض تفرز PTH (يسحب الكالسيوم من العظم)، ويرتفع فيقل إفرازها. توازن دقيق مع الكالسيتونين (يخفض الكالسيوم).',
+    relations: [
+      { id: 'thyroid', note: 'خلفها' },
+      { id: 'kidneys', note: 'تنظم امتصاصه' },
+      { id: 'spine', note: 'تحافظ على عظامه' },
+    ],
+    facts: [
+      'فرط نشاط جارات الدرقية (الأكثر شيوعًا) يرفع الكالسيوم ويسبب حصيات الكلى وهشاشة.',
+      'حجم كل غدة 6 مم فقط — أصغر غدد الجسم تقريبًا.',
+    ],
+    terms: [
+      { ar: 'هرمون جارات الدرقية', en: 'PTH' },
+      { ar: 'كالسيوم', en: 'Calcium' },
+    ],
+    keywords: ['جارات درقية', 'parathyroid', 'كالسيوم', 'calcium', 'عظام', 'bones', 'PTH', 'فوسفات', 'phosphate'],
+    source: SRC,
+    reviewedAt: REV,
+    model: { shapeIds: ['end-parathyroid'], box: [156, 130, 48, 32], label: [214, 148] },
+  },
+  {
+    id: 'adrenals',
+    ar: 'الغدد الكظرية',
+    en: 'Adrenal Glands',
+    medical: 'Glandulae Suprarenales',
+    system: 'endocrine',
+    layer: 'endocrine',
+    levels: [
+      'غدتان صغيرتان فوق الكليتين: «غدة الطوارئ» — تفرز الأدرينالين عند التوتر، والكورتيزول لتنظيم السكر والتوتر.',
+      'الكظرية (Adrenales) كلتاهما مثلثة فوق الكلية: القشرة (Cortex) تفرز الكورتيزول (Corticosteroids) والألدوستيرون (Aldosterone)، واللّب (Medulla) تفرز الأدرينالين (Adrenaline) والنورأدرينالين.',
+      'الكظرية (Glandula Suprarenalis) 6×3 سم: القشرة (Cortex) 3 مناطق: الغلوكوكورتكويد (Cortisol)، المينرالكورتكويد (Aldosterone)، والأيض (DHEA). اللب (Medulla) من خلايا العصبونات (Chromaffin) تفرز الأدرينالين/النورأدرينالين. التنظيم: ACTH من النخامية (كورتيزول)، والجهاز العصبي الودي (أدرينالين).',
+    ],
+    function: 'استجابة التوتر (أدرينالين: قفزة/بهرج)، وتنظيم السكر (كورتيزول)، وتنظيم الأملاح (ألدوستيرون).',
+    location: 'فوق كل كلية، في أعلى البطن خلف الصفاق.',
+    how: 'عند التوتر يفرز اللب الأدرينالين (نبض سريع، طاقة). الكورتيزول يفرز صباحًا (يقظ) وينخفض ليلًا، وينظم السكر والاستجابة الالتهابية. الألدوستيرون يحفظ الصوديوم والماء.',
+    relations: [
+      { id: 'kidneys', note: 'فوقها' },
+      { id: 'pituitary', note: 'توجهها (ACTH)' },
+      { id: 'heart', note: 'يحفزه (أدرينالين)' },
+      { id: 'blood', note: 'ينظم سكره' },
+    ],
+    facts: [
+      '"Adrenaline" كلمة عالمية من اسم هذه الغدة (Adrenal).',
+      'كورتيزولك في ذروته صباحًا — لهذا تستيقظ بكفاءة.',
+      'متلازمة كوشينغ (فرط كورتيزول) تسبب وجهًا ممتلئًا ("وجه القمر").',
+    ],
+    terms: [
+      { ar: 'أدرينالين', en: 'Adrenaline' },
+      { ar: 'كورتيزول', en: 'Cortisol' },
+      { ar: 'ألدوستيرون', en: 'Aldosterone' },
+    ],
+    keywords: [
+      'كظرية', 'adrenal', 'adrenaline', 'أدرينالين', 'كورتيزول', 'cortisol', 'توتر', 'stress', 'كلية', 'kidney', 'طوارئ', 'emergency',
+    ],
+    source: SRC,
+    reviewedAt: REV,
+    model: { shapeIds: ['end-adrenal-l'], box: [128, 330, 104, 24], label: [144, 340] },
+  },
+]
