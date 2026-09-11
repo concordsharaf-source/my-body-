@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import BodyModel, { defaultMarkers } from '../components/BodyModel/BodyModel'
+import BodyModel, { defaultMarkers, VIEW_W, VIEW_H } from '../components/BodyModel/BodyModel'
 import type { FocusBox, ModelMarker } from '../components/BodyModel/BodyModel'
 import OrganCard from '../components/OrganCard'
 import { SYSTEMS, getSystem } from '../data/systems'
@@ -37,11 +37,15 @@ export default function BodyPage() {
       const boxes = organsOfSystemForSex(activeSystem, sex)
         .map((o) => o.model?.box)
         .filter((b): b is [number, number, number, number] => Boolean(b))
-      if (boxes.length) {
-        const x0 = Math.min(...boxes.map((b) => b[0]))
-        const y0 = Math.min(...boxes.map((b) => b[1]))
-        const x1 = Math.max(...boxes.map((b) => b[0] + b[2]))
-        const y1 = Math.max(...boxes.map((b) => b[1] + b[3]))
+      // صناديق تغطي الجسم كله (مثل الجلد) لا تُضيّق التركيز إن وُجدت صناديق أخرى
+      const isFullBody = (b: [number, number, number, number]) => b[3] >= VIEW_H * 0.7 && b[2] >= VIEW_W * 0.5
+      const meaningful = boxes.filter((b) => !isFullBody(b))
+      const use = meaningful.length ? meaningful : boxes
+      if (use.length) {
+        const x0 = Math.min(...use.map((b) => b[0]))
+        const y0 = Math.min(...use.map((b) => b[1]))
+        const x1 = Math.max(...use.map((b) => b[0] + b[2]))
+        const y1 = Math.max(...use.map((b) => b[1] + b[3]))
         boxKey.current += 1
         setFocusBox({ x: x0, y: y0, w: x1 - x0, h: y1 - y0, key: boxKey.current })
       }

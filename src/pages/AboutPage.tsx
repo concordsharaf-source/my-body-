@@ -17,7 +17,7 @@ export default function AboutPage() {
         🧍
       </div>
       <h2>
-        {t.appName} <span dir="ltr">Jismi</span>
+        {t.appName} <span dir="ltr">My Body</span>
       </h2>
       <p>{t.aboutText}</p>
       <p className="muted">

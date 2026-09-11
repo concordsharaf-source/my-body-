@@ -50,8 +50,8 @@ interface Props {
   ariaLabel?: string
 }
 
-const VIEW_W = 360
-const VIEW_H = 780
+export const VIEW_W = 360
+export const VIEW_H = 780
 
 /**
  * ترتيب الرسم (الخلفية → المقدمة):
@@ -172,11 +172,23 @@ export default function BodyModel({
     (id: LayerId): number => {
       // وضع الجهاز المعزول: يُعرض الجهاز المعزول فقط (أجهزة أخرى مخفية تمامًا)
       if (isolatedSystem && isolatedOrgans) {
-        if (id === 'soft' || id === 'muscles' || id === 'bones') return 0
+        if (id === 'soft') return 0
+        // طبقتا العظام والعضلات تُعرضان فقط عندما يكون الجهاز المعزول هو جهازهما
+        if (id === 'bones' && isolatedSystem !== 'skeletal') return 0
+        if (id === 'muscles' && isolatedSystem !== 'muscular') return 0
         if (id === 'skin') return 0.1
         const isSystemLayer = Object.values(LAYER_SHAPES[id]).some((s) => s.organId && isolatedOrgans.has(s.organId))
         if (isSystemLayer) return 1
         return 0
+      }
+      // عضو محدد: إبرازه — طبقة العضو المختار تظهر دائمًا (حتى إن كانت مُطفأة)
+      if (selected) {
+        const selLayer = selected.layer
+        if (id === selLayer) return 1
+        if (!layers[id]) return 0
+        if (id === 'skin') return 0.15
+        if (id === 'muscles' || id === 'bones' || id === 'soft') return 0.15
+        return 0.25
       }
       if (!layers[id]) return 0
       // وضع التقشير الطبقي
@@ -188,14 +200,6 @@ export default function BodyModel({
         if (idOrder < focusOrder) return 0.12 // طبقات السطح تختفي
         if (id === 'skin') return 0.12
         return 0.35
-      }
-      // عضو محدد: إبرازه
-      if (selected) {
-        const selLayer = selected.layer
-        if (id === selLayer) return 1
-        if (id === 'skin') return 0.15
-        if (id === 'muscles' || id === 'bones' || id === 'soft') return 0.15
-        return 0.25
       }
       // العرض العادي: الجلد نصف شفاف
       if (id === 'skin') {
@@ -627,13 +631,15 @@ export function ShapeEl({
         : def.fillVar
           ? `var(${def.fillVar})`
           : 'currentColor'
-    : def.grad
-      ? 'rgba(30, 20, 10, 0.16)'
-      : 'var(--shape-stroke)'
+    : def.strokeVar
+      ? `var(${def.strokeVar})`
+      : def.grad
+        ? 'rgba(30, 20, 10, 0.30)'
+        : 'var(--shape-stroke)'
   const paint = {
     fill,
     stroke,
-    strokeWidth: def.sw ?? (def.strokeOnly ? 3 : 1.1),
+    strokeWidth: def.sw ?? (def.strokeOnly ? 3 : def.strokeVar ? 1.3 : 1.1),
     strokeLinecap: 'round' as const,
     strokeLinejoin: 'round' as const,
     strokeDasharray: def.dash,

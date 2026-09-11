@@ -43,6 +43,13 @@
   --gall: #5f9e54;
   --bladder: #5bc0de;
   --uterus: #b85c8e;
+  /* حواف داكنة لتقاسيم الأعضاء (خطوط واضحة) */
+  --liver-b: #6d3423;
+  --pancreas-b: #a2741f;
+  --gall-b: #457a3d;
+  --bladder-b: #3c8fb6;
+  --uterus-b: #8e416a;
+  --bone-detail: #a08c62;
   --detail: rgba(90, 40, 30, 0.35);
   --urinary-a: #a78bfa;
   --urinary-b: #8b6cf0;
@@ -154,6 +161,13 @@
   --gall: #74b26a;
   --bladder: #79d2f0;
   --uterus: #d079ab;
+  /* حواف داكنة لتقاسيم الأعضاء (خطوط واضحة) */
+  --liver-b: #7a4a38;
+  --pancreas-b: #a8842f;
+  --gall-b: #579a4e;
+  --bladder-b: #4aa8d0;
+  --uterus-b: #a85a88;
+  --bone-detail: #b5a67e;
   --lymphatic-a: #8fe3aa;
   --lymphatic-b: #5cc785;
   --lymphatic-c: #41a968;

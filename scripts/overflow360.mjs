@@ -2,7 +2,7 @@ import { chromium } from 'playwright'
 
 const BASE = 'http://127.0.0.1:4173'
 const organs = ['brain', 'heart', 'liver', 'stomach', 'kidney', 'uterus', 'skin', 'pancreas', 'bladder', 'appendix', 'thyroid', 'lung']
-const systems = ['skeletal', 'muscular', 'nervous', 'cardiovascular', 'respiratory', 'digestive', 'urinary', 'reproductive', 'lymphatic', 'endocrine', 'immune', 'integumentary']
+const systems = ['skeletal', 'muscular', 'nervous', 'circulatory', 'respiratory', 'digestive', 'urinary', 'reproductive', 'lymphatic', 'endocrine', 'immune', 'sensory']
 const routes = [
   '/', '/body', '/search', '/favorites', '/tours', '/quiz', '/cards', '/learning', '/compare', '/glossary', '/settings', '/about', '/nope-404',
   ...organs.map((o) => `/organ/${o}`),

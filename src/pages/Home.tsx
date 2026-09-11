@@ -24,7 +24,7 @@ export default function Home() {
       <header className="home-hero">
         <div className="hero-text">
           <h1>
-            {t.appName} <span className="hero-en">Jismi</span>
+            {t.appName} <span className="hero-en">My Body</span>
           </h1>
           <p className="hero-tagline">{t.tagline}</p>
           <Link to="/body" className="btn btn-primary hero-cta">
