@@ -9,8 +9,6 @@ interface Props {
   onHideAll: () => void
   focusStep: number
   onFocusStep: (n: number) => void
-  showLabels: boolean
-  onToggleLabels: () => void
 }
 
 export default function LayerPanel({
@@ -20,8 +18,6 @@ export default function LayerPanel({
   onHideAll,
   focusStep,
   onFocusStep,
-  showLabels,
-  onToggleLabels,
 }: Props) {
   return (
     <div className="layer-panel">
@@ -33,14 +29,6 @@ export default function LayerPanel({
           </button>
           <button type="button" className="mini-btn" onClick={onHideAll}>
             {t.hideAll}
-          </button>
-          <button
-            type="button"
-            className={`mini-btn ${showLabels ? 'on' : ''}`}
-            onClick={onToggleLabels}
-            aria-pressed={showLabels}
-          >
-            {showLabels ? t.showNames : t.hideNames}
           </button>
         </div>
       </div>

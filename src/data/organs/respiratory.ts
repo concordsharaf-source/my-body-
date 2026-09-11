@@ -37,7 +37,7 @@ export const RESPIRATORY_ORGANS: Organ[] = [
     keywords: ['تجويف أنفي', 'أنف', 'nasal', 'cavity', 'شم', 'smell', 'هواء', 'رطوبة', 'غبار', 'sinus'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['res-nasal'], box: [167, 68, 27, 30], label: [181, 81] },
+    model: { shapeIds: ['res-nasal'], box: [169, 68, 23, 27], label: [181, 79] },
   },
   {
     id: 'pharynx',
@@ -73,7 +73,7 @@ export const RESPIRATORY_ORGANS: Organ[] = [
     keywords: ['بلعوم', 'بلع', 'pharynx', 'swallow', 'حلق', 'throat', 'اختناق', 'بلع', 'لسان'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['res-pharynx'], box: [166, 103, 28, 46], label: [180, 122] },
+    model: { shapeIds: ['res-pharynx'], box: [168, 114, 24, 34], label: [180, 128] },
   },
   {
     id: 'larynx',

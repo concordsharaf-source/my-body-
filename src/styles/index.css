@@ -75,6 +75,7 @@
   --nose-line: #c89b72;
   --mouth: #d98a86;
   --mouth-line: #b9825e;
+  --nasal-cavity: #8fb2d4;
   --chest-line: #d9a97e;
   --tooth: #fdfbf5;
   --tongue: #e58a96;
@@ -173,6 +174,7 @@
   --nose-line: #c9a17c;
   --mouth: #d89a94;
   --mouth-line: #c08a64;
+  --nasal-cavity: #5f7c9c;
   --chest-line: #9a7550;
   --tooth: #e8e2d4;
   --tongue: #d07080;
@@ -529,17 +531,80 @@ input { font-family: inherit; }
   filter: drop-shadow(0 0 6px var(--accent));
 }
 
-/* الأسماء */
-.organ-label {
-  font-size: 10.5px;
-  font-weight: 700;
-  fill: var(--label);
-  paint-order: stroke;
-  stroke: var(--surface);
-  stroke-width: 3px;
-  pointer-events: none;
-  opacity: 0.95;
+/* الشارات الرقمية (الأسماء في القائمة الجانبية) */
+.num-badge { cursor: pointer; }
+.num-badge-c {
+  fill: var(--surface);
+  stroke-width: 1.6;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.28));
+  transition: stroke-width 0.15s, r 0.15s;
 }
+.num-badge:hover .num-badge-c { stroke-width: 2.8; }
+.num-badge-t {
+  font-size: 9.5px;
+  font-weight: 700;
+  fill: var(--text);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* القائمة الجانبية للأسماء (دليل الأرقام) */
+.organ-legend {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 12px 12px 8px;
+  margin-bottom: 12px;
+}
+.organ-legend h3 {
+  margin: 0 4px 8px;
+  font-size: 0.92rem;
+  color: var(--text);
+}
+.legend-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 6px 8px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.84rem;
+  color: var(--text);
+  text-align: start;
+}
+.legend-row:hover,
+.legend-row.on {
+  background: var(--primary-soft);
+}
+.legend-num {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.6px solid var(--primary);
+  background: var(--surface);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+.legend-name { flex: 1; line-height: 1.25; }
 
 /* تلميح المرور */
 .hover-tip {
@@ -1460,6 +1525,7 @@ html, body { overflow-x: clip; }
     grid-template-columns: 1fr 1fr;
   }
   .learning-stats { grid-template-columns: repeat(4, 1fr); }
+  .legend-list { grid-template-columns: 1fr 1fr; }
   .organ-card-host {
     align-items: stretch;
   }

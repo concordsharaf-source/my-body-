@@ -50,7 +50,7 @@ export const SENSORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-eye-l'], box: [150, 51, 60, 26], label: [180, 62] },
+    model: { shapeIds: ['sen-eye-l'], box: [152, 56, 56, 21], label: [180, 65] },
   },
   {
     id: 'ear',
@@ -95,7 +95,7 @@ export const SENSORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-ear-l'], box: [124, 54, 112, 38], label: [180, 70] },
+    model: { shapeIds: ['sen-ear-l'], box: [131, 53, 98, 32], label: [180, 66] },
   },
   {
     id: 'eardrum',
@@ -124,7 +124,7 @@ export const SENSORY_ORGANS: Organ[] = [
     keywords: ['طبلة', 'eardrum', 'tympanic', 'أذن', 'ear', 'سماع', 'hearing', 'اهتزاز', 'vibration', 'غشاء', 'membrane'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-ear-l'], box: [124, 54, 112, 38], label: [180, 70] },
+    model: { shapeIds: ['sen-ear-l'], box: [131, 53, 98, 32], label: [180, 66] },
   },
   {
     id: 'ossicles',
@@ -158,7 +158,7 @@ export const SENSORY_ORGANS: Organ[] = [
     keywords: ['عظيمات', 'ossicles', 'مطرقة', 'malleus', 'سندان', 'incus', 'ركاب', 'stapes', 'أذن', 'ear', 'تضخيم', 'amplification'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-ear-l'], box: [124, 54, 112, 38], label: [180, 70] },
+    model: { shapeIds: ['sen-ear-l'], box: [131, 53, 98, 32], label: [180, 66] },
   },
   {
     id: 'cochlea',
@@ -192,7 +192,7 @@ export const SENSORY_ORGANS: Organ[] = [
     keywords: ['قوقعة', 'cochlea', 'سمع', 'hearing', 'صوت', 'sound', 'خلايا شعرية', 'hair cells', 'حلزون', 'snail', 'تردد', 'frequency'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-ear-l'], box: [124, 54, 112, 38], label: [180, 70] },
+    model: { shapeIds: ['sen-ear-l'], box: [131, 53, 98, 32], label: [180, 66] },
   },
   {
     id: 'nose',
@@ -232,7 +232,7 @@ export const SENSORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-nose'], box: [167, 48, 28, 51], label: [181, 69] },
+    model: { shapeIds: ['sen-nose'], box: [171, 53, 21, 41], label: [182, 70] },
   },
   {
     id: 'skin',

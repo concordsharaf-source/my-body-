@@ -57,6 +57,7 @@ export const ar = {
   // جهاز
   systemOrgans: 'أجزاء الجهاز',
   systemsTitle: 'أجهزة الجسم',
+  legendTitle: 'دليل الأرقام',
   systemsSub: 'اختر جهازًا لعزله على النموذج واستكشاف أجزائه وعلاقاته',
   systemCount: 'جزء',
   backToSystems: 'كل الأجهزة',

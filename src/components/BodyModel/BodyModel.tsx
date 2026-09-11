@@ -12,6 +12,15 @@ export interface FocusBox {
   key: number // لتغيير الهدف
 }
 
+/** شارة رقمية على العضو (الأسماء في القائمة الجانبية). */
+export interface ModelMarker {
+  id: string
+  num: number
+  x: number
+  y: number
+  color: string
+}
+
 interface Props {
   sex: Sex
   selectedOrganId?: string | null
@@ -19,7 +28,9 @@ interface Props {
   layers: Record<LayerId, boolean>
   focusLayer?: LayerId | null
   isolatedSystem?: SystemId | null
-  showLabels?: boolean
+  markers?: ModelMarker[]
+  hoveredOrganId?: string | null
+  onHoverOrgan?: (id: string | null) => void
   reduceMotion?: boolean
   interactive?: boolean
   focusBox?: FocusBox | null
@@ -99,7 +110,9 @@ export default function BodyModel({
   layers,
   focusLayer,
   isolatedSystem,
-  showLabels = false,
+  markers,
+  hoveredOrganId,
+  onHoverOrgan,
   reduceMotion = false,
   interactive = true,
   focusBox,
@@ -198,33 +211,6 @@ export default function BodyModel({
     return out
   }, [sex])
 
-  /** علامات الأسماء (عند عزل جهاز أو وضع تقشير). */
-  const labels = useMemo(() => {
-    if (!showLabels) return []
-    const items: { id: string; ar: string; x: number; y: number; color: string }[] = []
-    const push = (organId: string) => {
-      const o = getOrgan(organId)
-      if (!o?.model) return
-      items.push({ id: o.id, ar: o.ar, x: o.model.label[0], y: o.model.label[1], color: 'var(--label)' })
-    }
-    if (isolatedSystem) {
-      for (const o of organsOfSystem(isolatedSystem)) if (o.model) push(o.id)
-    } else if (focusLayer) {
-      // أعضاء الطبقة
-      for (const [layerId, shapes] of Object.entries(LAYER_SHAPES)) {
-        if (layerId !== focusLayer) continue
-        const seen = new Set<string>()
-        for (const def of shapes) {
-          if (def.organId && !seen.has(def.organId)) {
-            seen.add(def.organId)
-            push(def.organId)
-          }
-        }
-      }
-    }
-    if (selected) push(selected.id)
-    return items
-  }, [showLabels, isolatedSystem, focusLayer, selected])
 
   /* ---------- تفاعلات التحريك ---------- */
   const toView = useCallback((clientX: number, clientY: number) => {
@@ -307,7 +293,8 @@ export default function BodyModel({
     setTransform({ x: 0, y: 0, k: 1 })
   }
 
-  const hoveredOrgan = hovered ? getOrgan(hovered) : undefined
+  const effectiveHovered = hoveredOrganId ?? hovered
+  const hoveredOrgan = effectiveHovered ? getOrgan(effectiveHovered) : undefined
 
   /* ---------- الرسم ---------- */
   return (
@@ -346,7 +333,7 @@ export default function BodyModel({
                     'shape',
                     def.organId ? 'organ-shape' : 'static-shape',
                     isSel ? 'is-selected' : '',
-                    hovered === def.organId && def.organId ? 'is-hovered' : '',
+                    effectiveHovered === def.organId && def.organId ? 'is-hovered' : '',
                     layerId === 'skin' ? 'skin-shape' : '',
                     def.organId === 'heart' && !reduceMotion ? 'heart-pulse' : '',
                   ]
@@ -371,14 +358,26 @@ export default function BodyModel({
               style={{ transition: reduceMotion ? 'none' : 'cx 1.1s ease-in-out, cy 1.1s ease-in-out' }}
             />
           )}
-          {/* الأسماء */}
-          <g className="labels">
-            {labels.map((l) => (
-              <text key={l.id} x={l.x} y={l.y - 8} textAnchor="middle" className="organ-label">
-                {l.ar}
-              </text>
-            ))}
-          </g>
+          {/* الشارات الرقمية (الأسماء في القائمة الجانبية) */}
+          {markers && markers.length > 0 && (
+            <g className="num-badges">
+              {markers.map((m) => (
+                <g
+                  key={m.id}
+                  className="num-badge"
+                  onClick={interactive ? (e) => { e.stopPropagation(); onSelectOrgan?.(m.id) } : undefined}
+                  onPointerEnter={interactive ? () => { setHovered(m.id); onHoverOrgan?.(m.id) } : undefined}
+                  onPointerLeave={interactive ? () => { setHovered(null); onHoverOrgan?.(null) } : undefined}
+                  style={{ cursor: interactive ? 'pointer' : undefined }}
+                >
+                  <circle cx={m.x} cy={m.y} r={8} className="num-badge-c" style={{ stroke: m.color }} />
+                  <text x={m.x} y={m.y + 3.2} textAnchor="middle" className="num-badge-t">
+                    {m.num}
+                  </text>
+                </g>
+              ))}
+            </g>
+          )}
         </g>
       </svg>
 

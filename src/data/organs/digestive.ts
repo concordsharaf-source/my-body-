@@ -38,7 +38,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     keywords: ['فم', 'mouth', 'oral', 'مضغ', 'chewing', 'لعاب', 'saliva', 'تذوق', 'taste', 'شفتان'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-mouth'], box: [163, 91, 34, 25], label: [180, 102] },
+    model: { shapeIds: ['dig-mouth'], box: [165, 96, 30, 18], label: [168, 105] },
   },
   {
     id: 'teeth',
@@ -76,7 +76,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     keywords: ['أسنان', 'سن', 'teeth', 'tooth', 'dental', 'مضغ', 'مينا', 'enamel', 'فك', 'jaw', 'حليب', 'لب'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-teeth'], box: [164, 92, 32, 20], label: [180, 100] },
+    model: { shapeIds: ['dig-teeth'], box: [166, 98, 28, 18], label: [180, 106] },
   },
   {
     id: 'tongue',
@@ -113,7 +113,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     keywords: ['لسان', 'tongue', 'لذوق', 'taste', 'طعم', 'sweet', 'salty', 'bitter', 'sour', 'umami', 'حليمات'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-tongue'], box: [166, 95, 28, 21], label: [180, 104] },
+    model: { shapeIds: ['dig-tongue'], box: [168, 99, 24, 19], label: [195, 110] },
   },
   {
     id: 'salivaryglands',
@@ -146,7 +146,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     keywords: ['غدد لعابية', 'لعاب', 'salivary', 'saliva', 'parotid', 'لُعاب', 'نكفية', 'غدة'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-salivary-l'], box: [138, 80, 84, 26], label: [180, 91] },
+    model: { shapeIds: ['dig-salivary-l'], box: [142, 86, 77, 23], label: [153, 93] },
   },
   {
     id: 'esophagus',
