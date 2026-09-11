@@ -62,7 +62,7 @@ export const REPRO_MALE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-m-testis-l'], box: [150, 406, 28, 36], label: [164, 424] },
+    model: { shapeIds: ['rep-m-testis-l'], box: [145.8, 446.3, 31.9, 16.1], label: [161.8, 454.4] },
   },
   {
     id: 'epididymis',
@@ -113,7 +113,7 @@ export const REPRO_MALE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-m-epididymis-l'], box: [170, 408, 10, 30], label: [174, 421] },
+    model: { shapeIds: ['rep-m-epididymis-l'], box: [168.6, 447.2, 11.4, 13.4], label: [173.2, 453.1] },
   },
   {
     id: 'vasdeferens',
@@ -165,7 +165,7 @@ export const REPRO_MALE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-m-vas-l'], box: [172, 372, 12, 44], label: [176, 392] },
+    model: { shapeIds: ['rep-m-vas-l'], box: [171.7, 402.7, 12.5, 48.1], label: [175.8, 430] },
   },
   {
     id: 'prostate',
@@ -220,7 +220,7 @@ export const REPRO_MALE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-m-prostate'], box: [168, 416, 24, 22], label: [180, 426] },
+    model: { shapeIds: ['rep-m-prostate'], box: [166.3, 450.8, 27.4, 9.9], label: [180, 455.3] },
   },
   {
     id: 'seminalvesicles',
@@ -272,7 +272,7 @@ export const REPRO_MALE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-m-vesicle-l'], box: [156, 388, 18, 22], label: [165, 400] },
+    model: { shapeIds: ['rep-m-vesicle-l'], box: [155, 424.5, 18.7, 23.6], label: [164.4, 440.9] },
   },
   {
     ar: 'العضو الذكري',
@@ -328,6 +328,6 @@ export const REPRO_MALE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-m-penis'], box: [170, 434, 20, 32], label: [180, 448] },
+    model: { shapeIds: ['rep-m-penis'], box: [168.6, 458.9, 22.8, 14.3], label: [180, 465.1] },
   },
 ]

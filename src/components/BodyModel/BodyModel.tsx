@@ -20,6 +20,8 @@ export interface ModelMarker {
   x: number
   y: number
   color: string
+  /** اسم العضو (يظهر عند التحويم/الاختيار). */
+  ar?: string
 }
 
 /** تسمية جانبية في العمود خارج لوحة الرسم. */
@@ -76,23 +78,27 @@ const RENDER_ORDER: LayerId[] = [
 ]
 
 /** التدرجات اللونية (المواقف تستخدم متغيرات CSS فتتكيّف مع الثيم). */
-export const GRADIENTS: { id: string; a: string; c: string }[] = [
-  { id: 'g-skin', a: '--skin-a', c: '--skin-c' },
-  { id: 'g-soft', a: '--soft-a', c: '--soft-c' },
-  { id: 'g-bones', a: '--bones-a', c: '--bones-c' },
-  { id: 'g-respiratory', a: '--respiratory-a', c: '--respiratory-c' },
-  { id: 'g-digestive', a: '--digestive-a', c: '--digestive-c' },
-  { id: 'g-circulatory', a: '--circulatory-a', c: '--circulatory-c' },
-  { id: 'g-urinary', a: '--urinary-a', c: '--urinary-c' },
-  { id: 'g-reproductive', a: '--reproductive-a', c: '--reproductive-c' },
-  { id: 'g-lymphatic', a: '--lymphatic-a', c: '--lymphatic-c' },
-  { id: 'g-endocrine', a: '--endocrine-a', c: '--endocrine-c' },
-  { id: 'g-nervous', a: '--nervous-a', c: '--nervous-c' },
-  { id: 'g-muscles', a: '--muscles-a', c: '--muscles-c' },
-  { id: 'g-sensory', a: '--sensory-a', c: '--sensory-c' },
-  { id: 'g-breast', a: '--breast-a', c: '--breast-c' },
-  { id: 'g-art', a: '--vessel-art-a', c: '--vessel-art-c' },
-  { id: 'g-ven', a: '--vessel-ven-a', c: '--vessel-ven-c' },
+export const GRADIENTS: { id: string; stops: [number, string][]; horizontal?: boolean }[] = [
+  { id: 'g-skin', stops: [[0, 'var(--skin-a)'], [0.55, 'var(--skin-b)'], [1, 'var(--skin-c)']] },
+  { id: 'g-soft', stops: [[0, 'var(--soft-a)'], [1, 'var(--soft-c)']] },
+  { id: 'g-bones', stops: [[0, 'var(--bones-a)'], [0.6, 'var(--bones-b)'], [1, 'var(--bones-c)']] },
+  { id: 'g-respiratory', stops: [[0, 'var(--respiratory-a)'], [1, 'var(--respiratory-c)']] },
+  { id: 'g-digestive', stops: [[0, 'var(--digestive-a)'], [1, 'var(--digestive-c)']] },
+  { id: 'g-circulatory', stops: [[0, 'var(--circulatory-a)'], [0.65, 'var(--circulatory-b)'], [1, 'var(--circulatory-c)']] },
+  { id: 'g-urinary', stops: [[0, 'var(--urinary-a)'], [1, 'var(--urinary-c)']] },
+  { id: 'g-reproductive', stops: [[0, 'var(--reproductive-a)'], [1, 'var(--reproductive-c)']] },
+  { id: 'g-lymphatic', stops: [[0, 'var(--lymphatic-a)'], [1, 'var(--lymphatic-c)']] },
+  { id: 'g-endocrine', stops: [[0, 'var(--endocrine-a)'], [1, 'var(--endocrine-c)']] },
+  { id: 'g-nervous', stops: [[0, 'var(--nervous-a)'], [1, 'var(--nervous-c)']] },
+  { id: 'g-muscles', stops: [[0, 'var(--muscles-a)'], [0.6, 'var(--muscles-b)'], [1, 'var(--muscles-c)']] },
+  { id: 'g-sensory', stops: [[0, 'var(--sensory-a)'], [1, 'var(--sensory-c)']] },
+  { id: 'g-breast', stops: [[0, 'var(--breast-a)'], [1, 'var(--breast-c)']] },
+  { id: 'g-art', stops: [[0, 'var(--vessel-art-a)'], [1, 'var(--vessel-art-c)']] },
+  { id: 'g-ven', stops: [[0, 'var(--vessel-ven-a)'], [1, 'var(--vessel-ven-c)']] },
+  /** تظليل حواف أسطواني (2.5D): غامق على الحافتين وشفاف في المنتصف. */
+  { id: 'g-edge', horizontal: true, stops: [[0, 'var(--edge-shade)'], [0.24, 'var(--edge-fade)'], [0.5, 'rgba(0,0,0,0)'], [0.76, 'var(--edge-fade)'], [1, 'var(--edge-shade)']] },
+  /** إضاءة علوية ناعمة (تاج الرأس، الصدر). */
+  { id: 'g-glow', stops: [[0, 'var(--top-glow)'], [0.6, 'rgba(0,0,0,0)']] },
 ]
 
 /** ترتيب الطبقات "من السطح إلى الداخل" لحساب تعتيم التقشير. */
@@ -388,9 +394,7 @@ export default function BodyModel({
       }}
       onClick={() => interactive && onSelectOrgan?.(l.id)}
     >
-      <span className="side-num" style={{ borderColor: l.color, color: l.color }} aria-hidden>
-        {l.num}
-      </span>
+      <span className="side-dot" style={{ background: l.color }} aria-hidden />
       <span className="side-name">{l.name}</span>
     </button>
   )
@@ -465,24 +469,37 @@ export default function BodyModel({
               style={{ transition: reduceMotion ? 'none' : 'cx 1.1s ease-in-out, cy 1.1s ease-in-out' }}
             />
           )}
-          {/* الشارات الرقمية (الأسماء في القائمة الجانبية) */}
+          {/* نقاط تفاعل تشريحية أنيقة (hotspots) — الاسم يظهر عند التحويم أو الاختيار */}
           {markers && markers.length > 0 && (
-            <g className="num-badges">
-              {markers.map((m) => (
-                <g
-                  key={m.id}
-                  className="num-badge"
-                  onClick={interactive ? (e) => { e.stopPropagation(); onSelectOrgan?.(m.id) } : undefined}
-                  onPointerEnter={interactive ? () => { setHovered(m.id); onHoverOrgan?.(m.id) } : undefined}
-                  onPointerLeave={interactive ? () => { setHovered(null); onHoverOrgan?.(null) } : undefined}
-                  style={{ cursor: interactive ? 'pointer' : undefined }}
-                >
-                  <circle cx={m.x} cy={m.y} r={5.5} className="num-badge-c" style={{ stroke: m.color }} />
-                  <text x={m.x} y={m.y + 2.4} textAnchor="middle" className="num-badge-t">
-                    {m.num}
-                  </text>
-                </g>
-              ))}
+            <g className="hotspots">
+              {markers.map((m) => {
+                const active = hovered === m.id || hoveredOrganId === m.id || (selectedOrganId != null && selectedOrganId === m.id)
+                return (
+                  <g
+                    key={m.id}
+                    className={`hotspot ${active ? 'on' : ''}`}
+                    style={{ ['--hs' as string]: m.color }}
+                    onClick={interactive ? (e) => { e.stopPropagation(); onSelectOrgan?.(m.id) } : undefined}
+                    onPointerEnter={interactive ? () => { setHovered(m.id); onHoverOrgan?.(m.id) } : undefined}
+                    onPointerLeave={interactive ? () => { setHovered(null); onHoverOrgan?.(null) } : undefined}
+                  >
+                    <circle cx={m.x} cy={m.y} r={11} className="hs-hit" style={{ cursor: interactive ? 'pointer' : undefined }} />
+                    <circle cx={m.x} cy={m.y} r={6.5} className="hs-halo" style={{ stroke: m.color }} />
+                    <circle cx={m.x} cy={m.y} r={3} className="hs-dot" style={{ fill: m.color }} />
+                    {active && m.ar && (
+                      <g className="hs-label" pointerEvents="none">
+                        <text
+                          x={m.x < VIEW_W / 2 ? m.x - 12 : m.x + 12}
+                          y={m.y + 3.4}
+                          textAnchor={m.x < VIEW_W / 2 ? 'end' : 'start'}
+                        >
+                          {m.ar}
+                        </text>
+                      </g>
+                    )}
+                  </g>
+                )
+              })}
             </g>
           )}
         </g>
@@ -581,9 +598,17 @@ export function ModelDefs({ prefix }: { prefix: string }) {
   return (
     <defs>
       {GRADIENTS.map((g) => (
-        <linearGradient key={g.id} id={`${prefix}${g.id}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" style={{ stopColor: `var(${g.a})` }} />
-          <stop offset="1" style={{ stopColor: `var(${g.c})` }} />
+        <linearGradient
+          key={g.id}
+          id={`${prefix}${g.id}`}
+          x1={g.horizontal ? '0' : '0'}
+          y1={g.horizontal ? '0' : '0'}
+          x2={g.horizontal ? '1' : '0'}
+          y2={g.horizontal ? '0' : '1'}
+        >
+          {g.stops.map(([off, color]) => (
+            <stop key={off} offset={off} style={{ stopColor: color }} />
+          ))}
         </linearGradient>
       ))}
     </defs>
@@ -623,19 +648,21 @@ export function ShapeEl({
       : def.fillVar
         ? `var(${def.fillVar})`
         : 'currentColor'
-  const stroke = def.strokeOnly
-    ? def.tone === 'art'
-      ? 'var(--vessel-art-b)'
-      : def.tone === 'ven'
-        ? 'var(--vessel-ven-b)'
-        : def.fillVar
-          ? `var(${def.fillVar})`
-          : 'currentColor'
-    : def.strokeVar
-      ? `var(${def.strokeVar})`
-      : def.grad
-        ? 'rgba(30, 20, 10, 0.30)'
-        : 'var(--shape-stroke)'
+  const stroke = def.noStroke
+    ? 'none'
+    : def.strokeOnly
+      ? def.tone === 'art'
+        ? 'var(--vessel-art-b)'
+        : def.tone === 'ven'
+          ? 'var(--vessel-ven-b)'
+          : def.fillVar
+            ? `var(${def.fillVar})`
+            : 'currentColor'
+      : def.strokeVar
+        ? `var(${def.strokeVar})`
+        : def.grad
+          ? 'rgba(30, 20, 10, 0.30)'
+          : 'var(--shape-stroke)'
   const paint = {
     fill,
     stroke,
@@ -644,14 +671,18 @@ export function ShapeEl({
     strokeLinejoin: 'round' as const,
     strokeDasharray: def.dash,
   }
-  switch (def.kind) {
-    case 'circle':
-      return <circle {...common} {...paint} cx={def.cx} cy={def.cy} r={def.r} />
-    case 'ellipse':
-      return <ellipse {...common} {...paint} cx={def.cx} cy={def.cy} rx={def.rx} ry={def.ry} />
-    case 'line':
-      return <line {...common} {...paint} x1={def.x1} y1={def.y1} x2={def.x2} y2={def.y2} />
-    default:
-      return <path {...common} {...paint} d={def.d} />
-  }
+  const el = (() => {
+    switch (def.kind) {
+      case 'circle':
+        return <circle {...common} {...paint} cx={def.cx} cy={def.cy} r={def.r} />
+      case 'ellipse':
+        return <ellipse {...common} {...paint} cx={def.cx} cy={def.cy} rx={def.rx} ry={def.ry} />
+      case 'line':
+        return <line {...common} {...paint} x1={def.x1} y1={def.y1} x2={def.x2} y2={def.y2} />
+      default:
+        return <path {...common} {...paint} d={def.d} />
+    }
+  })()
+  if (def.transform) return <g transform={def.transform}>{el}</g>
+  return el
 }

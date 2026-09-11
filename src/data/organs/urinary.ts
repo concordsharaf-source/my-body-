@@ -68,7 +68,7 @@ export const URINARY_ORGANS: Organ[] = [
     source: SRC,
     refs: ['Gray\'s Anatomy, Ch. 44'],
     reviewedAt: REV,
-    model: { shapeIds: ['uri-kidney-l'], box: [128, 258, 32, 50], label: [144, 282] },
+    model: { shapeIds: ['uri-kidney-l'], box: [122.8, 258, 35.2, 57.3], label: [140.4, 282] },
   },
   {
     id: 'ureters',
@@ -119,7 +119,7 @@ export const URINARY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['uri-ureter-l'], box: [148, 288, 30, 102], label: [160, 342] },
+    model: { shapeIds: ['uri-ureter-l'], box: [146.7, 288, 31.2, 139.3], label: [159.2, 361.7] },
   },
   {
     id: 'bladder',
@@ -173,7 +173,7 @@ export const URINARY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['uri-bladder'], box: [160, 376, 40, 42], label: [180, 396] },
+    model: { shapeIds: ['uri-bladder'], box: [159.2, 408.1, 41.6, 43.6], label: [180, 435.4] },
   },
   {
     id: 'urethra',
@@ -224,6 +224,6 @@ export const URINARY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['uri-urethra'], box: [177, 414, 6, 24], label: [180, 424] },
+    model: { shapeIds: ['uri-urethra'], box: [176.6, 449.9, 6.8, 10.7], label: [180, 454.4] },
   },
 ]

@@ -59,7 +59,7 @@ export const LYMPHATIC_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-node-neck-l', 'lym-node-armpit-l', 'lym-node-groin-l'], box: [109, 109, 142, 314], label: [180, 241] },
+    model: { shapeIds: ['lym-node-neck-l', 'lym-node-armpit-l', 'lym-node-groin-l'], box: [101.9, 109, 156.2, 345], label: [180, 241] },
   },
   {
     id: 'lymphvessels',
@@ -112,7 +112,7 @@ export const LYMPHATIC_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-vessel-l'], box: [104, 172, 152, 206], label: [180, 259] },
+    model: { shapeIds: ['lym-vessel-l'], box: [96.4, 172, 167.2, 238.9], label: [180, 259] },
   },
   {
     id: 'spleen',
@@ -171,7 +171,7 @@ export const LYMPHATIC_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-spleen'], box: [198, 282, 34, 44], label: [214, 302] },
+    model: { shapeIds: ['lym-spleen'], box: [198.7, 282, 35.4, 57.9], label: [215.4, 307.1] },
   },
   {
     id: 'thymus',
@@ -226,7 +226,7 @@ export const LYMPHATIC_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-thymus'], box: [160, 154, 40, 32], label: [180, 170] },
+    model: { shapeIds: ['lym-thymus'], box: [158, 154, 44, 32], label: [180, 170] },
   },
   {
     id: 'tonsils',
@@ -281,7 +281,7 @@ export const LYMPHATIC_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-tonsil-l'], box: [151, 109, 59, 25], label: [181, 120] },
+    model: { shapeIds: ['lym-tonsil-l'], box: [151.9, 109, 57.2, 25], label: [181, 120] },
   },
   {
     id: 'leukocytes',
@@ -341,6 +341,6 @@ export const LYMPHATIC_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['imm-wbc-1', 'imm-wbc-2', 'imm-wbc-3', 'imm-wbc-4', 'imm-wbc-5', 'imm-wbc-6', 'imm-wbc-7', 'imm-wbc-8', 'imm-wbc-9'], box: [154, 160, 44, 205], label: [197, 262] },
+    model: { shapeIds: ['imm-wbc-1', 'imm-wbc-2', 'imm-wbc-3', 'imm-wbc-4', 'imm-wbc-5', 'imm-wbc-6', 'imm-wbc-7', 'imm-wbc-8', 'imm-wbc-9'], box: [151.4, 160, 48.4, 233.1], label: [198.7, 262] },
   },
 ]

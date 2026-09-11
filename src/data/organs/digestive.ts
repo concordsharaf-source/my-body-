@@ -58,7 +58,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-mouth'], box: [165, 96, 30, 18], label: [168, 105] },
+    model: { shapeIds: ['dig-mouth'], box: [165.6, 96, 28.8, 18], label: [168.5, 105] },
   },
   {
     id: 'teeth',
@@ -117,7 +117,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-teeth'], box: [166, 98, 28, 18], label: [180, 106] },
+    model: { shapeIds: ['dig-teeth'], box: [166.6, 98, 26.9, 18], label: [180, 106] },
   },
   {
     id: 'tongue',
@@ -174,7 +174,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-tongue'], box: [168, 99, 24, 19], label: [195, 110] },
+    model: { shapeIds: ['dig-tongue'], box: [168.5, 99, 23, 19], label: [194.4, 110] },
   },
   {
     id: 'salivaryglands',
@@ -227,7 +227,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-salivary-l'], box: [142, 86, 77, 23], label: [153, 93] },
+    model: { shapeIds: ['dig-salivary-l'], box: [143.5, 86, 73.9, 23], label: [154.1, 93] },
   },
   {
     id: 'esophagus',
@@ -281,7 +281,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-esophagus'], box: [174, 116, 12, 152], label: [178, 190] },
+    model: { shapeIds: ['dig-esophagus'], box: [173.4, 116, 13.2, 152], label: [177.8, 190] },
   },
   {
     id: 'stomach',
@@ -345,7 +345,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     source: SRC,
     refs: ['Gray\'s Anatomy, Ch. 36'],
     reviewedAt: REV,
-    model: { shapeIds: ['dig-stomach'], box: [158, 262, 50, 64], label: [186, 296] },
+    model: { shapeIds: ['dig-stomach'], box: [157.1, 262, 52, 77.9], label: [186.2, 298.9] },
   },
   {
     id: 'liver',
@@ -413,7 +413,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     source: SRC,
     refs: ['Gray\'s Anatomy, Ch. 39'],
     reviewedAt: REV,
-    model: { shapeIds: ['dig-liver'], box: [136, 262, 72, 54], label: [168, 292] },
+    model: { shapeIds: ['dig-liver'], box: [134.2, 262, 74.9, 64.2], label: [167.5, 293.5] },
   },
   {
     id: 'gallbladder',
@@ -469,7 +469,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-gallbladder'], box: [166, 306, 18, 26], label: [175, 319] },
+    model: { shapeIds: ['dig-gallbladder'], box: [165.4, 312.6, 18.7, 35.5], label: [174.8, 330.3] },
   },
   {
     id: 'pancreas',
@@ -533,7 +533,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-pancreas'], box: [162, 286, 57, 22], label: [190, 297] },
+    model: { shapeIds: ['dig-pancreas'], box: [161.3, 286, 59.3, 29.3], label: [190.4, 300.3] },
   },
   {
     id: 'smallintestine',
@@ -593,7 +593,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-smallintestine'], box: [147, 320, 64, 86], label: [179, 362] },
+    model: { shapeIds: ['dig-smallintestine'], box: [145.7, 331.7, 66.6, 114.7], label: [179, 389] },
   },
   {
     id: 'largeintestine',
@@ -653,7 +653,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-largeintestine'], box: [139, 294, 78, 106], label: [148, 352] },
+    model: { shapeIds: ['dig-largeintestine'], box: [137.4, 296.2, 81.1, 144.7], label: [146.7, 375.4] },
   },
   {
     id: 'appendix',
@@ -704,7 +704,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-appendix'], box: [140, 388, 10, 24], label: [145, 400] },
+    model: { shapeIds: ['dig-appendix'], box: [138.4, 424.5, 10.4, 24.5], label: [143.6, 440.9] },
   },
   {
     id: 'rectum',
@@ -757,6 +757,6 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-rectum'], box: [174, 394, 12, 22], label: [178, 406] },
+    model: { shapeIds: ['dig-rectum'], box: [173.2, 432.7, 13.7, 18.1], label: [177.7, 446.3] },
   },
 ]

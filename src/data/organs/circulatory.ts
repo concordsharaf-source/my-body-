@@ -70,7 +70,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     source: SRC,
     refs: ['Gray\'s Anatomy, Ch. 13', 'Netter Plate 299'],
     reviewedAt: REV,
-    model: { shapeIds: ['cir-heart'], box: [157, 164, 47, 82], label: [180, 217] },
+    model: { shapeIds: ['cir-heart'], box: [154.7, 164, 51.7, 82], label: [180, 217] },
   },
   {
     id: 'aorta',
@@ -124,7 +124,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['vas-aorta'], box: [156, 156, 46, 308], label: [184, 168] },
+    model: { shapeIds: ['vas-aorta'], box: [155, 156, 47.8, 316.3], label: [184.4, 168] },
   },
   {
     id: 'arteries',
@@ -178,7 +178,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['vas-arm-l', 'vas-leg-l'], box: [98, 116, 164, 620], label: [180, 376] },
+    model: { shapeIds: ['vas-arm-l', 'vas-leg-l'], box: [86.5, 116, 187, 631.4], label: [180, 408.1] },
   },
   {
     id: 'veins',
@@ -231,7 +231,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['vas-arm-l', 'vas-leg-l'], box: [98, 116, 164, 620], label: [180, 376] },
+    model: { shapeIds: ['vas-arm-l', 'vas-leg-l'], box: [86.5, 116, 187, 631.4], label: [180, 408.1] },
   },
   {
     id: 'capillaries',
@@ -285,7 +285,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['vas-cap-hand-l'], box: [102, 392, 156, 40], label: [180, 409] },
+    model: { shapeIds: ['vas-cap-hand-l'], box: [91.1, 430, 177.8, 28], label: [180, 447.7] },
   },
   {
     id: 'blood',
@@ -349,7 +349,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['vas-arm-l'], box: [98, 152, 164, 250], label: [180, 257] },
+    model: { shapeIds: ['vas-arm-l'], box: [89.8, 152, 180.4, 291.6], label: [180, 257] },
   },
   {
     id: 'pulmonaryartery',
@@ -399,7 +399,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['vas-pulm-l'], box: [145, 158, 82, 30], label: [180, 172] },
+    model: { shapeIds: ['vas-pulm-l'], box: [141.5, 158, 90.2, 30], label: [180, 172] },
   },
   {
     id: 'venacava',
@@ -449,6 +449,6 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['vas-svc', 'vas-ivc'], box: [155, 148, 26, 206], label: [164, 168] },
+    model: { shapeIds: ['vas-svc', 'vas-ivc'], box: [152.5, 148, 28.6, 230.1], label: [162.4, 168] },
   },
 ]

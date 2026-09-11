@@ -58,7 +58,7 @@ export const ENDOCRINE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['end-pituitary'], box: [172, 88, 16, 16], label: [180, 97] },
+    model: { shapeIds: ['end-pituitary'], box: [172.3, 88, 15.4, 16], label: [180, 97] },
   },
   {
     id: 'thyroid',
@@ -118,7 +118,7 @@ export const ENDOCRINE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['end-thyroid'], box: [161, 112, 38, 27], label: [180, 123] },
+    model: { shapeIds: ['end-thyroid'], box: [161.6, 112, 36.9, 27], label: [180, 123] },
   },
   {
     id: 'parathyroid',
@@ -170,7 +170,7 @@ export const ENDOCRINE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['end-parathyroid'], box: [162, 126, 36, 23], label: [180, 136] },
+    model: { shapeIds: ['end-parathyroid'], box: [162.5, 126, 34.9, 23], label: [180, 136] },
   },
   {
     id: 'adrenals',
@@ -228,6 +228,6 @@ export const ENDOCRINE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['end-adrenal-l'], box: [134, 250, 24, 16], label: [146, 258] },
+    model: { shapeIds: ['end-adrenal-l'], box: [129.4, 250, 26.4, 16], label: [142.6, 258] },
   },
 ]

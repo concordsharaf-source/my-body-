@@ -96,7 +96,7 @@ export default function BodyPage() {
     }
     return items.map((x, i) => {
       const o = getOrgan(x.id)!
-      return { id: x.id, num: i + 1, x: x.x ?? o.model!.label[0], y: x.y ?? o.model!.label[1], color: x.color }
+      return { id: x.id, num: i + 1, x: x.x ?? o.model!.label[0], y: x.y ?? o.model!.label[1], color: x.color, ar: o.ar }
     })
   }, [activeSystem, activeSystemDef, selectedOrgan, sex])
 

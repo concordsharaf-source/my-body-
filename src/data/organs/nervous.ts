@@ -69,7 +69,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     source: SRC,
     refs: ["Gray's Anatomy 41st ed., Ch. 1", 'Netter Plate 299'],
     reviewedAt: REV,
-    model: { shapeIds: ['ner-brain'], box: [148, 36, 64, 60], label: [180, 62] },
+    model: { shapeIds: ['ner-brain'], box: [149.3, 36, 61.4, 60], label: [180, 62] },
   },
   {
     id: 'cerebellum',
@@ -122,7 +122,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-cerebellum'], box: [168, 82, 24, 18], label: [180, 92] },
+    model: { shapeIds: ['ner-cerebellum'], box: [168.5, 82, 23, 18], label: [180, 92] },
   },
   {
     id: 'brainstem',
@@ -175,7 +175,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-brainstem'], box: [172, 88, 16, 26], label: [180, 101] },
+    model: { shapeIds: ['ner-brainstem'], box: [172.3, 88, 15.4, 26], label: [180, 101] },
   },
   {
     id: 'spinalcord',
@@ -231,7 +231,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-spinal', 'ner-cuda'], box: [174, 108, 12, 150], label: [180, 185] },
+    model: { shapeIds: ['ner-spinal', 'ner-cuda'], box: [173.4, 108, 13.2, 150], label: [180, 185] },
   },
   {
     id: 'opticnerve',
@@ -280,7 +280,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-optic-l'], box: [157, 58, 46, 31], label: [163, 65] },
+    model: { shapeIds: ['ner-optic-l'], box: [157.9, 58, 44.2, 31], label: [163.7, 65] },
   },
   {
     id: 'acousticnerve',
@@ -328,7 +328,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-acoustic-l'], box: [144, 71, 72, 26], label: [198, 84] },
+    model: { shapeIds: ['ner-acoustic-l'], box: [145.4, 71, 69.1, 26], label: [197.3, 84] },
   },
   {
     id: 'peripheralnerves',
@@ -382,7 +382,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-brachial-l', 'ner-sciatic-l'], box: [128, 117, 104, 300], label: [180, 243] },
+    model: { shapeIds: ['ner-brachial-l', 'ner-sciatic-l'], box: [122.8, 117, 114.4, 334.3], label: [180, 243] },
   },
   {
     id: 'cns',
@@ -435,7 +435,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-brain', 'ner-cerebellum', 'ner-brainstem', 'ner-spinal'], box: [143, 9, 74, 300], label: [180, 135] },
+    model: { shapeIds: ['ner-brain', 'ner-cerebellum', 'ner-brainstem', 'ner-spinal'], box: [139.3, 28, 81.4, 288.7], label: [180, 135] },
   },
   {
     id: 'pns',
@@ -488,6 +488,6 @@ export const NERVOUS_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-brachial-l', 'ner-sciatic-l'], box: [128, 117, 104, 300], label: [180, 332] },
+    model: { shapeIds: ['ner-brachial-l', 'ner-sciatic-l'], box: [122.8, 117, 114.4, 334.3], label: [180, 348.1] },
   },
 ]

@@ -63,7 +63,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['mus-pec-l', 'mus-delt-l', 'mus-bicep-l', 'mus-abs', 'mus-quad-l'], box: [80, 108, 200, 438], label: [180, 292] },
+    model: { shapeIds: ['mus-pec-l-m', 'mus-pec-l-f', 'mus-delt-l', 'mus-bicep-l', 'mus-abs', 'mus-quad-l'], box: [76, 108, 208, 448.8], label: [180, 293.5] },
   },
   {
     id: 'pectoralis',
@@ -115,7 +115,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['mus-pec-l'], box: [125, 150, 110, 59], label: [180, 175] },
+    model: { shapeIds: ['mus-pec-l-m', 'mus-pec-l-f'], box: [119.5, 150, 121, 59], label: [180, 175] },
   },
   {
     id: 'deltoid',
@@ -166,7 +166,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['mus-delt-l'], box: [80, 142, 200, 63], label: [180, 168] },
+    model: { shapeIds: ['mus-delt-l'], box: [70, 142, 220, 63], label: [180, 168] },
   },
   {
     id: 'trapezius',
@@ -218,7 +218,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['mus-trap-l'], box: [126, 138, 108, 36], label: [180, 154] },
+    model: { shapeIds: ['mus-trap-l'], box: [120.6, 138, 118.8, 36], label: [180, 154] },
   },
   {
     id: 'biceps',
@@ -270,7 +270,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['mus-bicep-l'], box: [86, 189, 188, 70], label: [180, 218] },
+    model: { shapeIds: ['mus-bicep-l'], box: [76.6, 189, 206.8, 70], label: [180, 218] },
   },
   {
     id: 'triceps',
@@ -322,6 +322,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
+    model: { shapeIds: ['mus-tricep-l'], box: [86, 242, 188, 62], label: [180, 272] }
   },
   {
     id: 'forearm',
@@ -373,7 +374,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['mus-forearm-l'], box: [108, 248, 144, 118], label: [180, 305] },
+    model: { shapeIds: ['mus-forearm-l'], box: [105.1, 248, 149.8, 146.5], label: [180, 311.2] },
   },
   {
     id: 'rectusabdominis',
@@ -424,7 +425,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['mus-abs'], box: [150, 284, 60, 96], label: [180, 324] },
+    model: { shapeIds: ['mus-abs'], box: [148.8, 284, 62.4, 129.6], label: [180, 337.1] },
   },
   {
     id: 'obliques',
@@ -474,7 +475,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['mus-oblique-l'], box: [132, 290, 96, 83], label: [180, 325] },
+    model: { shapeIds: ['mus-oblique-l'], box: [130.1, 290.7, 99.8, 113.3], label: [180, 338.5] },
   },
   {
     id: 'gluteus',
@@ -526,7 +527,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['mus-glute-l'], box: [138, 362, 84, 46], label: [180, 381] },
+    model: { shapeIds: ['mus-glute-l'], box: [136.3, 389, 87.4, 58.2], label: [180, 415] },
   },
   {
     id: 'quadriceps',
@@ -577,7 +578,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['mus-quad-l'], box: [118, 384, 124, 133], label: [180, 440] },
+    model: { shapeIds: ['mus-quad-l'], box: [109.3, 419.1, 141.4, 106.6], label: [180, 461.6] },
   },
   {
     id: 'calves',
@@ -629,7 +630,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['mus-calf-l'], box: [127, 545, 106, 111], label: [180, 592] },
+    model: { shapeIds: ['mus-calf-l'], box: [119.6, 555.8, 120.8, 116.2], label: [180, 606.4] },
   },
   {
     id: 'tendons',
@@ -682,6 +683,6 @@ export const MUSCULAR_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['mus-calf-l'], box: [127, 545, 106, 111], label: [180, 592] },
+    model: { shapeIds: ['mus-calf-l'], box: [119.6, 555.8, 120.8, 116.2], label: [180, 606.4] },
   },
 ]

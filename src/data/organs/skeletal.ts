@@ -58,7 +58,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-skull'], box: [140, 24, 80, 96], label: [180, 64] },
+    model: { shapeIds: ['bone-skull'], box: [141.6, 28, 76.8, 92], label: [180, 64] },
   },
   {
     id: 'spine',
@@ -119,7 +119,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-cervical', 'bone-thoracic', 'bone-lumbar'], box: [161, 98, 38, 206], label: [180, 185] },
+    model: { shapeIds: ['bone-cervical', 'bone-thoracic', 'bone-lumbar'], box: [159.1, 98, 41.8, 211.8], label: [180, 185] },
   },
   {
     id: 'ribs',
@@ -174,7 +174,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-ribs', 'bone-sternum'], box: [126, 138, 68, 124], label: [160, 190] },
+    model: { shapeIds: ['bone-ribs', 'bone-sternum'], box: [120.6, 138, 74.8, 124], label: [158, 190] },
   },
   {
     id: 'pelvis',
@@ -231,7 +231,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-pelvis'], box: [131, 271, 65, 63], label: [164, 297] },
+    model: { shapeIds: ['bone-pelvis-m', 'bone-pelvis-f'], box: [129, 271, 67.6, 79.8], label: [163.4, 300.3] },
   },
   {
     id: 'clavicle',
@@ -283,7 +283,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-clavicle-l'], box: [122, 137, 116, 22], label: [180, 146] },
+    model: { shapeIds: ['bone-clavicle-l'], box: [123.7, 137, 112.5, 22], label: [180, 146] },
   },
   {
     id: 'femur',
@@ -339,7 +339,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-femur-l'], box: [129, 376, 102, 146], label: [180, 437] },
+    model: { shapeIds: ['bone-femur-l'], box: [121.9, 408.1, 116.3, 122.9], label: [180, 460.2] },
   },
   {
     id: 'armbones',
@@ -396,7 +396,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-humerus-l', 'bone-forearm-l'], box: [94, 144, 172, 224], label: [180, 238] },
+    model: { shapeIds: ['bone-humerus-l', 'bone-forearm-l'], box: [85.4, 144, 189.2, 253.2], label: [180, 238] },
   },
   {
     id: 'legbones',
@@ -451,7 +451,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-tibia-l', 'bone-fibula-l'], box: [137, 506, 86, 148], label: [180, 568] },
+    model: { shapeIds: ['bone-tibia-l', 'bone-fibula-l'], box: [131, 513.8, 98, 156.2], label: [180, 580.5] },
   },
   {
     id: 'joints',
@@ -508,7 +508,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-ribs', 'bone-pelvis', 'bone-femur-l'], box: [124, 114, 107, 436], label: [178, 297] },
+    model: { shapeIds: ['bone-ribs', 'bone-pelvis-m', 'bone-pelvis-f', 'bone-femur-l'], box: [121.8, 114, 111.3, 447.2], label: [177.9, 300.3] },
   },
   {
     id: 'ligaments',
@@ -561,7 +561,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-pelvis', 'bone-femur-l'], box: [129, 252, 102, 283], label: [180, 371] },
+    model: { shapeIds: ['bone-pelvis-m', 'bone-pelvis-f', 'bone-femur-l'], box: [127, 252, 106.1, 293], label: [180, 401.3] },
   },
   {
     id: 'cartilage',
@@ -615,6 +615,6 @@ export const SKELETAL_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-ribs', 'bone-sternum'], box: [126, 138, 68, 124], label: [160, 190] },
+    model: { shapeIds: ['bone-ribs', 'bone-sternum'], box: [120.6, 138, 74.8, 124], label: [158, 190] },
   },
 ]

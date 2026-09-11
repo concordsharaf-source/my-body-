@@ -20,9 +20,14 @@
   --shape-stroke: rgba(30, 20, 10, 0.16);
 
   /* تدرجات النموذج (فاتح ← داكن) */
-  --skin-a: #f0cda9;
-  --skin-b: #e5bc93;
-  --skin-c: #d3a67a;
+  --skin-a: #f4d6b6;
+  --skin-b: #e9c49e;
+  --skin-c: #d5a87c;
+  /* تظليل 2.5D */
+  --edge-shade: rgba(122, 72, 40, 0.30);
+  --edge-fade: rgba(122, 72, 40, 0.10);
+  --top-glow: rgba(255, 248, 235, 0.55);
+  --hs-ring: rgba(15, 118, 110, 0.18);
   --soft-a: #efd3b4;
   --soft-b: #e3bf97;
   --soft-c: #d2a87e;
@@ -84,6 +89,7 @@
 
   /* تفاصيل الوجه */
   --eye: #5a6b7d;
+  --teeth: #f7f4ee;
   --ear-line: #c89b72;
   --nose-line: #c89b72;
   --mouth: #d98a86;
@@ -92,6 +98,7 @@
   --chest-line: #d9a97e;
   --tooth: #fdfbf5;
   --tongue: #e58a96;
+  --tongue-b: #c96a77;
 
   /* ألوان chips/نصوص الأنظمة (ثابتة) */
   --nervous: #db2777;
@@ -133,9 +140,14 @@
   --label: #e2e8f0;
   --shape-stroke: rgba(255, 255, 255, 0.14);
 
-  --skin-a: #b99270;
-  --skin-b: #a67d5a;
+  --skin-a: #bd9674;
+  --skin-b: #a87f5c;
   --skin-c: #8f6845;
+  /* تظليل 2.5D */
+  --edge-shade: rgba(30, 14, 6, 0.40);
+  --edge-fade: rgba(30, 14, 6, 0.16);
+  --top-glow: rgba(255, 240, 220, 0.28);
+  --hs-ring: rgba(255, 255, 255, 0.16);
   --soft-a: #c49b77;
   --soft-b: #b08a64;
   --soft-c: #9a7550;
@@ -202,6 +214,7 @@
   --chest-line: #9a7550;
   --tooth: #e8e2d4;
   --tongue: #d07080;
+  --tongue-b: #b85a6b;
 
   --nervous: #f472b6;
   --circulatory: #f87171;
@@ -685,15 +698,46 @@ input { font-family: inherit; }
   filter: drop-shadow(0 0 6px var(--accent));
 }
 
-/* الشارات الرقمية (الأسماء في القائمة الجانبية) */
-.num-badge { cursor: pointer; }
-.num-badge-c {
-  fill: var(--surface);
-  stroke-width: 1.6;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.28));
-  transition: stroke-width 0.15s, r 0.15s;
+/* نقاط التفاعل التشريحية (hotspots) */
+.hs-hit {
+  fill: transparent;
 }
-.num-badge:hover .num-badge-c { stroke-width: 2; }
+.hs-halo {
+  fill: none;
+  stroke-width: 1.4;
+  opacity: 0.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hs-pulse 2.6s ease-in-out infinite;
+}
+.hotspot.on .hs-halo {
+  opacity: 0.9;
+  animation: none;
+  stroke-width: 1.8;
+}
+.hs-dot {
+  stroke: var(--surface);
+  stroke-width: 1.2;
+  transition: r 0.15s;
+  filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.35));
+}
+.hotspot.on .hs-dot { r: 4.2; }
+@keyframes hs-pulse {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.75; transform: scale(1.25); }
+}
+.reduce-motion .hs-halo { animation: none; }
+/* تسمية العضو عند التحويم/الاختيار */
+.hs-label text {
+  font-size: 11px;
+  font-weight: 700;
+  fill: var(--text);
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  letter-spacing: 0;
+}
 .num-badge-t {
   font-size: 6.8px;
   font-weight: 700;
@@ -1656,7 +1700,7 @@ html, body { overflow-x: clip; }
   }
   .label-col { width: 62px; }
   .side-label { font-size: 0.58rem; padding: 2px 4px; gap: 4px; }
-  .side-num { flex-basis: 13px; width: 13px; height: 13px; font-size: 0.52rem; }
+  .side-dot { width: 7px; height: 7px; }
 
   /* شرائح الأجهزة: صف واحد قابل للتمرير */
   .system-chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 8px; }
@@ -1756,18 +1800,11 @@ html, body { overflow-x: clip; }
   box-shadow: var(--shadow);
   border-color: var(--primary);
 }
-.side-num {
-  flex: 0 0 15px;
-  width: 15px;
-  height: 15px;
+.side-dot {
+  flex: 0 0 7px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  border: 1.4px solid var(--primary);
-  background: var(--surface);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.56rem;
-  font-weight: 700;
 }
 .side-name {
   overflow: hidden;

@@ -69,7 +69,7 @@ export const SENSORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-eye-l'], box: [152, 56, 56, 21], label: [180, 65] },
+    model: { shapeIds: ['sen-eye-l'], box: [153.1, 56, 53.8, 21], label: [180, 65] },
   },
   {
     id: 'ear',
@@ -131,7 +131,7 @@ export const SENSORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-ear-l'], box: [131, 53, 98, 32], label: [180, 66] },
+    model: { shapeIds: ['sen-ear-l'], box: [133, 53, 94.1, 32], label: [180, 66] },
   },
   {
     id: 'eardrum',
@@ -178,7 +178,7 @@ export const SENSORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-ear-l'], box: [131, 53, 98, 32], label: [180, 66] },
+    model: { shapeIds: ['sen-ear-l'], box: [133, 53, 94.1, 32], label: [180, 66] },
   },
   {
     id: 'ossicles',
@@ -230,7 +230,7 @@ export const SENSORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-ear-l'], box: [131, 53, 98, 32], label: [180, 66] },
+    model: { shapeIds: ['sen-ear-l'], box: [133, 53, 94.1, 32], label: [180, 66] },
   },
   {
     id: 'cochlea',
@@ -283,7 +283,7 @@ export const SENSORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-ear-l'], box: [131, 53, 98, 32], label: [180, 66] },
+    model: { shapeIds: ['sen-ear-l'], box: [133, 53, 94.1, 32], label: [180, 66] },
   },
   {
     id: 'nose',
@@ -343,7 +343,7 @@ export const SENSORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-nose'], box: [171, 53, 21, 41], label: [182, 70] },
+    model: { shapeIds: ['sen-nose'], box: [171.4, 53, 20.2, 41], label: [181.9, 70] },
   },
   {
     id: 'skin',
@@ -406,6 +406,6 @@ export const SENSORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['fig-head', 'fig-neck', 'fig-torso-m', 'fig-torso-f', 'fig-arm-l', 'fig-hand-l', 'fig-leg-l', 'fig-foot-l'], box: [75, 0, 210, 780], label: [180, 328] },
+    model: { shapeIds: ['fig-head', 'fig-neck', 'fig-torso-m', 'fig-torso-f', 'fig-arm-l', 'fig-arm-f', 'fig-hand-l', 'fig-leg-l', 'fig-leg-f', 'fig-foot-l'], box: [70.8, 28, 218.4, 724], label: [180, 342.6] },
   },
 ]
