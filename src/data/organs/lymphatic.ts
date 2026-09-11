@@ -341,6 +341,6 @@ export const LYMPHATIC_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-thymus'], box: [163, 183, 34, 23], label: [180, 193] },
+    model: { shapeIds: ['imm-wbc-1', 'imm-wbc-2', 'imm-wbc-3', 'imm-wbc-4', 'imm-wbc-5', 'imm-wbc-6', 'imm-wbc-7', 'imm-wbc-8', 'imm-wbc-9'], box: [154, 160, 44, 205], label: [197, 262] },
   },
 ]

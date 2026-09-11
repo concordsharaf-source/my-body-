@@ -102,9 +102,10 @@ export default function BodyPage() {
 
   const selectOrgan = (id: string) => {
     // في وضع جهاز محدد: نعرض أعضاء ذلك الجهاز فقط (النقر الخاطئ على غيره يُتجاهل)
+    // — يُقبل العضو إذا كان الجهاز المعزول رئيسيًا له أو من أجهزته الثانوية
     if (activeSystem) {
       const o = getOrgan(id)
-      if (!o || o.system !== activeSystem) return
+      if (!o || (o.system !== activeSystem && !o.systems?.includes(activeSystem))) return
     }
     setSelected(id)
     markViewed(id)

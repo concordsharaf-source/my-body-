@@ -1244,6 +1244,21 @@ const REPRO_FEMALE: ShapeDef[] = [
   }),
 ]
 
+
+/* ============ الجهاز المناعي (immune) — خلايا الدم البيضاء في مجرى الدم ============ */
+const IMMUNE: ShapeDef[] = [
+  // كريات بيضاء (Leukocytes) على الأوعية الكبرى
+  S({ id: 'imm-wbc-1', kind: 'circle', organId: 'leukocytes', cx: 160.5, cy: 170, r: 2.3, fillVar: '--surface', strokeVar: '--lymphatic-c' }),
+  S({ id: 'imm-wbc-2', kind: 'circle', organId: 'leukocytes', cx: 183, cy: 176, r: 2.3, fillVar: '--surface', strokeVar: '--lymphatic-c' }),
+  S({ id: 'imm-wbc-3', kind: 'circle', organId: 'leukocytes', cx: 191, cy: 194, r: 2.3, fillVar: '--surface', strokeVar: '--lymphatic-c' }),
+  S({ id: 'imm-wbc-4', kind: 'circle', organId: 'leukocytes', cx: 189, cy: 226, r: 2.3, fillVar: '--surface', strokeVar: '--lymphatic-c' }),
+  S({ id: 'imm-wbc-5', kind: 'circle', organId: 'leukocytes', cx: 187.5, cy: 254, r: 2.3, fillVar: '--surface', strokeVar: '--lymphatic-c' }),
+  S({ id: 'imm-wbc-6', kind: 'circle', organId: 'leukocytes', cx: 186, cy: 300, r: 2.3, fillVar: '--surface', strokeVar: '--lymphatic-c' }),
+  S({ id: 'imm-wbc-7', kind: 'circle', organId: 'leukocytes', cx: 166, cy: 318, r: 2.3, fillVar: '--surface', strokeVar: '--lymphatic-c' }),
+  S({ id: 'imm-wbc-8', kind: 'circle', organId: 'leukocytes', cx: 165, cy: 348, r: 2.3, fillVar: '--surface', strokeVar: '--lymphatic-c' }),
+  S({ id: 'imm-wbc-9', kind: 'circle', organId: 'leukocytes', cx: 180, cy: 356, r: 2.3, fillVar: '--surface', strokeVar: '--lymphatic-c' }),
+]
+
 /* ============ الجهاز اللمفاوي (lymphatic) — تفصيلي v2 ============ */
 const LYMPHATIC: ShapeDef[] = [
   // الغدة الزعترية فوق القلب
@@ -1852,7 +1867,7 @@ export const LAYER_SHAPES: Record<LayerId, ShapeDef[]> = {
   lymphatic: LYMPHATIC,
   endocrine: ENDOCRINE,
   sensory: SENSORY,
-  vessels: VESSELS,
+  vessels: [...VESSELS, ...IMMUNE],
 }
 
 /** كل الأشكال (بما فيها المرآة) معرّفًا → شكل. */
