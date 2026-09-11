@@ -97,6 +97,11 @@ export default function BodyPage() {
   }, [activeSystem, activeSystemDef, selectedOrgan, sex])
 
   const selectOrgan = (id: string) => {
+    // في وضع جهاز محدد: نعرض أعضاء ذلك الجهاز فقط (النقر الخاطئ على غيره يُتجاهل)
+    if (activeSystem) {
+      const o = getOrgan(id)
+      if (!o || o.system !== activeSystem) return
+    }
     setSelected(id)
     markViewed(id)
     const organ = getOrgan(id)

@@ -58,20 +58,22 @@ export default function OrganPage() {
 
       <div className="organ-page-layout">
         <div className="organ-page-model">
-          <BodyModel
-            sex={sex}
-            layers={layers}
-            selectedOrganId={selected}
-            onSelectOrgan={(oid) => setSelected(oid)}
-            interactive={false}
-            reduceMotion={reduceMotion}
-            focusBox={organ.model ? { x: organ.model.box[0], y: organ.model.box[1], w: organ.model.box[2], h: organ.model.box[3], key: 1 } : null}
-          />
-          {sys && (
-            <Link to={`/system/${sys.id}`} className="mini-btn" style={{ borderColor: sys.color, color: sys.color }}>
-              {sys.icon} {sys.ar} ←
-            </Link>
-          )}
+          <div className="organ-page-model-inner">
+            <BodyModel
+              sex={sex}
+              layers={layers}
+              selectedOrganId={selected}
+              onSelectOrgan={(oid) => setSelected(oid)}
+              interactive={false}
+              reduceMotion={reduceMotion}
+              focusBox={organ.model ? { x: organ.model.box[0], y: organ.model.box[1], w: organ.model.box[2], h: organ.model.box[3], key: 1 } : null}
+            />
+            {sys && (
+              <Link to={`/system/${sys.id}`} className="mini-btn" style={{ borderColor: sys.color, color: sys.color }}>
+                {sys.icon} {sys.ar} ←
+              </Link>
+            )}
+          </div>
         </div>
 
         <div className="organ-page-card">

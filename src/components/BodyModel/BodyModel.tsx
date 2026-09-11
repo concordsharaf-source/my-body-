@@ -22,6 +22,15 @@ export interface ModelMarker {
   color: string
 }
 
+/** تسمية جانبية في العمود خارج لوحة الرسم. */
+export interface SideLabel {
+  id: string
+  num: number
+  name: string
+  color: string
+  side: 'left' | 'right'
+}
+
 interface Props {
   sex: Sex
   selectedOrganId?: string | null
@@ -123,53 +132,8 @@ export default function BodyModel({
   ariaLabel = 'النموذج التشريحي لجسم الإنسان',
 }: Props) {
   const svgRef = useRef<SVGSVGElement>(null)
-  const wrapRef = useRef<HTMLDivElement>(null)
   const gradPrefix = 'gm' + useId().replace(/[^a-zA-Z0-9]/g, '')
   const [transform, setTransform] = useState({ x: 0, y: 0, k: 1 })
-  const [wrapSize, setWrapSize] = useState({ w: 360, h: 780 })
-  /** خطا حافة الجسم (يسار/يمين) لكل ارتفاع — لتثبيت التسميات على الحافة الخارجية. */
-  const [contour, setContour] = useState<{ left: number[]; right: number[] } | null>(null)
-
-  useEffect(() => {
-    const svg = svgRef.current
-    if (!svg) return
-    const left: number[] = []
-    const right: number[] = []
-    const N = 160
-    for (const p of svg.querySelectorAll<SVGPathElement>('.layer-skin path')) {
-      const len = p.getTotalLength()
-      const mirrored = p.closest('g[transform]')?.getAttribute('transform')?.startsWith('matrix(-1')
-      for (let i = 0; i <= N; i++) {
-        const pt = p.getPointAtLength((i / N) * len)
-        const y = Math.min(194, Math.max(0, Math.round(pt.y / 4)))
-        const x = mirrored ? 360 - pt.x : pt.x
-        if (left[y] === undefined || x < left[y]) left[y] = x
-        if (right[y] === undefined || x > right[y]) right[y] = x
-      }
-    }
-    // تعبئة الفجوات بقيمة أقرب ارتفاع
-    for (let y = 0; y <= 195; y++) {
-      if (left[y] === undefined) {
-        let d = 1
-        while (left[y] === undefined && y - d >= 0) d++
-        left[y] = left[y - d]
-      }
-      if (right[y] === undefined) {
-        let d = 1
-        while (right[y] === undefined && y + d <= 195) d++
-        right[y] = right[y + d]
-      }
-    }
-    if (left.length > 0) setContour({ left, right })
-  }, [sex])
-
-  useEffect(() => {
-    const el = wrapRef.current
-    if (!el) return
-    const ro = new ResizeObserver(() => setWrapSize({ w: el.clientWidth, h: el.clientHeight }))
-    ro.observe(el)
-    return () => ro.disconnect()
-  }, [])
 
   /** تثبيت الحركة: لا يهرب النموذج خارج الإطار أبدًا. */
   const clampT = useCallback((t: { x: number; y: number; k: number }) => {
@@ -206,14 +170,13 @@ export default function BodyModel({
   /** حساب شفافية طبقة ما حسب الوضع الحالي. */
   const layerOpacity = useCallback(
     (id: LayerId): number => {
-      // وضع الجهاز المعزول: كل الأجهزة الداخلية مرئية (المعزول بارز، والبقية باهتة وقابلة للنقر)
+      // وضع الجهاز المعزول: يُعرض الجهاز المعزول فقط (أجهزة أخرى مخفية تمامًا)
       if (isolatedSystem && isolatedOrgans) {
         if (id === 'soft' || id === 'muscles' || id === 'bones') return 0
         if (id === 'skin') return 0.1
         const isSystemLayer = Object.values(LAYER_SHAPES[id]).some((s) => s.organId && isolatedOrgans.has(s.organId))
         if (isSystemLayer) return 1
-        if (selected && Object.values(LAYER_SHAPES[id]).some((s) => s.organId === selected.id)) return 0.9
-        return 0.15
+        return 0
       }
       if (!layers[id]) return 0
       // وضع التقشير الطبقي
@@ -248,11 +211,14 @@ export default function BodyModel({
     (def: ShapeDef): number => {
       const base = layerOpacity(shapeLayerOf(def))
       if (base === 0) return 0
+      // وضع الجهاز المعزول: نعرض أشكال الجهاز المعزول فقط — حتى داخل الطبقات
+      // المشتركة (مثل البلعوم والحنجرة في طبقة التنفس)
+      if (isolatedOrgans && shapeLayerOf(def) !== 'skin' && (!def.organId || !isolatedOrgans.has(def.organId))) return 0
       if (selected && def.organId && def.organId !== selected.id) return 0.2
       if (selected && def.organId === selected.id) return 1
       return 1
     },
-    [layerOpacity, selected],
+    [layerOpacity, selected, isolatedOrgans],
   )
 
   /** الأشكال المرئية لكل طبقة (مع مرآة + فلترة الجنس). */
@@ -365,44 +331,23 @@ export default function BodyModel({
   const hoveredOrgan = effectiveHovered ? getOrgan(effectiveHovered) : undefined
 
   /* ---------- الرسم ---------- */
-  /* ---------- التسميات الجانبية: ثابتة على حافة الجسم (لا تتأثر بالتكبير) ---------- */
+  /* ---------- التسميات الجانبية: أعمدة خارج لوحة الرسم، مرتبة حسب ارتفاع العضو
+     (لا تتأثر بالتكبير/التصغير ولا تغطي الرسم أبدًا) ---------- */
   const sideLabels = useMemo(() => {
-    if (!markers || markers.length === 0) return []
-    const { w, h } = wrapSize
-    const items = markers.map((m) => ({
-      ...m,
-      bx: (m.x / VIEW_W) * w,
-      by: (m.y / VIEW_H) * h,
-    }))
-    const LABEL_H = 26
-    const LABEL_W = 84
-    const out: { id: string; num: number; name: string; color: string; side: 'left' | 'right'; top: number; style: React.CSSProperties }[] = []
-    for (const side of ['left', 'right'] as const) {
-      const list = items.filter((it) => (side === 'left' ? it.bx < w / 2 : it.bx >= w / 2)).sort((a, b) => a.by - b.by)
-      let cursor = 4
-      for (const it of list) {
-        let top = it.by - LABEL_H / 2
-        top = Math.max(top, cursor)
-        top = Math.min(top, h - LABEL_H - 4)
-        // حافة الجسم عند ارتفاع هذه التسمية (viewBox — بالوضع الثابت k=1)
-        const yVB = ((top + LABEL_H / 2) / h) * VIEW_H
-        const yIdx = Math.min(195, Math.max(0, Math.round(yVB / 4)))
-        const edgeX = contour ? (side === 'left' ? contour.left[yIdx] : contour.right[yIdx]) : side === 'left' ? BODY_EDGE.left : BODY_EDGE.right
-        const edgePx = (edgeX / VIEW_W) * w
-        const style: React.CSSProperties =
-          side === 'left'
-            ? edgePx - LABEL_W >= 2
-              ? { right: w - edgePx + 3 }
-              : { left: 2 }
-            : edgePx + LABEL_W + 3 <= w - 2
-              ? { left: edgePx + 3 }
-              : { right: 2 }
-        out.push({ id: it.id, num: it.num, name: nameOf(it.id), color: it.color, side, top, style })
-        cursor = top + LABEL_H + 3
-      }
-    }
-    return out
-  }, [markers, wrapSize, contour])
+    const empty = { left: [], right: [] } as { left: SideLabel[]; right: SideLabel[] }
+    if (!markers || markers.length === 0) return empty
+    const by = (a: ModelMarker, b: ModelMarker) => a.y - b.y
+    const left = markers.filter((m) => m.x < VIEW_W / 2).sort(by)
+    const right = markers.filter((m) => m.x >= VIEW_W / 2).sort(by)
+    const toSide = (m: ModelMarker, side: 'left' | 'right'): SideLabel => ({
+      id: m.id,
+      num: m.num,
+      name: nameOf(m.id),
+      color: m.color,
+      side,
+    })
+    return { left: left.map((m) => toSide(m, 'left')), right: right.map((m) => toSide(m, 'right')) }
+  }, [markers])
 
   const zoomAt = (clientX: number, clientY: number, targetK: number) => {
     const p = toView(clientX, clientY)
@@ -415,8 +360,43 @@ export default function BodyModel({
     onUserNavigate?.()
   }
 
+  const renderLabel = (l: SideLabel) => (
+    <button
+      key={l.id}
+      type="button"
+      role="listitem"
+      className={`side-label ${l.side} ${hovered === l.id || hoveredOrganId === l.id ? 'on' : ''}`}
+      onMouseEnter={() => {
+        setHovered(l.id)
+        onHoverOrgan?.(l.id)
+      }}
+      onMouseLeave={() => {
+        setHovered(null)
+        onHoverOrgan?.(null)
+      }}
+      onFocus={() => {
+        setHovered(l.id)
+        onHoverOrgan?.(l.id)
+      }}
+      onBlur={() => {
+        setHovered(null)
+        onHoverOrgan?.(null)
+      }}
+      onClick={() => interactive && onSelectOrgan?.(l.id)}
+    >
+      <span className="side-num" style={{ borderColor: l.color, color: l.color }} aria-hidden>
+        {l.num}
+      </span>
+      <span className="side-name">{l.name}</span>
+    </button>
+  )
+
   return (
-    <div className={`body-model-wrap ${className ?? ''}`} ref={wrapRef}>
+    <div className={`body-model-wrap ${className ?? ''}`}>
+      <div className="label-col side-left" role="list" aria-label="أسماء الأرقام — يمين الجسم">
+        {sideLabels.left.map(renderLabel)}
+      </div>
+      <div className="model-canvas">
       <svg
         ref={svgRef}
         viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
@@ -450,6 +430,7 @@ export default function BodyModel({
               <g key={layerId} className={`layer layer-${layerId}`} opacity={op} style={{ transition: reduceMotion ? 'none' : 'opacity 0.35s' }}>
                 {rendered[layerId].map(({ def, mirrored }) => {
                   const op2 = shapeOpacity(def) * (def.op ?? 1)
+                  if (op2 === 0) return null
                   const isSel = selected && def.organId === selected.id
                   const cls = [
                     'shape',
@@ -503,29 +484,6 @@ export default function BodyModel({
         </g>
       </svg>
 
-      {/* التسميات الجانبية الملاصقة لحافة الجسم */}
-      {sideLabels.length > 0 && (
-        <>
-          {sideLabels.map((l) => (
-            <button
-              key={l.id}
-              type="button"
-              className={`side-label ${l.side} ${hovered === l.id || hoveredOrganId === l.id ? 'on' : ''}`}
-              style={{ top: l.top, ...l.style }}
-              onMouseEnter={() => { setHovered(l.id); onHoverOrgan?.(l.id) }}
-              onMouseLeave={() => { setHovered(null); onHoverOrgan?.(null) }}
-              onFocus={() => { setHovered(l.id); onHoverOrgan?.(l.id) }}
-              onBlur={() => { setHovered(null); onHoverOrgan?.(null) }}
-              onClick={() => interactive && onSelectOrgan?.(l.id)}
-            >
-              <span className="side-num" style={{ borderColor: l.color, color: l.color }} aria-hidden>
-                {l.num}
-              </span>
-              <span className="side-name">{l.name}</span>
-            </button>
-          ))}
-        </>
-      )}
       {/* تلميح العضو عند المرور */}
       {hoveredOrgan && (
         <div className="hover-tip" aria-hidden>
@@ -567,12 +525,13 @@ export default function BodyModel({
           </button>
         </div>
       )}
+      </div>
+      <div className="label-col side-right" role="list" aria-label="أسماء الأرقام — يسار الجسم">
+        {sideLabels.right.map(renderLabel)}
+      </div>
     </div>
   )
 }
-
-/** حافتا سيليوت الجسم (إحداثيات العرض) — تُثبَّت عندهما التسميات. */
-const BODY_EDGE = { left: 95, right: 265 }
 
 function nameOf(id: string): string {
   return getOrgan(id)?.ar ?? id

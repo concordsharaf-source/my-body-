@@ -486,11 +486,20 @@ input { font-family: inherit; }
 .sex-note { margin-top: 16px; font-size: 0.85rem; }
 
 /* ============ النموذج التشريحي ============ */
+/* الإطار: عمودا تسميات خارج مساحة الرسم + لوحة الرسم في المنتصف */
 .body-model-wrap {
   position: relative;
   width: 100%;
-  max-width: 460px;
+  max-width: 620px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+}
+.model-canvas {
+  position: relative;
+  min-width: 0;
+  width: 100%;
   aspect-ratio: 360 / 780;
   background:
     radial-gradient(70% 40% at 50% 10%, color-mix(in srgb, var(--primary) 7%, transparent), transparent),
@@ -501,11 +510,24 @@ input { font-family: inherit; }
   box-shadow: var(--shadow);
 }
 .body-model-wrap.compact {
-  max-width: 300px;
+  max-width: 460px;
+}
+.body-model-wrap.compact .model-canvas {
   border: none;
   box-shadow: none;
   background: none;
 }
+/* عمودا التسميات: خارج لوحة الرسم فلا يغطيان الرسم أبدًا */
+.label-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 76px;
+  min-width: 0;
+}
+.label-col.side-left { margin-inline-end: 6px; }
+.label-col.side-right { margin-inline-start: 6px; }
+.label-col:empty { width: 0; margin: 0; }
 
 .body-svg {
   width: 100%;
@@ -1004,10 +1026,12 @@ input { font-family: inherit; }
   gap: 16px;
   align-items: start;
 }
-.organ-page-model { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.organ-page-model-inner { display: flex; flex-direction: column; gap: 10px; align-items: center; }
 .organ-page-card .organ-card {
   position: static;
   max-height: none;
+  overflow: visible;
+  overscroll-behavior: auto;
   border-radius: var(--radius);
   animation: none;
 }
@@ -1526,18 +1550,20 @@ html, body { overflow-x: clip; }
   .body-header h1 { font-size: 1.1rem; }
   .sex-toggle button { padding: 6px 10px; font-size: 0.8rem; }
 
-  /* النموذج: عرض مُقيّد (الارتفاع يأتي من نسبة الأبعاد) حتى يبقى الجسم كاملًا
+  /* لوحة الرسم: عرض مُقيّد (الارتفاع يأتي من نسبة الأبعاد) حتى يبقى الجسم كاملًا
      مع عناصر التحكم ظاهرة — width صريح لتفادي خلل توسيط Chromium مع aspect-ratio */
-  .body-model-wrap {
+  .model-canvas {
     width: min(100%, 25.8vh);
     width: min(100%, 25.8dvh);
-    max-width: none;
+    justify-self: center;
   }
-  .body-model-wrap.compact {
+  .body-model-wrap.compact .model-canvas {
     width: min(100%, 23vh);
     width: min(100%, 23dvh);
-    max-width: none;
   }
+  .label-col { width: 62px; }
+  .side-label { font-size: 0.58rem; padding: 2px 4px; gap: 4px; }
+  .side-num { flex-basis: 13px; width: 13px; height: 13px; font-size: 0.52rem; }
 
   /* شرائح الأجهزة: صف واحد قابل للتمرير */
   .system-chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 8px; }
@@ -1564,12 +1590,19 @@ html, body { overflow-x: clip; }
     grid-template-columns: 1fr 340px;
   }
   .organ-page-layout {
-    grid-template-columns: 400px 1fr;
+    grid-template-columns: 320px 1fr;
   }
+  /* العنصر يمتد لارتفاع الصف، والداخلي (النموذج) ثابت sticky —
+     فيبقى النموذج ظاهرًا أثناء التمرير على البطاقة */
   .organ-page-model {
+    align-self: stretch;
+  }
+  .organ-page-model-inner {
     position: sticky;
     top: 16px;
-    align-self: start;
+  }
+  .organ-page-model .body-model-wrap {
+    max-width: 280px;
   }
   .journey-layout, .tour-layout {
     grid-template-columns: 1fr 1fr;
@@ -1603,15 +1636,12 @@ html, body { overflow-x: clip; }
   transition-duration: 0.001s !important;
 }
 
-/* ===== التسميات الجانبية (على حافة الجسم) ===== */
+/* ===== التسميات الجانبية (أعمدة خارج لوحة الرسم) ===== */
 .side-label {
-  position: absolute;
-  z-index: 6;
   display: flex;
   align-items: center;
   gap: 5px;
-  left: 2px;
-  max-width: 84px;
+  width: 100%;
   padding: 2px 5px;
   background: color-mix(in srgb, var(--surface) 80%, transparent);
   border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
@@ -1624,8 +1654,6 @@ html, body { overflow-x: clip; }
   text-align: start;
 }
 .side-label.right {
-  left: auto;
-  right: 2px;
   flex-direction: row-reverse;
   text-align: end;
 }
