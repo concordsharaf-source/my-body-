@@ -417,14 +417,14 @@ const DIGESTIVE: ShapeDef[] = [
     id: 'dig-gallbladder',
     kind: 'p a t h',
     organId: 'gallbladder',
-    grad: 'g-digestive',
+    fillVar: '--gall',
     d: 'M 192,312 C 188,315 187,321 189,326 C 191,330 195,330 197,326 C 199,322 198,315 195,311 C 194,310 193,310 192,312 Z',
   }),
   S({
     id: 'dig-pancreas',
     kind: 'p a t h',
     organId: 'pancreas',
-    grad: 'g-digestive',
+    fillVar: '--pancreas',
     d: 'M 158,334 C 168,330 184,330 198,334 C 204,336 206,341 201,344 C 189,348 170,348 160,344 C 155,342 154,337 158,334 Z',
   }),
   S({
@@ -564,7 +564,7 @@ const URINARY: ShapeDef[] = [
     id: 'uri-bladder',
     kind: 'p a t h',
     organId: 'bladder',
-    grad: 'g-urinary',
+    fillVar: '--bladder',
     d: 'M 180,372 C 171,372 166,378 167,386 C 168,394 173,399 180,399 C 187,399 192,394 193,386 C 194,378 189,372 180,372 Z',
   }),
   S({
@@ -663,7 +663,7 @@ const REPRO_FEMALE: ShapeDef[] = [
     kind: 'p a t h',
     organId: 'uterus',
     sex: 'female',
-    grad: 'g-reproductive',
+    fillVar: '--uterus',
     d: 'M 180,362 C 171,362 166,369 167,378 C 168,387 173,393 180,393 C 187,393 192,387 193,378 C 194,369 189,362 180,362 Z',
   }),
   S({

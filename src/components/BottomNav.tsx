@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { t } from '../i18n/ar'
 
@@ -23,6 +23,14 @@ const MORE_ITEMS = [
 export default function BottomNav() {
   const [moreOpen, setMoreOpen] = useState(false)
   const navigate = useNavigate()
+
+  // قفل تمرير الصفحة خلف النافذة
+  useEffect(() => {
+    document.body.style.overflow = moreOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [moreOpen])
 
   return (
     <>

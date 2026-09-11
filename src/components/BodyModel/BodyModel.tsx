@@ -365,15 +365,14 @@ export default function BodyModel({
   const hoveredOrgan = effectiveHovered ? getOrgan(effectiveHovered) : undefined
 
   /* ---------- الرسم ---------- */
-  /* ---------- التسميات الجانبية: ملاصقة للحافة الخارجية للجسم ---------- */
+  /* ---------- التسميات الجانبية: ثابتة على حافة الجسم (لا تتأثر بالتكبير) ---------- */
   const sideLabels = useMemo(() => {
     if (!markers || markers.length === 0) return []
     const { w, h } = wrapSize
-    const k = transform.k
     const items = markers.map((m) => ({
       ...m,
-      bx: ((m.x * k + transform.x) / VIEW_W) * w,
-      by: ((m.y * k + transform.y) / VIEW_H) * h,
+      bx: (m.x / VIEW_W) * w,
+      by: (m.y / VIEW_H) * h,
     }))
     const LABEL_H = 26
     const LABEL_W = 84
@@ -385,11 +384,11 @@ export default function BodyModel({
         let top = it.by - LABEL_H / 2
         top = Math.max(top, cursor)
         top = Math.min(top, h - LABEL_H - 4)
-        // حافة الجسم عند ارتفاع هذه التسمية (viewBox)
+        // حافة الجسم عند ارتفاع هذه التسمية (viewBox — بالوضع الثابت k=1)
         const yVB = ((top + LABEL_H / 2) / h) * VIEW_H
         const yIdx = Math.min(195, Math.max(0, Math.round(yVB / 4)))
         const edgeX = contour ? (side === 'left' ? contour.left[yIdx] : contour.right[yIdx]) : side === 'left' ? BODY_EDGE.left : BODY_EDGE.right
-        const edgePx = (edgeX * k + transform.x) / VIEW_W * w
+        const edgePx = (edgeX / VIEW_W) * w
         const style: React.CSSProperties =
           side === 'left'
             ? edgePx - LABEL_W >= 2
@@ -403,7 +402,7 @@ export default function BodyModel({
       }
     }
     return out
-  }, [markers, transform, wrapSize, contour])
+  }, [markers, wrapSize, contour])
 
   const zoomAt = (clientX: number, clientY: number, targetK: number) => {
     const p = toView(clientX, clientY)

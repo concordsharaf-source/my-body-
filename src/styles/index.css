@@ -32,13 +32,17 @@
   --respiratory-a: #f2b7b0;
   --respiratory-b: #e0968f;
   --respiratory-c: #bf716c;
-  --digestive-a: #e58f7d;
-  --digestive-b: #e2848b;
-  --digestive-c: #c2685f;
+  --digestive-a: #e89a67;
+  --digestive-b: #ef8d96;
+  --digestive-c: #b85450;
   --circulatory-a: #e75f52;
   --circulatory-b: #d1413a;
   --circulatory-c: #a52a25;
-  --liver: #a34d3e;
+  --liver: #8a4634;
+  --pancreas: #d9a13e;
+  --gall: #5f9e54;
+  --bladder: #5bc0de;
+  --uterus: #b85c8e;
   --detail: rgba(90, 40, 30, 0.35);
   --urinary-a: #a78bfa;
   --urinary-b: #8b6cf0;
@@ -134,9 +138,9 @@
   --respiratory-a: #8fd0f5;
   --respiratory-b: #4fa8e0;
   --respiratory-c: #3388c4;
-  --digestive-a: #f2bc7a;
-  --digestive-b: #e09a48;
-  --digestive-c: #c58230;
+  --digestive-a: #f2a877;
+  --digestive-b: #f79ba4;
+  --digestive-c: #d46a64;
   --circulatory-a: #ef7a7a;
   --circulatory-b: #d95050;
   --circulatory-c: #bc3a3a;
@@ -146,6 +150,10 @@
   --reproductive-a: #6fd9cb;
   --reproductive-b: #3db3a5;
   --reproductive-c: #279488;
+  --pancreas: #e0ac55;
+  --gall: #74b26a;
+  --bladder: #79d2f0;
+  --uterus: #d079ab;
   --lymphatic-a: #8fe3aa;
   --lymphatic-b: #5cc785;
   --lymphatic-c: #41a968;
@@ -1605,6 +1613,11 @@ html, body { overflow-x: clip; }
   }
   .organ-page-layout {
     grid-template-columns: 400px 1fr;
+  }
+  .organ-page-model {
+    position: sticky;
+    top: 16px;
+    align-self: start;
   }
   .journey-layout, .tour-layout {
     grid-template-columns: 1fr 1fr;
