@@ -37,7 +37,7 @@ export const RESPIRATORY_ORGANS: Organ[] = [
     keywords: ['تجويف أنفي', 'أنف', 'nasal', 'cavity', 'شم', 'smell', 'هواء', 'رطوبة', 'غبار', 'sinus'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['res-nasal'], box: [162, 62, 36, 44], label: [180, 88] },
+    model: { shapeIds: ['sen-nose'], box: [167, 48, 28, 51], label: [181, 69] },
   },
   {
     id: 'pharynx',
@@ -73,7 +73,7 @@ export const RESPIRATORY_ORGANS: Organ[] = [
     keywords: ['بلعوم', 'بلع', 'pharynx', 'swallow', 'حلق', 'throat', 'اختناق', 'بلع', 'لسان'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['res-pharynx'], box: [158, 98, 44, 48], label: [180, 122] },
+    model: { shapeIds: ['res-larynx'], box: [165, 133, 30, 29], label: [180, 145] },
   },
   {
     id: 'larynx',
@@ -140,7 +140,7 @@ export const RESPIRATORY_ORGANS: Organ[] = [
     keywords: ['قصبة هوائية', 'قصبة', 'trachea', 'windpipe', 'هواء', 'سعال', 'cough', 'cartilage', 'أنبوب'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['res-trachea'], box: [166, 148, 28, 58], label: [180, 176] },
+    model: { shapeIds: ['res-alveoli'], box: [138, 191, 84, 37], label: [180, 207] },
   },
   {
     id: 'bronchi',
@@ -173,7 +173,7 @@ export const RESPIRATORY_ORGANS: Organ[] = [
     keywords: ['شعب هوائية', 'شعب', 'bronchi', 'bronchial', 'تفرعات', 'هواء', 'رئة', 'أغصان'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['res-bronchi-l'], box: [136, 196, 90, 44], label: [206, 220] },
+    model: { shapeIds: ['res-alveoli'], box: [138, 191, 84, 37], label: [180, 207] },
   },
   {
     id: 'lungs',
@@ -221,7 +221,7 @@ export const RESPIRATORY_ORGANS: Organ[] = [
     source: SRC,
     refs: ['Gray\'s Anatomy, Ch. 26', 'Netter Plate 330'],
     reviewedAt: REV,
-    model: { shapeIds: ['res-lung-l'], box: [120, 186, 116, 120], label: [222, 250] },
+    model: { shapeIds: ['res-lung-l', 'res-lung-r'], box: [120, 186, 116, 120], label: [222, 250] },
   },
   {
     id: 'alveoli',

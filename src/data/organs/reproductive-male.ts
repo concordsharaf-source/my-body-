@@ -41,7 +41,7 @@ export const REPRO_MALE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-m-testis-l'], box: [148, 466, 64, 38], label: [180, 486] },
+    model: { shapeIds: ['rep-m-prostate'], box: [166, 381, 28, 24], label: [180, 391] },
   },
   {
     id: 'epididymis',
@@ -108,7 +108,7 @@ export const REPRO_MALE_ORGANS: Organ[] = [
     keywords: ['قصلية', 'vas deferens', 'نطف', 'sperm', 'قذف', 'ejaculation', 'خصية', 'testis', 'قناة'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-m-vas-l'], box: [150, 452, 60, 44], label: [214, 462] },
+    model: { shapeIds: ['rep-m-prostate'], box: [166, 381, 28, 24], label: [180, 391] },
   },
   {
     id: 'prostate',
@@ -176,7 +176,7 @@ export const REPRO_MALE_ORGANS: Organ[] = [
     keywords: ['حويختان منويتان', 'seminal vesicles', 'منوي', 'semen', 'فركتوز', 'fructose', 'غدة', 'gland'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-m-vesicle-l'], box: [156, 442, 48, 22], label: [150, 452] },
+    model: { shapeIds: ['rep-m-vesicle-l'], box: [159, 367, 42, 24], label: [180, 377] },
   },
   {
     ar: 'العضو الذكري',
@@ -212,6 +212,6 @@ export const REPRO_MALE_ORGANS: Organ[] = [
     keywords: ['عضو ذكري', 'penis', 'ذكر', 'male', 'بول', 'urine', 'منوي', 'semen', 'انتصاب', 'erection'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-m-penis'], box: [168, 460, 24, 34], label: [180, 478] },
+    model: { shapeIds: ['rep-m-penis'], box: [168, 391, 24, 40], label: [180, 408] },
   },
 ]

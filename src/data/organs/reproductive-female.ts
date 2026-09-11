@@ -40,7 +40,7 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-f-ovary-l'], box: [136, 436, 88, 30], label: [148, 452] },
+    model: { shapeIds: ['rep-f-vagina'], box: [170, 393, 20, 27], label: [180, 404] },
   },
   {
     id: 'fallopiantubes',
@@ -113,7 +113,7 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-f-uterus'], box: [160, 420, 40, 48], label: [180, 444] },
+    model: { shapeIds: ['rep-f-vagina'], box: [170, 393, 20, 27], label: [180, 404] },
   },
   {
     id: 'cervix',
@@ -215,6 +215,6 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
     keywords: ['ثدي', 'breast', 'mamma', 'حليب', 'milk', 'رضاعة', 'breastfeeding', 'حلمة', 'nipple', 'أنثى', 'female'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-f-breast-l'], box: [126, 222, 108, 56], label: [152, 250] },
+    model: { shapeIds: ['rep-f-breast-l'], box: [129, 191, 102, 47], label: [180, 211] },
   },
 ]

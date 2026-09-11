@@ -50,7 +50,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     source: SRC,
     refs: ['Gray\'s Anatomy, Ch. 13', 'Netter Plate 299'],
     reviewedAt: REV,
-    model: { shapeIds: ['cir-heart'], box: [150, 210, 80, 86], label: [187, 252] },
+    model: { shapeIds: ['res-lung-l', 'res-lung-r'], box: [129, 165, 102, 141], label: [180, 224] },
   },
   {
     id: 'aorta',
@@ -84,7 +84,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     keywords: ['أبهر', 'أورط', 'sherrayan', 'aorta', 'aortic', 'أكبر شريان', 'ضغط', 'pressure'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['vas-aorta'], box: [150, 196, 60, 160], label: [166, 214] },
+    model: { shapeIds: ['uri-ureter-l'], box: [137, 332, 86, 59], label: [180, 357] },
   },
   {
     id: 'arteries',
@@ -117,7 +117,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     keywords: ['شرايين', 'شريان', 'artery', 'arteries', 'دم أحمر', 'pressure', 'ضغط', 'نبض'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['vas-arm-l', 'vas-leg-l'], box: [60, 170, 240, 540], label: [90, 300] },
+    model: { shapeIds: ['lym-vessel-l'], box: [104, 172, 152, 206], label: [180, 259] },
   },
   {
     id: 'veins',
@@ -150,7 +150,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     keywords: ['وريدات', 'وريد', 'vein', 'veins', 'عود دم', 'valve', 'صمات', 'دم أزرق'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['vas-arm-l', 'vas-leg-l'], box: [60, 170, 240, 540], label: [100, 380] },
+    model: { shapeIds: ['vas-arm-l', 'vas-leg-l'], box: [98, 116, 164, 620], label: [180, 376] },
   },
   {
     id: 'capillaries',
@@ -184,7 +184,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     keywords: ['شعيرات', 'شعيرات دموية', 'capillary', 'capillaries', 'تبادل', 'أكسجين', 'خلايا', 'خلايا دم'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['vas-cap-hand-l'], box: [76, 440, 110, 60], label: [96, 466] },
+    model: { shapeIds: ['lym-vessel-l'], box: [104, 172, 152, 206], label: [180, 259] },
   },
   {
     id: 'blood',
@@ -228,7 +228,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['vas-arm-l'], box: [64, 240, 60, 220], label: [86, 340] },
+    model: { shapeIds: ['lym-thymus'], box: [163, 183, 34, 23], label: [180, 193] },
   },
   {
     id: 'pulmonaryartery',
@@ -258,7 +258,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     keywords: ['شريان رئوي', 'pulmonary', 'artery', 'lungs', 'رئة', 'أكسجين', 'قلب'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['vas-pulm-l'], box: [130, 200, 100, 50], label: [160, 216] },
+    model: { shapeIds: ['vas-pulm-l'], box: [129, 216, 102, 32], label: [180, 229] },
   },
   {
     id: 'venacava',

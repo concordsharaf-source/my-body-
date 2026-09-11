@@ -124,7 +124,7 @@ export const SENSORY_ORGANS: Organ[] = [
     keywords: ['طبلة', 'eardrum', 'tympanic', 'أذن', 'ear', 'سماع', 'hearing', 'اهتزاز', 'vibration', 'غشاء', 'membrane'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-ear-l'], box: [120, 62, 120, 40], label: [132, 78] },
+    model: { shapeIds: ['sen-ear-l'], box: [124, 54, 112, 38], label: [180, 70] },
   },
   {
     id: 'ossicles',

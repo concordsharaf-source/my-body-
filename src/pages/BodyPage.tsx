@@ -76,11 +76,13 @@ export default function BodyPage() {
       for (const id of TISSUE_LAYERS) base[id] = false
       base.vessels = false
       base.nervous = false
+      base.sensory = false
       for (const id of INTERNAL_LAYERS) base[id] = true
     } else if (step.id === 'systems') {
       for (const id of TISSUE_LAYERS) base[id] = false
       base.vessels = true
       base.nervous = true
+      base.sensory = false
       for (const id of INTERNAL_LAYERS) base[id] = true
     } else if (step.layer) {
       base[step.layer] = true

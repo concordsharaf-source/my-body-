@@ -38,7 +38,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     keywords: ['فم', 'mouth', 'oral', 'مضغ', 'chewing', 'لعاب', 'saliva', 'تذوق', 'taste', 'شفتان'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-mouth'], box: [156, 92, 48, 26], label: [180, 106] },
+    model: { shapeIds: ['dig-salivary-l'], box: [138, 80, 84, 26], label: [180, 91] },
   },
   {
     id: 'teeth',
@@ -179,7 +179,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     keywords: ['مريء', 'oesophagus', 'esophagus', 'أنبوب', 'بلع', 'swallow', 'حرقة', 'heartburn', 'ارتجاع', 'reflux', 'food'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-esophagus'], box: [158, 148, 26, 156], label: [168, 220] },
+    model: { shapeIds: ['dig-largeintestine'], box: [145, 340, 70, 68], label: [180, 369] },
   },
   {
     id: 'stomach',
@@ -221,7 +221,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     source: SRC,
     refs: ['Gray\'s Anatomy, Ch. 36'],
     reviewedAt: REV,
-    model: { shapeIds: ['dig-stomach'], box: [168, 290, 62, 66], label: [210, 320] },
+    model: { shapeIds: ['dig-rectum'], box: [172, 392, 18, 29], label: [181, 404] },
   },
   {
     id: 'liver',
@@ -268,7 +268,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     source: SRC,
     refs: ['Gray\'s Anatomy, Ch. 39'],
     reviewedAt: REV,
-    model: { shapeIds: ['dig-liver'], box: [118, 290, 70, 62], label: [152, 318] },
+    model: { shapeIds: ['dig-gallbladder'], box: [179, 302, 28, 36], label: [193, 317] },
   },
   {
     id: 'gallbladder',
@@ -347,7 +347,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-pancreas'], box: [142, 348, 80, 28], label: [150, 362] },
+    model: { shapeIds: ['lym-spleen'], box: [204, 296, 28, 42], label: [218, 314] },
   },
   {
     id: 'smallintestine',
@@ -386,7 +386,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-smallintestine'], box: [132, 366, 96, 74], label: [180, 404] },
+    model: { shapeIds: ['uri-bladder'], box: [158, 364, 44, 43], label: [180, 382] },
   },
   {
     id: 'largeintestine',
@@ -425,7 +425,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-largeintestine'], box: [126, 358, 108, 88], label: [224, 380] },
+    model: { shapeIds: ['uri-bladder'], box: [158, 364, 44, 43], label: [180, 382] },
   },
   {
     id: 'appendix',
@@ -458,7 +458,7 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     keywords: ['زائدة دودية', 'زائدة', 'appendix', 'appendicitis', 'التهاب', 'inflammation', 'بطن', 'abdomen', 'جراحة'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-appendix'], box: [136, 430, 32, 30], label: [150, 446] },
+    model: { shapeIds: ['lym-thymus'], box: [163, 183, 34, 23], label: [180, 193] },
   },
   {
     id: 'rectum',
@@ -490,6 +490,6 @@ export const DIGESTIVE_ORGANS: Organ[] = [
     keywords: ['مستقيم', 'rectum', 'إخراج', 'defecation', 'براز', 'stool', 'خراج', 'sphincter', 'قاصرة'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['dig-rectum'], box: [168, 436, 24, 40], label: [180, 456] },
+    model: { shapeIds: ['uri-bladder'], box: [158, 364, 44, 43], label: [180, 382] },
   },
 ]

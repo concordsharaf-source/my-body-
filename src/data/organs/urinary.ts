@@ -48,7 +48,7 @@ export const URINARY_ORGANS: Organ[] = [
     source: SRC,
     refs: ['Gray\'s Anatomy, Ch. 44'],
     reviewedAt: REV,
-    model: { shapeIds: ['uri-kidney-l'], box: [126, 336, 108, 64], label: [148, 368] },
+    model: { shapeIds: ['uri-ureter-l'], box: [137, 332, 86, 59], label: [180, 357] },
   },
   {
     id: 'ureters',

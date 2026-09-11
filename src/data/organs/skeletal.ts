@@ -38,7 +38,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     keywords: ['جمجمة', 'skull', 'cranium', 'رأس', 'head', 'face', 'وجه', 'فك', 'jaw', 'حماية', 'دماغ', 'brain'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-skull'], box: [128, 24, 104, 112], label: [180, 40] },
+    model: { shapeIds: ['bone-skull'], box: [140, 24, 80, 96], label: [180, 64] },
   },
   {
     id: 'spine',
@@ -329,7 +329,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     keywords: ['مفاصل', 'مفصل', 'joints', 'joint', 'مفصلية', 'synovial', 'حركة', 'motion', 'كتف', 'ركبة', 'knee', 'elbow'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-ribs', 'bone-pelvis', 'bone-femur-l'], box: [120, 420, 120, 140], label: [220, 470] },
+    model: { shapeIds: ['bone-ribs', 'bone-sternum'], box: [126, 138, 68, 124], label: [160, 190] },
   },
   {
     id: 'ligaments',

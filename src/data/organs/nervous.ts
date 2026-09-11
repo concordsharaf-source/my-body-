@@ -49,7 +49,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     source: SRC,
     refs: ["Gray's Anatomy 41st ed., Ch. 1", 'Netter Plate 299'],
     reviewedAt: REV,
-    model: { shapeIds: ['ner-brain'], box: [132, 30, 96, 84], label: [180, 58] },
+    model: { shapeIds: ['sen-ear-l'], box: [124, 54, 112, 38], label: [180, 70] },
   },
   {
     id: 'cerebellum',
@@ -182,7 +182,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     keywords: ['عصب بصري', 'رؤية', 'vision', 'optic', 'retina', 'retinal', 'عين', 'شعاع'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-optic-l'], box: [140, 56, 80, 36], label: [180, 62] },
+    model: { shapeIds: ['ner-optic-l'], box: [157, 58, 46, 31], label: [180, 71] },
   },
   {
     id: 'acousticnerve',
@@ -211,7 +211,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     keywords: ['عصب سمعي', 'سمع', 'hearing', 'vestibular', 'cochlear', 'توازن', 'أذن'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-acoustic-l'], box: [124, 58, 112, 40], label: [224, 70] },
+    model: { shapeIds: ['sen-ear-l'], box: [124, 54, 112, 38], label: [180, 70] },
   },
   {
     id: 'peripheralnerves',
@@ -245,7 +245,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     keywords: ['أعصاب', 'عصب', 'لمس', 'touch', 'nerve', 'sciatic', 'pain', 'ألم', 'حس', 'حركة'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-brachial-l', 'ner-sciatic-l'], box: [70, 150, 220, 500], label: [108, 240] },
+    model: { shapeIds: ['fig-head', 'fig-neck', 'fig-torso-m', 'fig-torso-f', 'fig-arm-l', 'fig-hand-l', 'fig-leg-l', 'fig-foot-l'], box: [75, 0, 210, 780], label: [180, 328] },
   },
   {
     id: 'cns',
@@ -278,7 +278,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     keywords: ['جهاز عصبي مركزي', 'CNS', 'brain', 'spinal', 'مركز', 'تحكم', 'glia', 'glial'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-brain', 'ner-cerebellum', 'ner-brainstem', 'ner-spinal'], box: [128, 28, 104, 410], label: [180, 80] },
+    model: { shapeIds: ['ner-brain', 'ner-cerebellum', 'ner-brainstem', 'ner-spinal'], box: [143, 9, 74, 300], label: [180, 135] },
   },
   {
     id: 'pns',
@@ -313,6 +313,6 @@ export const NERVOUS_ORGANS: Organ[] = [
     keywords: ['جهاز عصبي طرفي', 'PNS', 'autonomic', 'sympathetic', 'parasympathetic', 'vagus', 'لا إرادي'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-brachial-l', 'ner-sciatic-l'], box: [70, 150, 220, 500], label: [112, 260] },
+    model: { shapeIds: ['ner-brachial-l', 'ner-sciatic-l'], box: [128, 117, 104, 300], label: [180, 243] },
   },
 ]

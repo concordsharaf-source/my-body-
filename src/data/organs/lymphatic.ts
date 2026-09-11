@@ -40,7 +40,7 @@ export const LYMPHATIC_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-node-neck-l', 'lym-node-armpit-l', 'lym-node-groin-l'], box: [100, 140, 160, 360], label: [226, 156] },
+    model: { shapeIds: ['lym-thymus'], box: [163, 183, 34, 23], label: [180, 193] },
   },
   {
     id: 'lymphvessels',
@@ -184,7 +184,7 @@ export const LYMPHATIC_ORGANS: Organ[] = [
     keywords: ['لوزتان', 'لوزة', 'tonsils', 'tonsil', 'adenoid', 'حلق', 'throat', 'التهاب', 'inflammation', 'حمى', 'fever', 'مناعة'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-tonsil-l'], box: [148, 118, 64, 24], label: [180, 130] },
+    model: { shapeIds: ['lym-tonsil-l'], box: [151, 109, 59, 25], label: [181, 120] },
   },
   {
     id: 'leukocytes',

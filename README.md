@@ -34,6 +34,12 @@ npm run preview  # معاينة النسخة المبنية
 node scripts/make-icons.mjs
 ```
 
+إعادة حساب مربّعات تقريب/تسمية الأعضاء من هندسة الأشكال (بعد تعديل `shapes.ts`):
+
+```bash
+node scripts/rebox.mjs
+```
+
 اختبار الدخان (يتطلب `playwright`):
 
 ```bash

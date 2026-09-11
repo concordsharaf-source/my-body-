@@ -38,7 +38,7 @@ export const ENDOCRINE_ORGANS: Organ[] = [
     keywords: ['نخامية', 'pituitary', 'hypophysis', 'أم غدد', 'master gland', 'هرمون', 'hormone', 'نمو', 'growth', 'دماغ', 'brain'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['end-pituitary'], box: [164, 52, 32, 26], label: [180, 66] },
+    model: { shapeIds: ['end-adrenal-l'], box: [128, 289, 104, 24], label: [180, 299] },
   },
   {
     id: 'thyroid',
@@ -110,7 +110,7 @@ export const ENDOCRINE_ORGANS: Organ[] = [
     keywords: ['جارات درقية', 'parathyroid', 'كالسيوم', 'calcium', 'عظام', 'bones', 'PTH', 'فوسفات', 'phosphate'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['end-parathyroid'], box: [156, 130, 48, 32], label: [214, 148] },
+    model: { shapeIds: ['end-parathyroid'], box: [162, 126, 36, 23], label: [180, 136] },
   },
   {
     id: 'adrenals',

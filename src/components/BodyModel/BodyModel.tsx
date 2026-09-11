@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import type { LayerId, Sex, SystemId } from '../../data/types'
 import { getOrgan, organsOfSystem } from '../../data'
 import { LAYER_SHAPES } from './shapes'
@@ -33,24 +33,45 @@ const VIEW_W = 360
 const VIEW_H = 780
 
 /**
- * ترتيب الرسم (الخلفية → المقدمة): الجلد في الخلفية ليكون الأعضاء
- * مرئية وقابلة للنقر فوقه، والأعضاء الحسية (وجه) في المقدمة.
+ * ترتيب الرسم (الخلفية → المقدمة):
+ * الجلد في الخلفية ليكون الأعضاء مرئية وقابلة للنقر فوقه،
+ * القلب أمام الرئتين، الأوعية أمام الأوردة، والأعضاء الحسية (وجه) في المقدمة.
  */
 const RENDER_ORDER: LayerId[] = [
   'skin',
   'bones',
-  'circulatory',
   'respiratory',
   'digestive',
+  'circulatory',
   'urinary',
   'reproductive',
   'lymphatic',
   'endocrine',
-  'vessels',
   'nervous',
+  'vessels',
   'muscles',
   'soft',
   'sensory',
+]
+
+/** التدرجات اللونية (المواقف تستخدم متغيرات CSS فتتكيّف مع الثيم). */
+const GRADIENTS: { id: string; a: string; c: string }[] = [
+  { id: 'g-skin', a: '--skin-a', c: '--skin-c' },
+  { id: 'g-soft', a: '--soft-a', c: '--soft-c' },
+  { id: 'g-bones', a: '--bones-a', c: '--bones-c' },
+  { id: 'g-respiratory', a: '--respiratory-a', c: '--respiratory-c' },
+  { id: 'g-digestive', a: '--digestive-a', c: '--digestive-c' },
+  { id: 'g-circulatory', a: '--circulatory-a', c: '--circulatory-c' },
+  { id: 'g-urinary', a: '--urinary-a', c: '--urinary-c' },
+  { id: 'g-reproductive', a: '--reproductive-a', c: '--reproductive-c' },
+  { id: 'g-lymphatic', a: '--lymphatic-a', c: '--lymphatic-c' },
+  { id: 'g-endocrine', a: '--endocrine-a', c: '--endocrine-c' },
+  { id: 'g-nervous', a: '--nervous-a', c: '--nervous-c' },
+  { id: 'g-muscles', a: '--muscles-a', c: '--muscles-c' },
+  { id: 'g-sensory', a: '--sensory-a', c: '--sensory-c' },
+  { id: 'g-breast', a: '--breast-a', c: '--breast-c' },
+  { id: 'g-art', a: '--vessel-art-a', c: '--vessel-art-c' },
+  { id: 'g-ven', a: '--vessel-ven-a', c: '--vessel-ven-c' },
 ]
 
 /** ترتيب الطبقات "من السطح إلى الداخل" لحساب تعتيم التقشير. */
@@ -88,6 +109,7 @@ export default function BodyModel({
   ariaLabel = 'النموذج التشريحي لجسم الإنسان',
 }: Props) {
   const svgRef = useRef<SVGSVGElement>(null)
+  const gradPrefix = 'gm' + useId().replace(/[^a-zA-Z0-9]/g, '')
   const [transform, setTransform] = useState({ x: 0, y: 0, k: 1 })
   const [smooth, setSmooth] = useState(true)
   const [hovered, setHovered] = useState<string | null>(null)
@@ -303,6 +325,14 @@ export default function BodyModel({
         onDoubleClick={reset}
         style={{ touchAction: 'none' }}
       >
+        <defs>
+          {GRADIENTS.map((g) => (
+            <linearGradient key={g.id} id={`${gradPrefix}${g.id}`} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" style={{ stopColor: `var(${g.a})` }} />
+              <stop offset="1" style={{ stopColor: `var(${g.c})` }} />
+            </linearGradient>
+          ))}
+        </defs>
         <g
           className="body-root"
           style={{
@@ -317,7 +347,7 @@ export default function BodyModel({
             return (
               <g key={layerId} className={`layer layer-${layerId}`} opacity={op} style={{ transition: reduceMotion ? 'none' : 'opacity 0.35s' }}>
                 {rendered[layerId].map(({ def, mirrored }) => {
-                  const op2 = shapeOpacity(def)
+                  const op2 = shapeOpacity(def) * (def.op ?? 1)
                   const isSel = selected && def.organId === selected.id
                   const cls = [
                     'shape',
@@ -331,7 +361,7 @@ export default function BodyModel({
                     .join(' ')
                   return (
                     <g key={`${def.id}${mirrored ? '-m' : ''}`} transform={mirrored ? 'matrix(-1,0,0,1,360,0)' : undefined}>
-                      <ShapeEl def={def} cls={cls} opacity={op2} interactive={interactive} onSelect={onSelectOrgan} onHover={setHovered} />
+                      <ShapeEl def={def} cls={cls} opacity={op2} interactive={interactive} onSelect={onSelectOrgan} onHover={setHovered} gradPrefix={gradPrefix} />
                     </g>
                   )
                 })}
@@ -418,6 +448,7 @@ function ShapeEl({
   interactive,
   onSelect,
   onHover,
+  gradPrefix,
 }: {
   def: ShapeDef
   cls: string
@@ -425,6 +456,7 @@ function ShapeEl({
   interactive: boolean
   onSelect?: (id: string) => void
   onHover: (id: string | null) => void
+  gradPrefix: string
 }) {
   const common = {
     className: cls,
@@ -434,10 +466,29 @@ function ShapeEl({
     onPointerEnter: def.organId && interactive ? () => onHover(def.organId!) : undefined,
     onPointerLeave: def.organId && interactive ? () => onHover(null) : undefined,
   }
+  const grad = (g: string) => `url(#${gradPrefix}${g})`
+  const fill = def.strokeOnly
+    ? 'none'
+    : def.grad
+      ? grad(def.grad)
+      : def.fillVar
+        ? `var(${def.fillVar})`
+        : 'currentColor'
+  const stroke = def.strokeOnly
+    ? def.tone === 'art'
+      ? 'var(--vessel-art-b)'
+      : def.tone === 'ven'
+        ? 'var(--vessel-ven-b)'
+        : def.fillVar
+          ? `var(${def.fillVar})`
+          : 'currentColor'
+    : def.grad
+      ? 'rgba(30, 20, 10, 0.16)'
+      : 'var(--shape-stroke)'
   const paint = {
-    fill: def.strokeOnly ? 'none' : 'currentColor',
-    stroke: def.strokeOnly ? 'currentColor' : 'var(--shape-stroke)',
-    strokeWidth: def.sw ?? (def.strokeOnly ? 3 : 1.2),
+    fill,
+    stroke,
+    strokeWidth: def.sw ?? (def.strokeOnly ? 3 : 1.1),
     strokeLinecap: 'round' as const,
     strokeLinejoin: 'round' as const,
     strokeDasharray: def.dash,

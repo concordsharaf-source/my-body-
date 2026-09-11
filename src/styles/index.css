@@ -16,17 +16,70 @@
   --primary-soft: #ccfbf1;
   --accent: #e11d48;
 
-  --skin: #e8b98f;
-  --skin-stroke: #c99268;
-  --shape-stroke: rgba(0, 0, 0, 0.25);
   --label: #1e293b;
+  --shape-stroke: rgba(30, 20, 10, 0.16);
 
-  --bone: #e7e5e4;
-  --bone-stroke: #a8a29e;
-  --muscle: #e07856;
-  --muscle-stroke: #b45309;
-  --soft-tissue: #f2d3b3;
+  /* تدرجات النموذج (فاتح ← داكن) */
+  --skin-a: #f0cda9;
+  --skin-b: #e5bc93;
+  --skin-c: #d3a67a;
+  --soft-a: #efd3b4;
+  --soft-b: #e3bf97;
+  --soft-c: #d2a87e;
+  --bones-a: #e7dfcc;
+  --bones-b: #d2c5aa;
+  --bones-c: #b8a884;
+  --respiratory-a: #7cc4ee;
+  --respiratory-b: #3f9bd8;
+  --respiratory-c: #2a7ab8;
+  --digestive-a: #f0b26b;
+  --digestive-b: #dd9440;
+  --digestive-c: #c07c2a;
+  --circulatory-a: #e46a6a;
+  --circulatory-b: #d04444;
+  --circulatory-c: #b22f2f;
+  --urinary-a: #a78bfa;
+  --urinary-b: #8b6cf0;
+  --urinary-c: #7050d8;
+  --reproductive-a: #5ecdc0;
+  --reproductive-b: #2fa89a;
+  --reproductive-c: #1e877d;
+  --lymphatic-a: #7ed99a;
+  --lymphatic-b: #4cb877;
+  --lymphatic-c: #369a5d;
+  --endocrine-a: #ebc95e;
+  --endocrine-b: #d4a838;
+  --endocrine-c: #b68a22;
+  --nervous-a: #e58bc0;
+  --nervous-b: #d260a8;
+  --nervous-c: #b44590;
+  --muscles-a: #d98a63;
+  --muscles-b: #c26e45;
+  --muscles-c: #a5562f;
+  --sensory-a: #8f9bd4;
+  --sensory-b: #6d7ac4;
+  --sensory-c: #5563ae;
+  --breast-a: #edb8ac;
+  --breast-b: #e5a194;
+  --breast-c: #d18a7c;
+  --vessel-art-a: #e05c5c;
+  --vessel-art-b: #c74040;
+  --vessel-art-c: #a82e2e;
+  --vessel-ven-a: #6b9be8;
+  --vessel-ven-b: #4a7dd6;
+  --vessel-ven-c: #3662b5;
 
+  /* تفاصيل الوجه */
+  --eye: #5a6b7d;
+  --ear-line: #c89b72;
+  --nose-line: #c89b72;
+  --mouth: #d98a86;
+  --mouth-line: #b9825e;
+  --chest-line: #d9a97e;
+  --tooth: #fdfbf5;
+  --tongue: #e58a96;
+
+  /* ألوان chips/نصوص الأنظمة (ثابتة) */
   --nervous: #db2777;
   --circulatory: #dc2626;
   --respiratory: #0284c7;
@@ -36,8 +89,6 @@
   --lymphatic: #16a34a;
   --endocrine: #ca8a04;
   --sensory: #4f46e5;
-  --vessel-art: #dc2626;
-  --vessel-ven: #2563eb;
 
   --success: #16a34a;
   --warn: #d97706;
@@ -65,16 +116,66 @@
   --primary-soft: #134e4a;
   --accent: #fb7185;
 
-  --skin: #b98a63;
-  --skin-stroke: #8a5f42;
-  --shape-stroke: rgba(255, 255, 255, 0.25);
   --label: #e2e8f0;
+  --shape-stroke: rgba(255, 255, 255, 0.14);
 
-  --bone: #d6d3d1;
-  --bone-stroke: #78716c;
-  --muscle: #c2603f;
-  --muscle-stroke: #9a3412;
-  --soft-tissue: #a97c58;
+  --skin-a: #b99270;
+  --skin-b: #a67d5a;
+  --skin-c: #8f6845;
+  --soft-a: #c49b77;
+  --soft-b: #b08a64;
+  --soft-c: #9a7550;
+  --bones-a: #e8e4dc;
+  --bones-b: #d6cfc0;
+  --bones-c: #bdb4a2;
+  --respiratory-a: #8fd0f5;
+  --respiratory-b: #4fa8e0;
+  --respiratory-c: #3388c4;
+  --digestive-a: #f2bc7a;
+  --digestive-b: #e09a48;
+  --digestive-c: #c58230;
+  --circulatory-a: #ef7a7a;
+  --circulatory-b: #d95050;
+  --circulatory-c: #bc3a3a;
+  --urinary-a: #b79dff;
+  --urinary-b: #9a7bf5;
+  --urinary-c: #7f5fe0;
+  --reproductive-a: #6fd9cb;
+  --reproductive-b: #3db3a5;
+  --reproductive-c: #279488;
+  --lymphatic-a: #8fe3aa;
+  --lymphatic-b: #5cc785;
+  --lymphatic-c: #41a968;
+  --endocrine-a: #f0d06e;
+  --endocrine-b: #ddb445;
+  --endocrine-c: #be9830;
+  --nervous-a: #f09ed2;
+  --nervous-b: #de70b5;
+  --nervous-c: #c2559d;
+  --muscles-a: #e0946c;
+  --muscles-b: #c87448;
+  --muscles-c: #aa5b32;
+  --sensory-a: #9aa5e0;
+  --sensory-b: #7b87d2;
+  --sensory-c: #6270bc;
+  --breast-a: #c98d80;
+  --breast-b: #b57869;
+  --breast-c: #a0655a;
+  --vessel-art-a: #f07070;
+  --vessel-art-b: #d85050;
+  --vessel-art-c: #b83838;
+  --vessel-ven-a: #7fabf0;
+  --vessel-ven-b: #5d8ce2;
+  --vessel-ven-c: #4670c6;
+
+  --eye: #9fb0c3;
+  --ear-line: #c9a17c;
+  --nose-line: #c9a17c;
+  --mouth: #d89a94;
+  --mouth-line: #c08a64;
+  --chest-line: #9a7550;
+  --tooth: #e8e2d4;
+  --tongue: #d07080;
 
   --nervous: #f472b6;
   --circulatory: #f87171;
@@ -85,8 +186,6 @@
   --lymphatic: #4ade80;
   --endocrine: #facc15;
   --sensory: #818cf8;
-  --vessel-art: #f87171;
-  --vessel-ven: #60a5fa;
 
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.5), 0 16px 48px rgba(0, 0, 0, 0.4);
@@ -392,11 +491,8 @@ input { font-family: inherit; }
 .layer-endocrine { color: var(--endocrine); }
 .layer-sensory { color: var(--sensory); }
 
-/* الأوعية: شرايين حمراء / أوردة زرقاء — نحدد عبر organId */
-.shape[stroke-linecap] {}
-.layer-vessels { color: var(--vessel-art); }
-/* الأشكال الوريدية في طبقة الأوعية */
-.layer-vessels .organ-shape:nth-child(odd) { color: var(--vessel-ven); }
+/* الأوعية: تلوينها عبر tone (شرياني/وريدي) داخل ShapeEl */
+.layer-vessels { color: var(--vessel-art-b); }
 
 .organ-shape {
   cursor: pointer;
@@ -418,7 +514,7 @@ input { font-family: inherit; }
 }
 .heart-pulse {
   animation: heart-pulse 1.1s ease-in-out infinite;
-  transform-origin: 180px 254px;
+  transform-origin: 183px 266px;
 }
 @media (prefers-reduced-motion: reduce) {
   .heart-pulse { animation: none; }
