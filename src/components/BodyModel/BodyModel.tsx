@@ -127,6 +127,41 @@ export default function BodyModel({
   const gradPrefix = 'gm' + useId().replace(/[^a-zA-Z0-9]/g, '')
   const [transform, setTransform] = useState({ x: 0, y: 0, k: 1 })
   const [wrapSize, setWrapSize] = useState({ w: 360, h: 780 })
+  /** خطا حافة الجسم (يسار/يمين) لكل ارتفاع — لتثبيت التسميات على الحافة الخارجية. */
+  const [contour, setContour] = useState<{ left: number[]; right: number[] } | null>(null)
+
+  useEffect(() => {
+    const svg = svgRef.current
+    if (!svg) return
+    const left: number[] = []
+    const right: number[] = []
+    const N = 160
+    for (const p of svg.querySelectorAll<SVGPathElement>('.layer-skin path')) {
+      const len = p.getTotalLength()
+      const mirrored = p.closest('g[transform]')?.getAttribute('transform')?.startsWith('matrix(-1')
+      for (let i = 0; i <= N; i++) {
+        const pt = p.getPointAtLength((i / N) * len)
+        const y = Math.min(194, Math.max(0, Math.round(pt.y / 4)))
+        const x = mirrored ? 360 - pt.x : pt.x
+        if (left[y] === undefined || x < left[y]) left[y] = x
+        if (right[y] === undefined || x > right[y]) right[y] = x
+      }
+    }
+    // تعبئة الفجوات بقيمة أقرب ارتفاع
+    for (let y = 0; y <= 195; y++) {
+      if (left[y] === undefined) {
+        let d = 1
+        while (left[y] === undefined && y - d >= 0) d++
+        left[y] = left[y - d]
+      }
+      if (right[y] === undefined) {
+        let d = 1
+        while (right[y] === undefined && y + d <= 195) d++
+        right[y] = right[y + d]
+      }
+    }
+    if (left.length > 0) setContour({ left, right })
+  }, [sex])
 
   useEffect(() => {
     const el = wrapRef.current
@@ -330,7 +365,7 @@ export default function BodyModel({
   const hoveredOrgan = effectiveHovered ? getOrgan(effectiveHovered) : undefined
 
   /* ---------- الرسم ---------- */
-  /* ---------- التسميات الجانبية (رقم + اسم + خط رفيع) ---------- */
+  /* ---------- التسميات الجانبية: ملاصقة للحافة الخارجية للجسم ---------- */
   const sideLabels = useMemo(() => {
     if (!markers || markers.length === 0) return []
     const { w, h } = wrapSize
@@ -340,21 +375,35 @@ export default function BodyModel({
       bx: ((m.x * k + transform.x) / VIEW_W) * w,
       by: ((m.y * k + transform.y) / VIEW_H) * h,
     }))
-    const LABEL_H = 30
-    const out: { id: string; num: number; name: string; color: string; side: 'left' | 'right'; top: number; bx: number; by: number }[] = []
+    const LABEL_H = 26
+    const LABEL_W = 84
+    const out: { id: string; num: number; name: string; color: string; side: 'left' | 'right'; top: number; style: React.CSSProperties }[] = []
     for (const side of ['left', 'right'] as const) {
       const list = items.filter((it) => (side === 'left' ? it.bx < w / 2 : it.bx >= w / 2)).sort((a, b) => a.by - b.by)
-      let cursor = 6
+      let cursor = 4
       for (const it of list) {
         let top = it.by - LABEL_H / 2
         top = Math.max(top, cursor)
-        top = Math.min(top, h - LABEL_H - 6)
-        out.push({ id: it.id, num: it.num, name: nameOf(it.id), color: it.color, side, top, bx: it.bx, by: it.by })
+        top = Math.min(top, h - LABEL_H - 4)
+        // حافة الجسم عند ارتفاع هذه التسمية (viewBox)
+        const yVB = ((top + LABEL_H / 2) / h) * VIEW_H
+        const yIdx = Math.min(195, Math.max(0, Math.round(yVB / 4)))
+        const edgeX = contour ? (side === 'left' ? contour.left[yIdx] : contour.right[yIdx]) : side === 'left' ? BODY_EDGE.left : BODY_EDGE.right
+        const edgePx = (edgeX * k + transform.x) / VIEW_W * w
+        const style: React.CSSProperties =
+          side === 'left'
+            ? edgePx - LABEL_W >= 2
+              ? { right: w - edgePx + 3 }
+              : { left: 2 }
+            : edgePx + LABEL_W + 3 <= w - 2
+              ? { left: edgePx + 3 }
+              : { right: 2 }
+        out.push({ id: it.id, num: it.num, name: nameOf(it.id), color: it.color, side, top, style })
         cursor = top + LABEL_H + 3
       }
     }
     return out
-  }, [markers, transform, wrapSize])
+  }, [markers, transform, wrapSize, contour])
 
   const zoomAt = (clientX: number, clientY: number, targetK: number) => {
     const p = toView(clientX, clientY)
@@ -444,8 +493,8 @@ export default function BodyModel({
                   onPointerLeave={interactive ? () => { setHovered(null); onHoverOrgan?.(null) } : undefined}
                   style={{ cursor: interactive ? 'pointer' : undefined }}
                 >
-                  <circle cx={m.x} cy={m.y} r={8} className="num-badge-c" style={{ stroke: m.color }} />
-                  <text x={m.x} y={m.y + 3.2} textAnchor="middle" className="num-badge-t">
+                  <circle cx={m.x} cy={m.y} r={5.5} className="num-badge-c" style={{ stroke: m.color }} />
+                  <text x={m.x} y={m.y + 2.4} textAnchor="middle" className="num-badge-t">
                     {m.num}
                   </text>
                 </g>
@@ -455,28 +504,15 @@ export default function BodyModel({
         </g>
       </svg>
 
-      {/* الخطوط الرفيعة + التسميات الجانبية */}
+      {/* التسميات الجانبية الملاصقة لحافة الجسم */}
       {sideLabels.length > 0 && (
         <>
-          <svg className="leader-svg" viewBox={`0 0 ${wrapSize.w} ${wrapSize.h}`} aria-hidden>
-            {sideLabels.map((l) => (
-              <line
-                key={l.id}
-                x1={l.side === 'left' ? 92 : wrapSize.w - 92}
-                y1={l.top + 15}
-                x2={l.bx}
-                y2={l.by}
-                className="leader-line"
-                stroke={l.color}
-              />
-            ))}
-          </svg>
           {sideLabels.map((l) => (
             <button
               key={l.id}
               type="button"
               className={`side-label ${l.side} ${hovered === l.id || hoveredOrganId === l.id ? 'on' : ''}`}
-              style={{ top: l.top }}
+              style={{ top: l.top, ...l.style }}
               onMouseEnter={() => { setHovered(l.id); onHoverOrgan?.(l.id) }}
               onMouseLeave={() => { setHovered(null); onHoverOrgan?.(null) }}
               onFocus={() => { setHovered(l.id); onHoverOrgan?.(l.id) }}
@@ -535,6 +571,9 @@ export default function BodyModel({
     </div>
   )
 }
+
+/** حافتا سيليوت الجسم (إحداثيات العرض) — تُثبَّت عندهما التسميات. */
+const BODY_EDGE = { left: 95, right: 265 }
 
 function nameOf(id: string): string {
   return getOrgan(id)?.ar ?? id
