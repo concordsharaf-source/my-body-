@@ -2,20 +2,15 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import BodyModel, { defaultMarkers } from '../components/BodyModel/BodyModel'
 import type { FocusBox, ModelMarker } from '../components/BodyModel/BodyModel'
-import { LAYER_SHAPES } from '../components/BodyModel/shapes'
-import LayerPanel from '../components/LayerPanel'
 import OrganCard from '../components/OrganCard'
-import { DISSECTION_STEPS, INTERNAL_LAYERS, defaultLayerState } from '../data/layers'
 import { SYSTEMS, getSystem } from '../data/systems'
 import { systemPartsCount } from '../lib/quiz'
 import { getOrgan, organsOfSystem } from '../data'
 
-import type { LayerId, SystemId } from '../data/types'
+import type { SystemId } from '../data/types'
 import { useAppStore } from '../store/appStore'
 import { useUserStore } from '../store/userStore'
 import { t } from '../i18n/ar'
-
-const TISSUE_LAYERS: LayerId[] = ['skin', 'soft', 'muscles', 'bones']
 
 export default function BodyPage() {
   const { systemId } = useParams<{ systemId: string }>()
@@ -30,26 +25,33 @@ export default function BodyPage() {
   const activeSystem: SystemId | null = systemId ? (getSystem(systemId) ? (systemId as SystemId) : null) : null
   const activeSystemDef = activeSystem ? getSystem(activeSystem) : undefined
 
-  const [layers, setLayers] = useState<Record<LayerId, boolean>>(() => defaultLayerState())
-  const [focusStep, setFocusStep] = useState(0)
   const [selected, setSelected] = useState<string | null>(null)
   const [hoverId, setHoverId] = useState<string | null>(null)
   const [systemsPanel, setSystemsPanel] = useState(false)
   const [focusBox, setFocusBox] = useState<FocusBox | null>(null)
   const boxKey = useRef(0)
 
-  // عزل الجهاز القادم من المسار (إعداد المظهر + إعادة الضبط عند المغادرة)
+  // عزل الجهاز القادم من المسار: تركيز العرض على نطاق الجهاز المحدد
   const prevActive = useRef<string | null>(null)
   useEffect(() => {
     if (activeSystem) {
       markSystemExplored(activeSystem)
-      const step = DISSECTION_STEPS.findIndex((s) => s.id === 'systems')
-      setFocusStep(step === -1 ? 7 : step)
       setSystemsPanel(false)
+      const boxes = organsOfSystem(activeSystem)
+        .map((o) => o.model?.box)
+        .filter((b): b is [number, number, number, number] => Boolean(b))
+      if (boxes.length) {
+        const x0 = Math.min(...boxes.map((b) => b[0]))
+        const y0 = Math.min(...boxes.map((b) => b[1]))
+        const x1 = Math.max(...boxes.map((b) => b[0] + b[2]))
+        const y1 = Math.max(...boxes.map((b) => b[1] + b[3]))
+        boxKey.current += 1
+        setFocusBox({ x: x0, y: y0, w: x1 - x0, h: y1 - y0, key: boxKey.current })
+      }
       prevActive.current = activeSystem
     } else if (prevActive.current) {
       setSystemsPanel(false)
-      setFocusStep(0)
+      setFocusBox(null)
       prevActive.current = null
     }
   }, [activeSystem, markSystemExplored])
@@ -72,33 +74,6 @@ export default function BodyPage() {
     }
   }, [searchParams, setSearchParams, markViewed])
 
-  // الطبقات الفعالة حسب خطوة التقشير
-  const effectiveLayers = useMemo(() => {
-    const step = DISSECTION_STEPS[focusStep]
-    const base = { ...layers }
-    if (step.id === 'organs') {
-      for (const id of TISSUE_LAYERS) base[id] = false
-      base.vessels = false
-      base.nervous = false
-      base.sensory = false
-      for (const id of INTERNAL_LAYERS) base[id] = true
-    } else if (step.id === 'systems') {
-      for (const id of TISSUE_LAYERS) base[id] = false
-      base.vessels = true
-      base.nervous = true
-      base.sensory = false
-      for (const id of INTERNAL_LAYERS) base[id] = true
-    } else if (step.layer) {
-      base[step.layer] = true
-    }
-    return base
-  }, [layers, focusStep])
-
-  const focusLayer = useMemo(() => {
-    const step = DISSECTION_STEPS[focusStep]
-    return step.layer ?? null
-  }, [focusStep])
-
   const selectedOrgan = selected ? getOrgan(selected) : undefined
 
   /** الشارات الرقمية على النموذج (والأسماء تظهر على جانبي الرسم). */
@@ -113,11 +88,6 @@ export default function BodyPage() {
     }
     if (activeSystem) {
       for (const o of organsOfSystem(activeSystem)) if (o.model) add(o.id, activeSystemDef?.color ?? 'var(--primary)')
-    } else if (focusLayer) {
-      for (const def of LAYER_SHAPES[focusLayer]) {
-        if (def.sex && def.sex !== 'both' && def.sex !== sex) continue
-        if (def.organId) add(def.organId, 'var(--primary)')
-      }
     } else {
       for (const dm of defaultMarkers(sex)) add(dm.id, dm.color, dm.x, dm.y)
     }
@@ -128,11 +98,11 @@ export default function BodyPage() {
       const o = getOrgan(x.id)!
       return { id: x.id, num: i + 1, x: x.x ?? o.model!.label[0], y: x.y ?? o.model!.label[1], color: x.color }
     })
-  }, [activeSystem, activeSystemDef, focusLayer, selectedOrgan, sex])
+  }, [activeSystem, activeSystemDef, selectedOrgan, sex])
 
   const selectOrgan = (id: string) => {
-    // في وضع العزل (جهاز/طبقة): النقر على جسم الجسم يعرض بقية الأجهزة بدل بطاقة الجلد
-    if (id === 'skin' && (activeSystem || focusLayer)) {
+    // في وضع العزل (جهاز): النقر على جسم الجسم يعرض بقية الأجهزة بدل بطاقة الجلد
+    if (id === 'skin' && activeSystem) {
       setSystemsPanel(true)
       return
     }
@@ -190,10 +160,8 @@ export default function BodyPage() {
         <div className="body-stage">
           <BodyModel
             sex={sex}
-            layers={effectiveLayers}
             selectedOrganId={selected}
             onSelectOrgan={selectOrgan}
-            focusLayer={activeSystem ? null : focusLayer}
             isolatedSystem={activeSystem}
             markers={markers}
             hoveredOrganId={hoverId}
@@ -299,22 +267,6 @@ export default function BodyPage() {
               </button>
             ))}
           </div>
-          <LayerPanel
-            layers={effectiveLayers}
-            onToggle={(id) => setLayers((l) => ({ ...l, [id]: !l[id] }))}
-            onShowAll={() => setLayers(defaultLayerState())}
-            onHideAll={() =>
-              setLayers(() => {
-                const n = {} as Record<LayerId, boolean>
-                const d = defaultLayerState()
-                for (const id of Object.keys(d) as LayerId[]) n[id] = false
-                n.skin = true
-                return n
-              })
-            }
-            focusStep={focusStep}
-            onFocusStep={setFocusStep}
-          />
         </aside>
       </div>
     </div>

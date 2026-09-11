@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import type { LayerId, Sex, SystemId } from '../../data/types'
 import { getOrgan, getSystem, organsOfSystem } from '../../data'
+import { defaultLayerState } from '../../data/layers'
 import { LAYER_SHAPES } from './shapes'
 import type { ShapeDef } from './shapes'
 
@@ -25,7 +26,7 @@ interface Props {
   sex: Sex
   selectedOrganId?: string | null
   onSelectOrgan?: (id: string) => void
-  layers: Record<LayerId, boolean>
+  layers?: Record<LayerId, boolean>
   focusLayer?: LayerId | null
   isolatedSystem?: SystemId | null
   markers?: ModelMarker[]
@@ -107,7 +108,7 @@ export default function BodyModel({
   sex,
   selectedOrganId,
   onSelectOrgan,
-  layers,
+  layers = defaultLayerState(),
   focusLayer,
   isolatedSystem,
   markers,
@@ -160,7 +161,7 @@ export default function BodyModel({
   useEffect(() => {
     if (!focusBox) return
     const pad = 1.9
-    const k = Math.min(VIEW_W / (focusBox.w * pad), VIEW_H / (focusBox.h * pad), 2.6)
+    const k = Math.max(1, Math.min(VIEW_W / (focusBox.w * pad), VIEW_H / (focusBox.h * pad), 2.6))
     const cx = focusBox.x + focusBox.w / 2
     const cy = focusBox.y + focusBox.h / 2
     setSmooth(true)
@@ -170,14 +171,16 @@ export default function BodyModel({
   /** حساب شفافية طبقة ما حسب الوضع الحالي. */
   const layerOpacity = useCallback(
     (id: LayerId): number => {
-      if (!layers[id]) return 0
-      // وضع الجهاز المعزول: فقط أعضاء الجهاز
-      if (isolatedSystem) {
-        const isSystemLayer = Object.values(LAYER_SHAPES[id]).some((s) =>
-          organsOfSystem(isolatedSystem).some((o) => o.id === s.organId),
-        )
-        return isSystemLayer ? 1 : 0.1
+      // وضع الجهاز المعزول: كل الأجهزة الداخلية مرئية (المعزول بارز، والبقية باهتة وقابلة للنقر)
+      if (isolatedSystem && isolatedOrgans) {
+        if (id === 'soft' || id === 'muscles' || id === 'bones') return 0
+        if (id === 'skin') return 0.1
+        const isSystemLayer = Object.values(LAYER_SHAPES[id]).some((s) => s.organId && isolatedOrgans.has(s.organId))
+        if (isSystemLayer) return 1
+        if (selected && Object.values(LAYER_SHAPES[id]).some((s) => s.organId === selected.id)) return 0.9
+        return 0.15
       }
+      if (!layers[id]) return 0
       // وضع التقشير الطبقي
       if (focusLayer) {
         if (focusLayer === 'skin') return id === 'skin' ? 1 : 0.12
@@ -202,7 +205,7 @@ export default function BodyModel({
       }
       return 1
     },
-    [layers, isolatedSystem, focusLayer, selected],
+    [layers, isolatedSystem, isolatedOrgans, focusLayer, selected],
   )
 
   /** شفافية شكل فردي (عضو محدد → غيره يبهت). */
