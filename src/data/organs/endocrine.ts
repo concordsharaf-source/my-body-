@@ -38,7 +38,7 @@ export const ENDOCRINE_ORGANS: Organ[] = [
     keywords: ['نخامية', 'pituitary', 'hypophysis', 'أم غدد', 'master gland', 'هرمون', 'hormone', 'نمو', 'growth', 'دماغ', 'brain'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['end-adrenal-l'], box: [128, 289, 104, 24], label: [180, 299] },
+    model: { shapeIds: ['end-pituitary'], box: [167, 84, 26, 26], label: [180, 95] },
   },
   {
     id: 'thyroid',
@@ -77,7 +77,7 @@ export const ENDOCRINE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['end-thyroid'], box: [156, 130, 48, 32], label: [180, 146] },
+    model: { shapeIds: ['end-thyroid'], box: [161, 112, 38, 27], label: [180, 123] },
   },
   {
     id: 'parathyroid',
@@ -148,6 +148,6 @@ export const ENDOCRINE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['end-adrenal-l'], box: [128, 330, 104, 24], label: [144, 340] },
+    model: { shapeIds: ['end-adrenal-l'], box: [128, 289, 104, 24], label: [180, 299] },
   },
 ]

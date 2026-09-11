@@ -49,7 +49,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     source: SRC,
     refs: ["Gray's Anatomy 41st ed., Ch. 1", 'Netter Plate 299'],
     reviewedAt: REV,
-    model: { shapeIds: ['sen-ear-l'], box: [124, 54, 112, 38], label: [180, 70] },
+    model: { shapeIds: ['ner-brain'], box: [143, 30, 74, 68], label: [180, 59] },
   },
   {
     id: 'cerebellum',
@@ -83,7 +83,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     keywords: ['مخيخ', 'توازن', 'equilibrium', 'balance', 'motor', 'تناسق', 'مشي', 'Cerebellum'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-cerebellum'], box: [150, 88, 60, 32], label: [180, 102] },
+    model: { shapeIds: ['ner-cerebellum'], box: [159, 74, 42, 28], label: [180, 86] },
   },
   {
     id: 'brainstem',
@@ -118,7 +118,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     keywords: ['جذع دماغ', 'مهاد', 'جسر', 'بروطة', 'brainstem', 'pons', 'medulla', 'midbrain', 'تنفس تلقائي'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-brainstem'], box: [164, 96, 32, 44], label: [180, 118] },
+    model: { shapeIds: ['ner-brainstem'], box: [168, 84, 24, 37], label: [180, 100] },
   },
   {
     id: 'spinalcord',
@@ -153,7 +153,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     keywords: ['حبل شوكي', 'نخاع شوكي', 'عمود فقري', 'spinal cord', 'reflex', 'انعكاس', 'spine', 'قناة شوكية'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['ner-spinal'], box: [160, 130, 40, 310], label: [180, 360] },
+    model: { shapeIds: ['ner-spinal'], box: [161, 90, 38, 210], label: [180, 178] },
   },
   {
     id: 'opticnerve',
@@ -211,7 +211,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     keywords: ['عصب سمعي', 'سمع', 'hearing', 'vestibular', 'cochlear', 'توازن', 'أذن'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-ear-l'], box: [124, 54, 112, 38], label: [180, 70] },
+    model: { shapeIds: ['ner-acoustic-l'], box: [144, 71, 72, 26], label: [180, 82] },
   },
   {
     id: 'peripheralnerves',
@@ -245,7 +245,7 @@ export const NERVOUS_ORGANS: Organ[] = [
     keywords: ['أعصاب', 'عصب', 'لمس', 'touch', 'nerve', 'sciatic', 'pain', 'ألم', 'حس', 'حركة'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['fig-head', 'fig-neck', 'fig-torso-m', 'fig-torso-f', 'fig-arm-l', 'fig-hand-l', 'fig-leg-l', 'fig-foot-l'], box: [75, 0, 210, 780], label: [180, 328] },
+    model: { shapeIds: ['ner-brachial-l', 'ner-sciatic-l'], box: [128, 117, 104, 300], label: [180, 243] },
   },
   {
     id: 'cns',

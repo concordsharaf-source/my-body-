@@ -1,12 +1,16 @@
-import { useMemo } from 'react'
+import { useId, useMemo } from 'react'
 import type { Organ } from '../data/types'
 import { LAYER_SHAPES } from './BodyModel/shapes'
 import type { ShapeDef } from './BodyModel/shapes'
+import { ModelDefs, ShapeEl } from './BodyModel/BodyModel'
 
 /**
- * رسم عضو معزول بقصّ viewBox على مربعه — تستخدمه البطاقات التعليمية.
+ * رسم العضو بنفس أسلوب النموذج الكامل (تدرجات + خطوط) لكن بقصّ viewBox
+ * على مربع العضو مع حد أدنى للسياق — تستخدمه البطاقات التعليمية.
  */
 export default function MiniOrgan({ organ, sex, className }: { organ: Organ; sex: 'male' | 'female'; className?: string }) {
+  const gradPrefix = 'mini' + useId().replace(/[^a-zA-Z0-9]/g, '')
+
   const shapes = useMemo(() => {
     const wanted = new Set(organ.model?.shapeIds ?? [])
     const out: { def: ShapeDef; mirrored: boolean }[] = []
@@ -21,38 +25,34 @@ export default function MiniOrgan({ organ, sex, className }: { organ: Organ; sex
     return out
   }, [organ, sex])
 
-  const [x, y, w, h] = organ.model?.box ?? [0, 0, 360, 780]
+  const [bx, by, bw, bh] = organ.model?.box ?? [0, 0, 360, 780]
+  const [vx, vy, vw, vh] = cropWithContext(bx, by, bw, bh)
 
   return (
-    <svg viewBox={`${x} ${y} ${w} ${h}`} className={`mini-organ ${className ?? ''}`} role="img" aria-label={organ.ar}>
-      <rect x={x} y={y} width={w} height={h} className="mini-bg" />
+    <svg viewBox={`${vx} ${vy} ${vw} ${vh}`} className={`mini-organ ${className ?? ''}`} role="img" aria-label={organ.ar}>
+      <ModelDefs prefix={gradPrefix} />
+      <rect x={vx} y={vy} width={vw} height={vh} className="mini-bg" />
       {shapes.map(({ def, mirrored }) => (
         <g key={`${def.id}${mirrored ? '-m' : ''}`} transform={mirrored ? 'matrix(-1,0,0,1,360,0)' : undefined}>
-          <ShapeDefEl def={def} />
+          <ShapeEl def={def} cls="mini-shape" opacity={1} interactive={false} gradPrefix={gradPrefix} />
         </g>
       ))}
     </svg>
   )
 }
 
-function ShapeDefEl({ def }: { def: ShapeDef }) {
-  const paint = {
-    fill: def.strokeOnly ? 'none' : 'currentColor',
-    stroke: def.strokeOnly ? 'currentColor' : 'none',
-    strokeWidth: def.sw ?? 2,
-    strokeLinecap: 'round' as const,
-    strokeLinejoin: 'round' as const,
-    strokeDasharray: def.dash,
-    className: 'mini-shape',
-  }
-  switch (def.kind) {
-    case 'circle':
-      return <circle {...paint} cx={def.cx} cy={def.cy} r={def.r} />
-    case 'ellipse':
-      return <ellipse {...paint} cx={def.cx} cy={def.cy} rx={def.rx} ry={def.ry} />
-    case 'line':
-      return <line {...paint} x1={def.x1} y1={def.y1} x2={def.x2} y2={def.y2} />
-    default:
-      return <path {...paint} d={def.d} />
-  }
+/**
+ * قصّ بعرض/ارتفاع أدنى (150 وحدة) مع الحفاظ على مركز العضو،
+ * حتى تظهر الأعضاء الصغيرة داخل سياقها التشريحي بدل تكبيرها إلى كرة.
+ */
+function cropWithContext(x: number, y: number, w: number, h: number): [number, number, number, number] {
+  const MIN = 150
+  const k = Math.max(MIN / Math.min(w, h), 1)
+  const vw = Math.min(360, w * k)
+  const vh = Math.min(780, h * k)
+  const cx = x + w / 2
+  const cy = y + h / 2
+  const vx = Math.min(360 - vw, Math.max(0, cx - vw / 2))
+  const vy = Math.min(780 - vh, Math.max(0, cy - vh / 2))
+  return [vx, vy, vw, vh]
 }

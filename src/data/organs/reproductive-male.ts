@@ -41,7 +41,7 @@ export const REPRO_MALE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-m-prostate'], box: [166, 381, 28, 24], label: [180, 391] },
+    model: { shapeIds: ['rep-m-testis-l'], box: [153, 383, 55, 31], label: [181, 396] },
   },
   {
     id: 'epididymis',
@@ -74,7 +74,7 @@ export const REPRO_MALE_ORGANS: Organ[] = [
     keywords: ['مذيبة', 'epididymis', 'نطف', 'sperm', 'نضج', 'مخزن', 'خصية', 'testis'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-m-epididymis-l'], box: [148, 464, 64, 26], label: [152, 472] },
+    model: { shapeIds: ['rep-m-epididymis-l'], box: [150, 383, 60, 30], label: [180, 396] },
   },
   {
     id: 'vasdeferens',
@@ -108,7 +108,7 @@ export const REPRO_MALE_ORGANS: Organ[] = [
     keywords: ['قصلية', 'vas deferens', 'نطف', 'sperm', 'قذف', 'ejaculation', 'خصية', 'testis', 'قناة'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-m-prostate'], box: [166, 381, 28, 24], label: [180, 391] },
+    model: { shapeIds: ['rep-m-vas-l'], box: [153, 349, 54, 49], label: [180, 370] },
   },
   {
     id: 'prostate',
@@ -142,7 +142,7 @@ export const REPRO_MALE_ORGANS: Organ[] = [
     keywords: ['بروستاتا', 'prostate', 'منوي', 'semen', 'بول', 'urine', 'ذكر', 'male', 'غدة', 'gland', 'PSA'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-m-prostate'], box: [164, 448, 32, 22], label: [180, 458] },
+    model: { shapeIds: ['rep-m-prostate'], box: [166, 381, 28, 24], label: [180, 391] },
   },
   {
     id: 'seminalvesicles',

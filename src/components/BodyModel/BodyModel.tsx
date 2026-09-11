@@ -55,7 +55,7 @@ const RENDER_ORDER: LayerId[] = [
 ]
 
 /** التدرجات اللونية (المواقف تستخدم متغيرات CSS فتتكيّف مع الثيم). */
-const GRADIENTS: { id: string; a: string; c: string }[] = [
+export const GRADIENTS: { id: string; a: string; c: string }[] = [
   { id: 'g-skin', a: '--skin-a', c: '--skin-c' },
   { id: 'g-soft', a: '--soft-a', c: '--soft-c' },
   { id: 'g-bones', a: '--bones-a', c: '--bones-c' },
@@ -325,14 +325,7 @@ export default function BodyModel({
         onDoubleClick={reset}
         style={{ touchAction: 'none' }}
       >
-        <defs>
-          {GRADIENTS.map((g) => (
-            <linearGradient key={g.id} id={`${gradPrefix}${g.id}`} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" style={{ stopColor: `var(${g.a})` }} />
-              <stop offset="1" style={{ stopColor: `var(${g.c})` }} />
-            </linearGradient>
-          ))}
-        </defs>
+        <ModelDefs prefix={gradPrefix} />
         <g
           className="body-root"
           style={{
@@ -441,7 +434,20 @@ function shapeLayerOf(def: ShapeDef): LayerId {
   return 'skin'
 }
 
-function ShapeEl({
+export function ModelDefs({ prefix }: { prefix: string }) {
+  return (
+    <defs>
+      {GRADIENTS.map((g) => (
+        <linearGradient key={g.id} id={`${prefix}${g.id}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" style={{ stopColor: `var(${g.a})` }} />
+          <stop offset="1" style={{ stopColor: `var(${g.c})` }} />
+        </linearGradient>
+      ))}
+    </defs>
+  )
+}
+
+export function ShapeEl({
   def,
   cls,
   opacity,
@@ -455,7 +461,7 @@ function ShapeEl({
   opacity: number
   interactive: boolean
   onSelect?: (id: string) => void
-  onHover: (id: string | null) => void
+  onHover?: (id: string | null) => void
   gradPrefix: string
 }) {
   const common = {
@@ -463,8 +469,8 @@ function ShapeEl({
     opacity,
     style: { transition: 'opacity 0.25s' } as React.CSSProperties,
     onClick: def.organId && interactive ? (e: React.MouseEvent) => { e.stopPropagation(); onSelect?.(def.organId!) } : undefined,
-    onPointerEnter: def.organId && interactive ? () => onHover(def.organId!) : undefined,
-    onPointerLeave: def.organId && interactive ? () => onHover(null) : undefined,
+    onPointerEnter: def.organId && interactive ? () => onHover?.(def.organId!) : undefined,
+    onPointerLeave: def.organId && interactive ? () => onHover?.(null) : undefined,
   }
   const grad = (g: string) => `url(#${gradPrefix}${g})`
   const fill = def.strokeOnly

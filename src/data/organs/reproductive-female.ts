@@ -40,7 +40,7 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-f-vagina'], box: [170, 393, 20, 27], label: [180, 404] },
+    model: { shapeIds: ['rep-f-ovary-l'], box: [139, 356, 82, 30], label: [180, 369] },
   },
   {
     id: 'fallopiantubes',
@@ -74,7 +74,7 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
     keywords: ['قناة بويضية', 'fallopian tube', 'بويضة', 'egg', 'إخصاب', 'fertilization', 'رحم', 'uterus', 'حمل', 'pregnancy'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-f-tube-l'], box: [140, 428, 80, 30], label: [212, 436] },
+    model: { shapeIds: ['rep-f-tube-l'], box: [144, 364, 72, 22], label: [180, 373] },
   },
   {
     id: 'uterus',
@@ -113,7 +113,7 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-f-vagina'], box: [170, 393, 20, 27], label: [180, 404] },
+    model: { shapeIds: ['rep-f-uterus'], box: [158, 354, 44, 47], label: [180, 374] },
   },
   {
     id: 'cervix',
@@ -146,7 +146,7 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
     keywords: ['عنق رحم', 'cervix', 'رحم', 'uterus', 'مخاط', 'mucus', 'ولادة', 'labor', 'فحص', 'pap smear'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-f-cervix'], box: [170, 456, 20, 16], label: [180, 464] },
+    model: { shapeIds: ['rep-f-cervix'], box: [169, 385, 22, 24], label: [180, 395] },
   },
   {
     id: 'vagina',
@@ -180,7 +180,7 @@ export const REPRO_FEMALE_ORGANS: Organ[] = [
     keywords: ['مهبل', 'vagina', 'أنثى', 'female', 'فرج', 'vulva', 'حمض', 'acid', 'pH', 'بكتيريا', 'نقاء'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['rep-f-vagina'], box: [170, 466, 20, 30], label: [180, 480] },
+    model: { shapeIds: ['rep-f-vagina'], box: [170, 393, 20, 27], label: [180, 404] },
   },
   {
     id: 'breasts',

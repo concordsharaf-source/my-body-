@@ -50,7 +50,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     source: SRC,
     refs: ['Gray\'s Anatomy, Ch. 13', 'Netter Plate 299'],
     reviewedAt: REV,
-    model: { shapeIds: ['res-lung-l', 'res-lung-r'], box: [129, 165, 102, 141], label: [180, 224] },
+    model: { shapeIds: ['cir-heart'], box: [147, 223, 71, 86], label: [183, 259] },
   },
   {
     id: 'aorta',
@@ -84,7 +84,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     keywords: ['أبهر', 'أورط', 'sherrayan', 'aorta', 'aortic', 'أكبر شريان', 'ضغط', 'pressure'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['uri-ureter-l'], box: [137, 332, 86, 59], label: [180, 357] },
+    model: { shapeIds: ['vas-aorta'], box: [172, 194, 45, 175], label: [195, 268] },
   },
   {
     id: 'arteries',
@@ -117,7 +117,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     keywords: ['شرايين', 'شريان', 'artery', 'arteries', 'دم أحمر', 'pressure', 'ضغط', 'نبض'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-vessel-l'], box: [104, 172, 152, 206], label: [180, 259] },
+    model: { shapeIds: ['vas-arm-l', 'vas-leg-l'], box: [98, 116, 164, 620], label: [180, 376] },
   },
   {
     id: 'veins',
@@ -184,7 +184,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     keywords: ['شعيرات', 'شعيرات دموية', 'capillary', 'capillaries', 'تبادل', 'أكسجين', 'خلايا', 'خلايا دم'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-vessel-l'], box: [104, 172, 152, 206], label: [180, 259] },
+    model: { shapeIds: ['vas-cap-hand-l'], box: [102, 392, 156, 40], label: [180, 409] },
   },
   {
     id: 'blood',
@@ -228,7 +228,7 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-thymus'], box: [163, 183, 34, 23], label: [180, 193] },
+    model: { shapeIds: ['vas-arm-l'], box: [98, 152, 164, 250], label: [180, 257] },
   },
   {
     id: 'pulmonaryartery',
@@ -288,6 +288,6 @@ export const CIRCULATORY_ORGANS: Organ[] = [
     keywords: ['وريد كهفي', 'vena cava', 'cava', 'أكبر وريد', 'عود دم', 'قلب'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['vas-svc', 'vas-ivc'], box: [176, 200, 40, 150], label: [198, 230] },
+    model: { shapeIds: ['vas-svc', 'vas-ivc'], box: [182, 195, 32, 176], label: [198, 269] },
   },
 ]

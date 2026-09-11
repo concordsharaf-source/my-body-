@@ -42,7 +42,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-pelvis', 'bone-femur-l'], box: [129, 252, 102, 283], label: [180, 371] },
+    model: { shapeIds: ['mus-pec-l', 'mus-delt-l', 'mus-bicep-l', 'mus-abs', 'mus-quad-l'], box: [80, 108, 200, 438], label: [180, 292] },
   },
   {
     id: 'pectoralis',
@@ -108,7 +108,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     keywords: ['دلتويدة', 'دلتا', 'deltoid', 'كتف', 'shoulder', 'رفع', 'abduction', 'تمارين', 'gym'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['mus-bicep-l'], box: [86, 189, 188, 70], label: [180, 218] },
+    model: { shapeIds: ['mus-delt-l'], box: [80, 142, 200, 63], label: [180, 168] },
   },
   {
     id: 'biceps',
@@ -142,7 +142,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     keywords: ['بايبس', 'ثنائية', 'biceps', 'ذراع', 'arm', 'ثني', 'flexion', 'رفعة', 'curl', 'عضلة ذراع'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['mus-bicep-l'], box: [66, 208, 228, 110], label: [88, 260] },
+    model: { shapeIds: ['mus-bicep-l'], box: [86, 189, 188, 70], label: [180, 218] },
   },
   {
     id: 'triceps',
@@ -208,7 +208,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     keywords: ['مستقيمة بطنية', 'rectus', 'abdominis', 'بطن', 'belly', 'abs', 'ست باك', 'six pack', 'ثني', 'crunch', 'كرانش'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-pelvis'], box: [131, 271, 65, 63], label: [164, 297] },
+    model: { shapeIds: ['mus-abs'], box: [150, 284, 60, 96], label: [180, 324] },
   },
   {
     id: 'obliques',
@@ -241,7 +241,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     keywords: ['مائلة', 'oblique', 'جانبية', 'دوران', 'rotation', 'بطن', 'belly', 'انحناء', 'side bend'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-pelvis'], box: [131, 271, 65, 63], label: [164, 297] },
+    model: { shapeIds: ['mus-oblique-l'], box: [132, 290, 96, 83], label: [180, 325] },
   },
   {
     id: 'gluteus',
@@ -274,7 +274,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     keywords: ['ألوية', 'لوية', 'gluteus', 'مؤخرة', 'buttock', 'تمديد', 'extension', 'مشي', 'walking', 'وقوف', 'hip'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-tibia-l', 'bone-fibula-l'], box: [137, 506, 86, 148], label: [180, 568] },
+    model: { shapeIds: ['mus-glute-l'], box: [138, 362, 84, 46], label: [180, 381] },
   },
   {
     id: 'quadriceps',
@@ -307,7 +307,7 @@ export const MUSCULAR_ORGANS: Organ[] = [
     keywords: ['رباعية', 'quadriceps', 'فخذ', 'thigh', 'ركبة', 'knee', 'فرد', 'extension', 'مشي', 'gym', 'سكوات'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-tibia-l', 'bone-fibula-l'], box: [137, 506, 86, 148], label: [180, 568] },
+    model: { shapeIds: ['mus-quad-l'], box: [118, 384, 124, 133], label: [180, 440] },
   },
   {
     id: 'calves',
@@ -373,6 +373,6 @@ export const MUSCULAR_ORGANS: Organ[] = [
     keywords: ['أوتار', 'وتر', 'tendons', 'tendon', 'كولاجين', 'collagen', 'عضلة', 'muscle', 'عظم', 'bone', 'ربط'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-pelvis', 'bone-femur-l'], box: [129, 252, 102, 283], label: [180, 371] },
+    model: { shapeIds: ['mus-calf-l'], box: [127, 545, 106, 111], label: [180, 592] },
   },
 ]

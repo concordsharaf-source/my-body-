@@ -78,7 +78,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-cervical', 'bone-thoracic', 'bone-lumbar'], box: [160, 130, 40, 300], label: [180, 300] },
+    model: { shapeIds: ['bone-cervical', 'bone-thoracic', 'bone-lumbar'], box: [161, 98, 38, 206], label: [180, 185] },
   },
   {
     id: 'ribs',
@@ -114,7 +114,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     keywords: ['أضلاع', 'ضلع', 'ribs', 'rib cage', 'thorax', 'صدر', 'chest', 'قص', 'sternum', 'تنفس', 'حماية', 'قلب'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-ribs', 'bone-sternum'], box: [120, 176, 120, 130], label: [228, 240] },
+    model: { shapeIds: ['bone-ribs', 'bone-sternum'], box: [126, 138, 68, 124], label: [160, 190] },
   },
   {
     id: 'pelvis',
@@ -151,7 +151,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     keywords: ['حوض', 'pelvis', 'hip', 'ورك', 'وركي', 'hip joint', 'عظم', 'bone', 'حمل', 'حمل وزن', 'ولادة'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-pelvis'], box: [124, 404, 112, 76], label: [224, 440] },
+    model: { shapeIds: ['bone-pelvis'], box: [131, 271, 65, 63], label: [164, 297] },
   },
   {
     id: 'clavicle',
@@ -184,7 +184,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     keywords: ['ترقوة', 'ترقوي', 'clavicle', 'clavicular', 'كتف', 'shoulder', 'مفتاح', 'مفصل'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-clavicle-l'], box: [110, 158, 140, 30], label: [120, 172] },
+    model: { shapeIds: ['bone-clavicle-l'], box: [122, 137, 116, 22], label: [180, 146] },
   },
   {
     id: 'femur',
@@ -220,7 +220,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     keywords: ['فخذ', 'femur', 'thigh', 'عظم فخذ', 'ركبة', 'knee', 'ورك', 'hip', 'أطول عظم', 'مشي', 'walking'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-femur-l'], box: [138, 440, 84, 160], label: [162, 520] },
+    model: { shapeIds: ['bone-femur-l'], box: [129, 376, 102, 146], label: [180, 437] },
   },
   {
     id: 'armbones',
@@ -257,7 +257,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     keywords: ['ذراع', 'arm', 'فخذ', 'humerus', 'ulna', 'radius', 'مرفق', 'elbow', 'كتف', 'shoulder', 'يد', 'hand', 'معصم', 'wrist'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-humerus-l', 'bone-forearm-l'], box: [60, 160, 240, 300], label: [92, 250] },
+    model: { shapeIds: ['bone-humerus-l', 'bone-forearm-l'], box: [94, 144, 172, 224], label: [180, 238] },
   },
   {
     id: 'legbones',
@@ -293,7 +293,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     keywords: ['ساق', 'leg', 'tibia', 'fibula', 'patella', 'كعب', 'shin', 'ركبة', 'knee', 'قدم', 'foot', 'مشي'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-tibia-l', 'bone-fibula-l'], box: [138, 590, 84, 140], label: [162, 660] },
+    model: { shapeIds: ['bone-tibia-l', 'bone-fibula-l'], box: [137, 506, 86, 148], label: [180, 568] },
   },
   {
     id: 'joints',
@@ -329,7 +329,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     keywords: ['مفاصل', 'مفصل', 'joints', 'joint', 'مفصلية', 'synovial', 'حركة', 'motion', 'كتف', 'ركبة', 'knee', 'elbow'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-ribs', 'bone-sternum'], box: [126, 138, 68, 124], label: [160, 190] },
+    model: { shapeIds: ['bone-ribs', 'bone-pelvis', 'bone-femur-l'], box: [124, 114, 107, 436], label: [178, 297] },
   },
   {
     id: 'ligaments',
@@ -362,7 +362,7 @@ export const SKELETAL_ORGANS: Organ[] = [
     keywords: ['أربطة', 'رباط', 'ligaments', 'ligament', 'مفصل', 'joint', 'ثبات', 'stability', 'تمزق', 'sprain', 'ACL'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-pelvis', 'bone-femur-l'], box: [130, 430, 100, 100], label: [216, 480] },
+    model: { shapeIds: ['bone-pelvis', 'bone-femur-l'], box: [129, 252, 102, 283], label: [180, 371] },
   },
   {
     id: 'cartilage',
@@ -396,6 +396,6 @@ export const SKELETAL_ORGANS: Organ[] = [
     keywords: ['غضروف', 'غضاريف', 'cartilage', 'مفصل', 'joint', 'مطاطي', 'مرن', 'flexible', 'أذن', 'ear', 'قرص', 'disc', 'meniscus'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['bone-ribs', 'bone-sternum'], box: [124, 176, 112, 120], label: [224, 200] },
+    model: { shapeIds: ['bone-ribs', 'bone-sternum'], box: [126, 138, 68, 124], label: [160, 190] },
   },
 ]

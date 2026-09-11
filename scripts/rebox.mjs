@@ -5,7 +5,6 @@ import { createServer } from 'vite'
 
 const vite = await createServer({ server: { middlewareMode: true }, appType: 'custom', logLevel: 'error' })
 const { allShapes } = await vite.ssrLoadModule('/src/components/BodyModel/shapes.ts')
-const { ALL_ORGANS } = await vite.ssrLoadModule('/src/data/index.ts')
 await vite.close()
 const root = process.cwd()
 
@@ -89,24 +88,30 @@ function bboxOf(shapeIds) {
   return { box: [minX, minY, maxX - minX, maxY - minY], label: [cx, cy] }
 }
 
+// نعالج كل ملف: نبحث عن معرفات الأعضاء الفعلية (4 مسافات بداية سطر)
+// حتى لا نُطابق مراجع العلاقات داخل مدخلات أخرى.
 const files = readdirSync(join(root, 'src/data/organs')).filter((f) => f.endsWith('.ts')).map((f) => join(root, 'src/data/organs', f))
 let updated = 0, failed = []
-for (const organ of ALL_ORGANS) {
-  if (!organ.model) continue
-  const bb = bboxOf(organ.model.shapeIds)
-  if (!bb) { failed.push(organ.id + '(بدون نقاط)'); continue }
-  const fileOf = files.find((f) => readFileSync(f, 'utf8').includes(`id: '${organ.id}',`))
-  if (!fileOf) { failed.push(organ.id + '(ملف)'); continue }
+for (const fileOf of files) {
   let s = readFileSync(fileOf, 'utf8')
-  const start = s.indexOf(`id: '${organ.id}',`)
-  if (start === -1) { failed.push(organ.id + '(id)'); continue }
-  const end = s.indexOf('  },', start + 4)
-  const slice = s.slice(start, end === -1 ? start + 6000 : end + 5)
-  const re = /model:\s*\{[^}]*shapeIds:\s*\[([^\]]*)\][^}]*\}/
-  const m = slice.match(re)
-  if (!m) { failed.push(organ.id + '(model)'); continue }
-  const newModel = `model: { shapeIds: [${organ.model.shapeIds.map((x) => `'${x}'`).join(', ')}], box: [${bb.box.join(', ')}], label: [${bb.label.join(', ')}] }`
-  const next = s.slice(0, start) + slice.replace(m[0], newModel) + s.slice(end === -1 ? start + 6000 : end + 5)
-  if (next !== s) { writeFileSync(fileOf, next); updated++ }
+  const re = /^    id: '(\w+)',$/gm
+  let m
+  const starts = []
+  while ((m = re.exec(s))) starts.push({ id: m[1], at: m.index })
+  for (let i = starts.length - 1; i >= 0; i--) {
+    const st = starts[i]
+    const end = s.indexOf('\n  },', st.at)
+    const sliceEnd = end === -1 ? s.length : end
+    const slice = s.slice(st.at, sliceEnd)
+    const mm = slice.match(/model:\s*\{[^}]*shapeIds:\s*\[([^\]]*)\][^}]*\}/)
+    if (!mm) continue // عضو بلا موديل
+    const ids = [...mm[1].matchAll(/'([^']+)'/g)].map((x) => x[1])
+    const bb = bboxOf(ids)
+    if (!bb) { failed.push(st.id + '(بدون نقاط)'); continue }
+    const newModel = `model: { shapeIds: [${ids.map((x) => `'${x}'`).join(', ')}], box: [${bb.box.join(', ')}], label: [${bb.label.join(', ')}] }`
+    const next = s.slice(0, st.at) + slice.replace(mm[0], newModel) + s.slice(sliceEnd)
+    if (next !== s) { s = next; updated++ }
+  }
+  writeFileSync(fileOf, s)
 }
 console.log(`تحديث: ${updated} عضو | فشل: ${failed.join(', ') || 'لا شيء'}`)

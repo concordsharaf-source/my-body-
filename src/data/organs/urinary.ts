@@ -48,7 +48,7 @@ export const URINARY_ORGANS: Organ[] = [
     source: SRC,
     refs: ['Gray\'s Anatomy, Ch. 44'],
     reviewedAt: REV,
-    model: { shapeIds: ['uri-ureter-l'], box: [137, 332, 86, 59], label: [180, 357] },
+    model: { shapeIds: ['uri-kidney-l'], box: [124, 296, 112, 53], label: [180, 318] },
   },
   {
     id: 'ureters',
@@ -80,7 +80,7 @@ export const URINARY_ORGANS: Organ[] = [
     keywords: ['حالب', 'حالبان', 'ureter', 'ureters', 'بول', 'urine', 'كلى', 'kidney', 'أنبوب', 'الكة الكليوية'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['uri-ureter-l'], box: [146, 386, 68, 48], label: [206, 408] },
+    model: { shapeIds: ['uri-ureter-l'], box: [137, 332, 86, 59], label: [180, 357] },
   },
   {
     id: 'bladder',
@@ -114,7 +114,7 @@ export const URINARY_ORGANS: Organ[] = [
     keywords: ['مثانة', 'bladder', 'تبول', 'urination', 'بول', 'urine', 'حوض', 'pelvis', 'سلس', 'incontinence'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['uri-bladder'], box: [156, 418, 48, 40], label: [180, 438] },
+    model: { shapeIds: ['uri-bladder'], box: [158, 364, 44, 43], label: [180, 382] },
   },
   {
     id: 'urethra',
@@ -146,6 +146,6 @@ export const URINARY_ORGANS: Organ[] = [
     keywords: ['إحليل', 'urethra', 'تبول', 'urination', 'بول', 'urine', 'مجرى', 'فتحة'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['uri-urethra'], box: [168, 446, 24, 40], label: [180, 466] },
+    model: { shapeIds: ['uri-urethra'], box: [172, 391, 16, 29], label: [180, 403] },
   },
 ]

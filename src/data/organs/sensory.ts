@@ -50,7 +50,7 @@ export const SENSORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-eye-l'], box: [140, 58, 80, 34], label: [180, 76] },
+    model: { shapeIds: ['sen-eye-l'], box: [150, 51, 60, 26], label: [180, 62] },
   },
   {
     id: 'ear',
@@ -95,7 +95,7 @@ export const SENSORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-ear-l'], box: [120, 60, 120, 44], label: [134, 82] },
+    model: { shapeIds: ['sen-ear-l'], box: [124, 54, 112, 38], label: [180, 70] },
   },
   {
     id: 'eardrum',
@@ -158,7 +158,7 @@ export const SENSORY_ORGANS: Organ[] = [
     keywords: ['عظيمات', 'ossicles', 'مطرقة', 'malleus', 'سندان', 'incus', 'ركاب', 'stapes', 'أذن', 'ear', 'تضخيم', 'amplification'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-ear-l'], box: [120, 62, 120, 40], label: [134, 84] },
+    model: { shapeIds: ['sen-ear-l'], box: [124, 54, 112, 38], label: [180, 70] },
   },
   {
     id: 'cochlea',
@@ -192,7 +192,7 @@ export const SENSORY_ORGANS: Organ[] = [
     keywords: ['قوقعة', 'cochlea', 'سمع', 'hearing', 'صوت', 'sound', 'خلايا شعرية', 'hair cells', 'حلزون', 'snail', 'تردد', 'frequency'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-ear-l'], box: [120, 62, 120, 40], label: [226, 84] },
+    model: { shapeIds: ['sen-ear-l'], box: [124, 54, 112, 38], label: [180, 70] },
   },
   {
     id: 'nose',
@@ -232,7 +232,7 @@ export const SENSORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['sen-nose'], box: [164, 70, 32, 36], label: [180, 92] },
+    model: { shapeIds: ['sen-nose'], box: [167, 48, 28, 51], label: [181, 69] },
   },
   {
     id: 'skin',
@@ -273,6 +273,6 @@ export const SENSORY_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['fig-head', 'fig-neck', 'fig-torso-m', 'fig-torso-f', 'fig-arm-l', 'fig-hand-l', 'fig-leg-l', 'fig-foot-l'], box: [60, 20, 240, 740], label: [180, 560] },
+    model: { shapeIds: ['fig-head', 'fig-neck', 'fig-torso-m', 'fig-torso-f', 'fig-arm-l', 'fig-hand-l', 'fig-leg-l', 'fig-foot-l'], box: [75, 0, 210, 780], label: [180, 328] },
   },
 ]

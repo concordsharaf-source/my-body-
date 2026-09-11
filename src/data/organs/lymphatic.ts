@@ -40,7 +40,7 @@ export const LYMPHATIC_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-thymus'], box: [163, 183, 34, 23], label: [180, 193] },
+    model: { shapeIds: ['lym-node-neck-l', 'lym-node-armpit-l', 'lym-node-groin-l'], box: [109, 109, 142, 314], label: [180, 241] },
   },
   {
     id: 'lymphvessels',
@@ -74,7 +74,7 @@ export const LYMPHATIC_ORGANS: Organ[] = [
     keywords: ['أوعية لمفاوية', 'lymphatic vessels', 'لمف', 'lymph', 'سائل', 'fluid', 'مناعة', 'immune', 'استسقاء', 'edema'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-vessel-l'], box: [80, 200, 200, 300], label: [104, 300] },
+    model: { shapeIds: ['lym-vessel-l'], box: [104, 172, 152, 206], label: [180, 259] },
   },
   {
     id: 'spleen',
@@ -113,7 +113,7 @@ export const LYMPHATIC_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-spleen'], box: [214, 318, 30, 40], label: [230, 338] },
+    model: { shapeIds: ['lym-spleen'], box: [204, 296, 28, 42], label: [218, 314] },
   },
   {
     id: 'thymus',
@@ -149,7 +149,7 @@ export const LYMPHATIC_ORGANS: Organ[] = [
     keywords: ['زعترية', 'thymus', 'تيموسية', 'T cells', 'تدريب', 'immune', 'مناعة', 'صدر', 'chest', 'غدة'],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-thymus'], box: [150, 172, 60, 48], label: [180, 196] },
+    model: { shapeIds: ['lym-thymus'], box: [163, 183, 34, 23], label: [180, 193] },
   },
   {
     id: 'tonsils',
@@ -223,6 +223,6 @@ export const LYMPHATIC_ORGANS: Organ[] = [
     ],
     source: SRC,
     reviewedAt: REV,
-    model: { shapeIds: ['lym-thymus'], box: [148, 170, 64, 52], label: [196, 196] },
+    model: { shapeIds: ['lym-thymus'], box: [163, 183, 34, 23], label: [180, 193] },
   },
 ]

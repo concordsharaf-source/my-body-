@@ -708,7 +708,8 @@ input { font-family: inherit; }
   align-items: start;
 }
 
-.body-stage { position: relative; }
+.body-stage { position: relative; min-width: 0; }
+.body-side { min-width: 0; }
 .stage-hint {
   text-align: center;
   color: var(--muted);
@@ -1405,6 +1406,41 @@ input { font-family: inherit; }
 }
 .step-dot.on { border-color: var(--primary); background: var(--primary-soft); }
 .dissection-current { text-align: center; font-weight: 700; font-size: 0.9rem; margin-top: 8px; }
+
+html, body { overflow-x: clip; }
+
+/* ============ موبايل ============ */
+@media (max-width: 700px) {
+  .app-main { padding-inline: 12px; }
+  .body-header { gap: 8px; }
+  .body-header h1 { font-size: 1.1rem; }
+  .sex-toggle button { padding: 6px 10px; font-size: 0.8rem; }
+
+  /* النموذج: عرض مُقيّد (الارتفاع يأتي من نسبة الأبعاد) حتى يبقى الجسم كاملًا
+     مع عناصر التحكم ظاهرة — width صريح لتفادي خلل توسيط Chromium مع aspect-ratio */
+  .body-model-wrap {
+    width: min(100%, 25.8vh);
+    width: min(100%, 25.8dvh);
+    max-width: none;
+  }
+  .body-model-wrap.compact {
+    width: min(100%, 23vh);
+    width: min(100%, 23dvh);
+    max-width: none;
+  }
+
+  /* شرائح الأجهزة: صف واحد قابل للتمرير */
+  .system-chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 8px; }
+  .system-chips .chip { flex: 0 0 auto; }
+
+  .layer-row { min-height: 42px; }
+  .dissection-steps { grid-template-columns: repeat(4, 1fr); }
+
+  .cards-nav { flex-wrap: wrap; gap: 10px; }
+  .cards-nav .btn { flex: 1; text-align: center; }
+  .organ-actions { flex-wrap: wrap; }
+  .organ-actions .btn { flex: 1 1 auto; text-align: center; }
+}
 
 /* ============ متجاوب ============ */
 @media (min-width: 900px) {
