@@ -4,3 +4,5 @@ dev-dist
 .DS_Store
 *.local
 .vite
+.arena-session-memory.md
+.arena/
